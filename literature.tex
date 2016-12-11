@@ -1,19 +1,35 @@
 \chap Machine Learning
 
-Machine learning is subfield of computer science. Widely quoted formal
-definition is provided in \cite[mitchell97]:
+Machine learning is subfield of articial inteligence \cite[russell10].
+Algorithms in machine learning allow computer programs to automatically
+improve through experience.
+Widely quoted formal definition is provided in \cite[mitchell97]:
 ``{\em A computer program is said to learn from
 experience E with respect to some class of tasks T and performance measure
 P, if its preformance at tasks in T, as measured by P, improves with
-experince E.}''
+experince E.}''.
 
-subfield of computer science
-evolved from pattern recognition and computational learning theory
-data driven predictions or decisions
-supervised, unsupervised, reinforcement learning
-classification, regression, clustering
+Usually what is meant by experience are data.
+Instead of hardcoding the desired model directly into program, data are feeded
+into machine learning algorithm which develops its own model. This is called
+{\bf data-driven approch} since it depends on providing the algorithm with
+training data \cite[cs231n].
+
+For example, considering the image classification program. It would be
+challenging to hardcode into program how general dog looks. Machine learning
+algorithm in combination with data-driven approch would take large collention
+of dog's images, feed them into program and let the program develop its own
+notion of what a dog looks like.
 
 \sec Deep Learning
 
-more hidden layers
-complex concepts out of simple concepts
+Machine learning offers varied range of approches.
+One of them is deep learning which tries to build these concepts from
+hierarchy of many simple concepts and because this graph is deep this
+approch is called deep learning \cite[goodfellow16].
+
+\chap Frameworks for Deep Learning
+
+\sec Theano
+
+TODO \cite[theano]
