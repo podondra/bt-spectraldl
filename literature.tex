@@ -1,39 +1,39 @@
 \chap Machine Learning
 
-Machine learning is subfield of articial inteligence \cite[russell10].
+Machine learning is sub field of artificial intelligence \cite[russell10].
 Algorithms in machine learning allow computer programs to automatically
 improve through experience.
 Widely quoted formal definition is provided in \cite[mitchell97]:
 ``{\em A computer program is said to learn from
 experience E with respect to some class of tasks T and performance measure
-P, if its preformance at tasks in T, as measured by P, improves with
-experince E.}''.
+P, if its performance at tasks in T, as measured by P, improves with
+experience E.}''.
 
 Usually what is meant by experience is knowledge acquired by extracting
 patterns from data \cite[goodfellow16].
 Instead of hardcoding the desired model directly into program, data are feeded
 into machine learning algorithm which develops its own model. This is called
-{\bf data-driven approch} since it depends on providing the algorithm with
+{\bf data-driven approach} since it depends on providing the algorithm with
 training data \cite[cs231n].
 
 For example, considering the image classification program. It would be
 challenging to hardcode into program how general dog looks. Machine learning
-algorithm in combination with data-driven approch would take large collention
+algorithm in combination with data-driven approach would take large collection
 of dog's images, feed them into program and let the program develop its own
 notion of what a dog looks like.
 
 \sec Deep Learning
 
-Machine learning offers varied range of approches.
+Machine learning offers varied range of approaches.
 One of them is deep learning which tries to build these concepts from
 hierarchy of many simple concepts and because this graph is deep this
-approch is called deep learning \cite[goodfellow16].
+approach is called deep learning \cite[goodfellow16].
 
 This concept of representing complicated structure in terms of other simpler
-repsentation is main feature of deep learning, which distinguish it from other
+representation is main feature of deep learning, which distinguish it from other
 branches of machine learning \cite[goodfellow16].
-Deep learning algorithm can recognize images by firstly indentifing corner
-then building countour from them and finaly construct the whole object.
+Deep learning algorithm can recognize images by firstly identifying corners
+then building contours from them and finally construct the whole object.
 It is extremely difficult to go from raw pixel data straight to the object
 in image recognition.
 
@@ -44,7 +44,7 @@ This chapter makes overview of some open source deep learning frameworks.
 Because astronomy need to analyze indeed vast avalanche of data the framework
 should be scalable across multiple CPUs or GPGPUs. Secondly, its source should
 be open source with good community support and documentation. Next, general
-contepts behind the framework's API are studied in order to recognize potencial
+concepts behind the framework's API are studied in order to recognize poteniial
 problems as soon as possible.
 
 \sec Theano
@@ -60,14 +60,14 @@ code is versioned in repository on
 GitHub\urlnote{https://github.com/Theano/Theano/}.
 
 Main features of Theano library are in its language to represent mathematical
-expressions, a compiler the creates code to compute these expresions and
+expressions, a compiler the creates code to compute these expressions and
 library which can evaluate them.
 This structure allows to optimize code for both CPUs and GPGPUs
 which are using CUDA. \cite[theano]
 
 Mathematical expressions have structure of directed, acyclic graph. There are
 two kind of nodes. {\bf Variable} nodes which represent the data and
-{\bf apply} nodes which stands for mathematical operators. \cite[theano]
+{\bf apply} nodes which stand for mathematical operators. \cite[theano]
 
 \sec TensorFlow
 
@@ -77,9 +77,18 @@ It is licensed under Apache 2.0 open source license and
 TensorFlow code is available on
 Github\urlnote{https://github.com/tensorflow/tensorflow}. \cite[tensorflow]
 
-Computation in TensorFlow is described by a directed graph which is set of
-nodes. Each node represent a operation and has zero or more inputs and zero or
+Computation in TensorFlow is described by a directed graph that is set of
+nodes. Each node represents an operation and has zero or more inputs and zero or
 more outputs. Values that flow along a graph edges are called {\bf tensors}.
-Tensors are arbitary multydimensional data.
+Tensors are arbitrary multidimensional data.
 These graphs can be constructed through frontends.
 Currently implemented frontends support C++ and Python. \cite[tensorflow]
+
+\chap Astroinformatics
+
+\sec FITS data format
+
+Flexible Image Transport System (FITS) is standard data format used in
+astronomy. It is used to transport not only image data but also
+astronomical spectra, data cubes, table and header with keywords providing
+descriptive information about the data. \cite[fits-support-office]

@@ -2,23 +2,28 @@
 
 The goal of this thesis was to study deep learning in context of
 astroinformatics and implement program for astronomical electromagnetic spectra
-analysis. Currently the work introduces to contect of deep learning as branch
-of machine learning. Main concept of this approch are explained.
+analysis.
 
-Then Theano framework as Python computational framework is analyzed.
-Conslusions of its analysis with respect to astronomical data are
-promissing.
-Since on top of it cuDNN framework may be used to implement deep learning
-techniques as well as this implementation can be scaled to general purpose
-graphical processing units.
+Currently the work introduces the context of machine learning and deep learning
+as its branch. Specific approaches of deep learning are distinguished.
 
-Finaly, FITS file format, which is the main representation of astronomical
+Then, Theano and TensorFlow frameworks are analyzed. Different features of these
+computational libraries as licensing, community and concepts are studied in
+order to make conclusions with respect to astronomical data.
+
+Finally, FITS file format, which is the main representation form of astronomical
 spectra, is described.
-Moreover, work mentions part Python library called astropy.io.fits
-as interesting solution for parsing FITS files.
 
-In the future it is vital to deepen overview of availabel framework as well
+In the future it is vital to deepen overview of available framework as well
 as show some preprocessing methods for astronomical spectra preparation.
-After that stage is done actual program, which uses deep learning concept
-intoroduced in very begging of this work, should be developed and tested on
-real data from spectrographs.
+Moreover, astronomical concept of Virual Observatory and its protocols should
+be mentioned.
+
+After that stage is done actual program, which uses deep learning concepts,
+should be developed and tested on both well-known testing dataset form UTI
+Machine Learning Repository\urlnote{https://archive.ics.uci.edu/ml/index.html}
+and real data from spectrographs.
+Benchmark testing should be carried out on both CPUs and GPGPUs.
+
+Final step that has to be made it to integrate implemented algorithm into VO
+Cloud infrastructure.
