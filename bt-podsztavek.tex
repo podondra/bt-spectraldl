@@ -1,0 +1,64 @@
+\input ctustyle % the template is included here
+\input opmac-bib % uncomment this for direct reading of .bib database files 
+
+\worktype [O/EN] % type: B = bachelor, M = master, D = Ph.D., O = other
+
+\faculty     {F8}
+\department  {Department of Theoretical Computer Science}
+\title       {Deep Learning in Astroinformatics}
+\author      {Ondřej Podsztavek}
+\date        {December 2016}
+\supervisor  {RNDr. Petr Škoda, CSc.}
+\studyinfo   {Branch of Study: Computer Science} % study programme etc. 
+\workname    {Position Report} % used only if \worktype [O/*] (other)
+%\titleCZ     {}
+%\abstractEN  {}
+%\abstractCZ  {}
+%\keywordsEN  {
+%    deep learning, convulutional neural networks, astroinformatics, astronomy,
+%    Virtual Observatory, GPGPU, CUDA, Python
+%}
+%\keywordsCZ  {
+%    hluboké učení, konvoluční neuronové sítě, astroinformatika, astronomie,
+%    Virtuální Observatoř, GPGPU, CUDA, Python
+%}
+
+%\thanks      {}
+%\declaration {
+%    I hereby declare that the presented thesis is my own work and that I have cited
+%    all sources of information in accordance with the Guideline for adhering to
+%    ethical principles when elaborating an academic final thesis. I acknowledge
+%    that my thesis is subject to the rights and obligations stipulated by the Act
+%    No. 121/2000 Coll., the Copyright Act, as amended, in particular that the Czech
+%    Technical University in Prague has the right to conclude a license agreement
+%    on the utilization of this thesis as a school work under the provisions of
+%    Article 60(1) of the Act.
+%}
+
+%%%%% <--   % The place for your own macros is here.
+
+%\draft            % uncomment this if the version of your document is
+                   % working only
+%\linespacing=1.7  % uncomment this if you need more spaces between lines
+                   % warning: this works only when \draft is activated
+%\savetoner        % turns off the lightBlue backround of tables and
+                   % verbatims, only for \draft version
+%\blackwhite       % use this if you need really blackwhite thesis
+%\onesideprinting  % use this if you really don't use duplex printing
+
+\pagetwo {
+    {\bf Keywords:} deep learning, convulutional neural networks,
+    astroinformatics, astronomy, Virtual Observatory, GPGPU, Python
+}
+
+\makefront
+
+\input introduction
+\input goals
+\input literature
+\input conclusion
+
+\bibchap
+\usebib/c (iso690) references
+
+\bye
