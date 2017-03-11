@@ -6,5 +6,6 @@ ctustyle-doc.pdf
 TODO.md
 .ipynb_checkpoints
 reading
-/notebooks/ondrejov-ccd700
-/notebooks/ondrejov-ccd700-ssap
+/notebooks/ondrejov-ccd700/
+/notebooks/ondrejov-ccd700-ssap/
+/notebooks/data/
