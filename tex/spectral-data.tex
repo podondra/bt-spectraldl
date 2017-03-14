@@ -1,36 +1,109 @@
 \chap Spectral Data
 
 This thesis is concerned with classification of star's spectra.
-Aim of this chapter is to describe these spectral data.
-The following sections introduce spectrography,
-astronomical archives of the data and related concepts.
+Aim of this chapter is to describe these data.
+The following sections introduce spectrography, its related concepts,
+Ondřejov and LAMOST astronomical archives of spectral data.
 
 \sec Astronomical Spectroscopy
 
-Spectroscopy studies the properties of matter through its interaction with
-different frequency components of the electromagnetic spectrum.
-Astronomical spectroscopy is measuring the spectrum of electromagnetic
-radiation of hot celestial objects.
-This information is then used to derive for example chemical composition,
-temperature, distance or relative motion.
+Spectroscopy studies properties of matter through its
+interaction with different frequency components of the
+electromagnetic spectrum. Astronomical spectroscopy
+measures the spectrum of electromagnetic radiation of
+hot celestial objects. This information is then used to
+derive chemical composition, temperature,
+distance, relative motion and so on.
 
-\sec FITS File Format
+\sec Electromagnetic Radiation and Spectrum
 
-Flexible Image Transport System (FITS) is standard data format used in
-astronomy. It is used to transport not only image data but also
-astronomical spectra, data cubes, table and header with keywords providing
-descriptive information about the data. \cite[fits-support-office]
+Electromagnetic radiation is pair of electric and magnetic
+fields that propagate together at the speed of light
+($c$~=~299792458\,ms$^{-1}$).
+Visible light, radio waves, X-rays and gamma rays are
+examples of electromagnetic radiation. Electromagnetic
+spectrum is collective term for known range of
+electromagnetic radiation. The electric and magnetic field
+oscillates and produces electromagnetic waves.
 
-\sec VOTable Data Format
+The electromagnetic wave is describe in terms of frequency
+or wavelength:
 
-Focus on XML and metadata.
-Easy serialization to FITS file formatl.
+\begitems    
+* Frequency ($f$) is the number of waves per second and
+its unit is Hertz.
+* Wavelength ($\lambda$) is the distance between successive
+crests or troughs in the wave and it is meausred is meters
+or astronomy usually uses Angstrom (1\,\AA~=~10$^{-10}$\,m).
+\enditems
 
-\sec SSAP
+Frequency and wavelength are related by wave equation:
 
-Shortcut fo Simple Spectral Access Protocol.
-Mention serialization and datalink.
-Ondřejov server on \url{voarchive.asu.cas.cz}.
+$$
+c = \lambda f
+$$
+
+\sec Blackbody Radiation
+
+A blackbody is a hypothetical object which is a perfect
+absorber and emitter of radiation over all wavelengths.
+The spectral flux distribution of blackbody's thermal
+energy depends on its temperature.
+
+Stars are often modelled as blackbodies in astronomy.
+Their spectrum approximates the blackbody spectrum.
+
+\medskip
+\picw=15cm \cinspic img/blackbody.png
+\caption/f Blackbody radiation curves of 3000, 4000 and 5000 Kelvins hot
+stars.
+\medskip
+
+\sec Spectral Lines
+
+Spectral lines can be used to identify the chemical
+composition of stars. If a light from a star is separeted
+with a prism its spectrum of colours is crossed with
+discrete lines. This can be also visualized as flux
+of particural wavelengths. {\bf Flux} is the total amount of
+energy that crosses a unit area per unit time.
+
+There are two types of spectral lines:
+
+\begitems
+* emission and
+* absorption lines.
+\enditems
+
+{\bf Emission line} occurs when atom in a
+higher energy level (excited state) return to lower energy
+level and releases energy. According to quantum theory
+every atom has a unique set of energy levels. Therefore,
+the atom can emit electomagnetic radiation of particular
+wavelengths equal to the difference between the energy
+levels. Energy and wavelength, frequency are related
+throught Planck-Einstein relation:
+
+$$ E = h f, \quad E = {h c \over \lambda} $$
+
+where $h$~=~6.62607004~$\cdot$~10$^{-34}$\,J\,$\cdot$\,s is
+Planck constant. On a graph of wavelengths fluxes emission
+lines appear as peaks above the continuum level.
+
+{\bf Absorption lines} are opposite of emissions. They will
+appear when there is an absorbing material between the
+source and the observer. The material could be outer layers
+of a stars or interstellar gas. Atoms will absorb specific
+energies from the electromagnetic spectrum specifically to
+atom's energy levels. On graph these absorption
+features are show below the level of a star's blacbody
+continuum spectrum.
+
+\medskip
+\picw=15cm \cinspic img/spectral-lines.png
+\caption/f Part of electromagnetic spectrum of blue supergiant star HD
+38771 with a lot of absorpsion and some emission lines.
+\medskip
 
 \sec Ondřejov Archive
 
@@ -39,3 +112,70 @@ TODO
 \sec LAMOST Archive
 
 TODO
+
+\sec FITS File Format
+
+Flexible Image Transport System is data format used within
+astronomy for transporting, analyzing, archiving scientific
+data files. It is design to store data sets consisting of
+multidimensiional arrays and two dimensional tables.
+
+\secc HDUs
+
+A FITS file is comprised of segmets called Header/Data
+Units (HDUs). The first HDU is called the ``Primary HDU''.
+The primary data array can contain a 1-999 dimensional
+array of numbers. A typical primary array could contain
+a 1 dimensional {\bf spectrum}, a 2 dimensional image,
+a 3 dimensional data cube.
+
+Any number of additional HDUs may follow the primary array.
+These HDUs are referred as ``extensions''. There are three
+types of standart extensions currently defined:
+
+\begitems
+* Image Extension
+* ASCII Table Extension
+* Binary Table Extension
+\enditems
+
+\secc Header Units
+
+Every HDU consists of an ASCII formatted ``Header Unit'' and
+``Data Unit''.
+
+Each header unit contains a sequence of fixed-length 80
+character long keyword record which have form:
+
+\begtt
+KEYNAME = value / comment string
+\endtt
+
+Non-printing ASCII character such as tabs,
+carriage-returns, line-feeds are not allowed anywhere in
+the header unit.
+
+\secc Data Units
+
+Note that the data unit is not required. The image pixels
+in primary array or an image extension may have one of
+5 supported data types:
+
+\begitems
+* 8-bit (unsigned) integer bytes
+* 16-bit (signed) integer bytes
+* 32-bit (signed) integer bytes
+* 32-bit single precision floating point real numbers
+* 64-bit double precision floating point real numbers
+\enditems
+
+The othe 2 standard extensions, ASCII tables and binary
+tables, contain tabular information organized into rows
+and columns. Binary tables are more compact and are faster
+to read and write then ASCII tables.
+
+All the entries within a column of a tables have the same
+datatype. The allowed data formats for an ASCII table
+column are integer, signe and double precision floating
+point value, character string. Binary table also support
+logical, bit and complex data formats.
