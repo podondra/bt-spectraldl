@@ -15,7 +15,7 @@ hot celestial objects. This information is then used to
 derive chemical composition, temperature,
 distance, relative motion and so on.
 
-\sec Electromagnetic Radiation and Spectrum
+\sec Electromagnetic Radiation
 
 Electromagnetic radiation is pair of electric and magnetic
 fields that propagate together at the speed of light
@@ -24,7 +24,7 @@ Visible light, radio waves, X-rays and gamma rays are
 examples of electromagnetic radiation. Electromagnetic
 spectrum is collective term for known range of
 electromagnetic radiation. The electric and magnetic field
-oscillates and produces electromagnetic waves.
+oscillates and produces electromagnetic waves. \cite[cosmos]
 
 The electromagnetic wave is describe in terms of frequency
 or wavelength:
@@ -39,9 +39,7 @@ or astronomy usually uses Angstrom (1\,\AA~=~10$^{-10}$\,m).
 
 Frequency and wavelength are related by wave equation:
 
-$$
-c = \lambda f
-$$
+$$ c = \lambda f \eqmark $$
 
 \sec Blackbody Radiation
 
@@ -49,11 +47,11 @@ A blackbody is a hypothetical object which is a perfect
 absorber and emitter of radiation over all wavelengths.
 The spectral flux distribution of blackbody's thermal
 energy depends on its temperature.
-
 Stars are often modelled as blackbodies in astronomy.
-Their spectrum approximates the blackbody spectrum.
+Their spectrum approximates the blackbody spectrum. \cite[cosmos]
 
-\medskip
+
+\medskip \clabel[blackbody]{Blackbody radiation}
 \picw=15cm \cinspic img/blackbody.png
 \caption/f Blackbody radiation curves of 3000, 4000 and 5000 Kelvins hot
 stars.
@@ -84,7 +82,7 @@ wavelengths equal to the difference between the energy
 levels. Energy and wavelength, frequency are related
 throught Planck-Einstein relation:
 
-$$ E = h f, \quad E = {h c \over \lambda} $$
+$$ E = h f, \quad E = {h c \over \lambda} \eqmark $$
 
 where $h$~=~6.62607004~$\cdot$~10$^{-34}$\,J\,$\cdot$\,s is
 Planck constant. On a graph of wavelengths fluxes emission
@@ -96,10 +94,16 @@ source and the observer. The material could be outer layers
 of a stars or interstellar gas. Atoms will absorb specific
 energies from the electromagnetic spectrum specifically to
 atom's energy levels. On graph these absorption
-features are show below the level of a star's blacbody
+features are show below the level of a star's blackbody
 continuum spectrum.
 
-\medskip
+\secc H-alpha
+
+H-alpha is deep-red visible spectral line. Its wavelength is 6562.8\,\AA.
+This spectral line is created whe electron moves between the second and third
+energy level of hydrogen atom.
+
+\medskip \clabel[spectral-lines]{Spectral lines}
 \picw=15cm \cinspic img/spectral-lines.png
 \caption/f Part of electromagnetic spectrum of blue supergiant star HD
 38771 with a lot of absorpsion and some emission lines.
@@ -107,18 +111,45 @@ continuum spectrum.
 
 \sec Ondřejov Archive
 
-TODO
+Archive of Ondřejov observatory spectral data is available at ASU CAS Data
+Center\urlnote{http://voarchive.asu.cas.cz/}.
+It currently contains about 17000 specta \cite[voarchive].
+The data were obtained with Ondřejov Perek 2\,m telescope and CCD700 chip.
+The spectrograph's resolution power is about 13000 in H-alpha \cite[stelweb].
+
+{\bf Resolution power} of a spectrograph is defined as:
+
+$$ R = {\lambda \over \Delta \lambda} \eqmark $$
+
+where $\Delta \lambda$ is the smallest difference in wavelengths that can be
+distinguished at a wavelength of $\lambda$.
 
 \sec LAMOST Archive
 
-TODO
+The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (LAMOST) is
+telescope located in China with spectral resolution power 500, 1000 or 1500.
+LAMOST archive contains more than 7 milions of spectra.
+The latest observations are available in data release 5
+Q1\urlnote{http://dr5.lamost.org/}. \cite[lamost]
+
+\midinsert \clabel[lamost]{LAMOST data releases}
+\ctable{lrr}{
+    \hfil survey & total spectra \hfil & stars \hfil \crl \tskip4pt
+    pilot        & 958944              & 812911      \cr
+    first year   & 1701669             & 1529958     \cr
+    second year  & 1648485             & 1501002     \cr
+    third year   & 1659028             & 1511032     \cr
+    forth year   & 1713059             & 1543415     \cr
+}
+\caption/t Statistics of LAMOST data releases according to \cite[lamostdr4].
+\endinsert
 
 \sec FITS File Format
 
 Flexible Image Transport System is data format used within
 astronomy for transporting, analyzing, archiving scientific
 data files. It is design to store data sets consisting of
-multidimensiional arrays and two dimensional tables.
+multidimensiional arrays and two dimensional tables. \cite[fits-support-office]
 
 \secc HDUs
 
