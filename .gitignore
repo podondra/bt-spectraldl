@@ -11,3 +11,4 @@ reading
 /notebooks/data/
 /notebooks/labeled-data/
 /notebooks/tensorflow/MNIST_data/
+venv/
