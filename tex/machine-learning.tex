@@ -35,25 +35,74 @@ On contrary, regression predicts ouputs from continuos range.
 Unsupervised learning allows to solve problems where is no or little idea about
 the result. \cite[goodfellow16]
 
-This work is focused on application of deep neural network is astronomy.
-Deep neural networks are one of many machine learning algorithms.
-Next sections make overview of neural networks and deep learning.
-
-\sec Neural Networks
-
-TODO
-
 \sec Deep Learning
 
-Machine learning offers varied range of approaches.
-One of them is deep learning which tries to build these concepts from
-hierarchy of many simple concepts and because this graph is deep this
-approach is called deep learning \cite[goodfellow16].
+Conventional machine learning techniques were limited in ability to process
+raw natural data.
+Machine learning algorithm required careful design of feature extractor that
+tranformed the raw data into suitable feature vectors from which the learning
+subsystem could classify patterns in the input.
 
-This concept of representing complicated structure in terms of other simpler
-representation is main feature of deep learning, which distinguish it from other
-branches of machine learning \cite[goodfellow16].
-Deep learning algorithm can recognize images by firstly identifying corners
-then building contours from them and finally construct the whole object.
-It is extremely difficult to go from raw pixel data straight to the object
-in image recognition.
+Deep learning methods are representation learning methods with multiple levels
+of representation obtained by composing simple but non-linear modules.
+With the composition of enough such transformation higher layers of
+representation amplify aspects of the input that can be important for
+discrimination.
+The key is that these layers of features are not designed by humans but
+learned from data. \cite[deep-learning]
+
+\secc Feedforward Neural Networks
+
+Many applications of deep learning use feedforward neural network
+architectures.
+To go from one layer to the next a set of units
+compute a weighted sum of their inputs from previous layer and apply
+non-linear function to the result.
+Units that are not in the input or output layer are called hidden units.
+These hidden layers of a multilayer neural network can distort the input
+space to make the classes linearly separable.
+
+\medskip \clabel[neural-network]{Feedforward neural network}
+\picw=7.5cm \cinspic img/neural-network.png
+\caption/f Feedforward neural network with 4 {\bf fully connected} layers.
+The input layer has 3 units followed 2 hidden layers with 4 and 3 units.
+Ouput layer contains 2 units.
+\medskip
+
+\secc Convolutional Neural Networks
+
+Convolutional neural networks are one particular type of deep feedforward
+network that is much easier to train and generalize much better than
+fully connected networks.
+
+These networks are designed to process data in form of multiple arrays.
+For instance, 1 dimensional signals, 2 dimensional images.
+ConvNets take advantage of four properties:
+
+\begitems
+* local connections,
+* shared weights,
+* pooling,
+* use of many layers.
+\enditems
+
+Typical convolutional neural network is structured as series of stages.
+First stages are composed of convolutional layers and pooling layers.
+Units in convolutional layer maps to next layer through several filters.
+These results are passed through a non-linearity.
+Nowadays, the most widely used is rectified linear unit:
+
+$$ f(z) = \max(z, 0) \eqmark $$
+
+The reasons for this architecture are that local groups of values are highly
+correlated and motifs can appear in any part of image or signal.
+The filtering operation is mathematically discrete convolution hence the name.
+
+Pooling layers are used to merge semantically similar features into one.
+This layer usually computes maximum of a local patch of units.
+Thereby, reducing teh dimension of the representation and reudcing invariance
+to small shifts. \cite[deep-learning]
+
+\sec Transfer Learning
+
+TODO
