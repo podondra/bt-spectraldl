@@ -12,3 +12,6 @@ reading
 /notebooks/labeled-data/
 /notebooks/tensorflow/MNIST_data/
 venv/
+notMNIST*
+test.hdf5
+text8.zip
