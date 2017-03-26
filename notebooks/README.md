@@ -34,9 +34,3 @@ Use this command to enable ssh forwarding to use Jupyter notebook
 file) and Tensorboard:
 
     ssh -A -L 8888:antares:8888 -L 6006:antares:6006 vocloud-dev.asu.cas.cz
-
-## JupyterHub
-
-JupyterHub is available at
-[Betelgeuse](https://vocloud-dev.asu.cas.cz/jupyterhub/).
-

@@ -13,5 +13,6 @@ reading
 /notebooks/tensorflow/MNIST_data/
 venv/
 notMNIST*
-test.hdf5
+*.hdf5
 text8.zip
+ssap/
