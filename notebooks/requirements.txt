@@ -1,9 +1,11 @@
 appdirs==1.4.3
+astropy==1.3.1
 backports-abc==0.5
 bleach==2.0.0
 cycler==0.10.0
 decorator==4.0.11
 entrypoints==0.2.2
+h5py==2.7.0
 html5lib==0.999999999
 ipykernel==4.5.2
 ipython==5.3.0
@@ -23,10 +25,12 @@ nbconvert==5.1.1
 nbformat==4.3.0
 notebook==4.4.1
 numpy==1.12.1
+olefile==0.44
 packaging==16.8
 pandocfilters==1.4.1
 pexpect==4.2.1
 pickleshare==0.7.4
+Pillow==4.0.0
 prompt-toolkit==1.0.13
 protobuf==3.2.0
 ptyprocess==0.5.1
