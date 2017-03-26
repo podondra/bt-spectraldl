@@ -3,10 +3,12 @@ bt-podsztavek.log
 bt-podsztavek.pdf
 bt-podsztavek.ref
 ctustyle-doc.pdf
-TODO.md
 .ipynb_checkpoints
 reading
-/notebooks/ondrejov-ccd700/
-/notebooks/ondrejov-ccd700-ssap/
-/notebooks/data/
-/notebooks/labeled-data/
+labeled/
+MNIST_data/
+venv/
+notMNIST*
+*.hdf5
+text8.zip
+ssap/
