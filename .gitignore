@@ -9,7 +9,7 @@ reading
 /notebooks/ondrejov-ccd700/
 /notebooks/ondrejov-ccd700-ssap/
 /notebooks/data/
-/notebooks/labeled-data/
+/notebooks/labeled/
 /notebooks/tensorflow/MNIST_data/
 venv/
 notMNIST*
