@@ -76,8 +76,8 @@ network that is much easier to train and generalize much better than
 fully connected networks.
 
 These networks are designed to process data in form of multiple arrays.
-For instance, 1 dimensional signals, 2 dimensional images.
-ConvNets take advantage of four properties:
+For instance, 1 dimensional signals or 2 dimensional images.
+They take advantage of four properties:
 
 \begitems
 * local connections,
@@ -96,11 +96,11 @@ $$ f(z) = \max(z, 0) \eqmark $$
 
 The reasons for this architecture are that local groups of values are highly
 correlated and motifs can appear in any part of image or signal.
-The filtering operation is mathematically discrete convolution hence the name.
+Mathematically, the filtering operation is discrete convolution, hence the name.
 
 Pooling layers are used to merge semantically similar features into one.
 This layer usually computes maximum of a local patch of units.
-Thereby, reducing teh dimension of the representation and reudcing invariance
+Thereby, they reduce the dimensions of the representation and invariance
 to small shifts. \cite[deep-learning]
 
 \sec Transfer Learning

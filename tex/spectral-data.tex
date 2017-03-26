@@ -157,8 +157,6 @@ astronomy for transporting, analyzing, archiving scientific
 data files. It is design to store data sets consisting of
 multidimensiional arrays and two dimensional tables. \cite[fits-support-office]
 
-\secc HDUs
-
 A FITS file is comprised of segmets called Header/Data
 Units (HDUs). The first HDU is called the ``Primary HDU''.
 The primary data array can contain a 1-999 dimensional
@@ -176,8 +174,6 @@ types of standart extensions currently defined:
 * Binary Table Extension
 \enditems
 
-\secc Header Units
-
 Every HDU consists of an ASCII formatted ``Header Unit'' and
 ``Data Unit''.
 
@@ -191,8 +187,6 @@ KEYNAME = value / comment string
 Non-printing ASCII character such as tabs,
 carriage-returns, line-feeds are not allowed anywhere in
 the header unit.
-
-\secc Data Units
 
 Note that the data unit is not required. The image pixels
 in primary array or an image extension may have one of
