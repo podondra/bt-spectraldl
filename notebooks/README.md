@@ -1,36 +1,46 @@
-# Deep Learning in Large Astronomical Archives - Notebooks
+# Deep Learning in Large Astronomical Archives
 
-This directory contains all code used in this bachelor thesis.
-Here are also some information about infrastructure.
+Here are Jupyter notebooks with experiments from bachelor thesis.
+The notebooks goes throug the whole process from data retrieval to evaluation.
+For dependencies see `requirements.txt`.
+Thesis contains more text.
+On contrary some parts are not mentioned there.
 
-## GPGPU
+All code is in **Python 3**.4,
+[**HDF5**](https://support.hdfgroup.org/HDF5/) stores
+all intermediate representation,
+[**TensorFlow**](https://www.tensorflow.org/) is the deep learning framework
+of choice
+and [**scikit learn**](http://scikit-learn.org/) support the whole work.
+To start working with these notebooks create virtual enviroment
+and install requirements:
 
-Antares has GPGPU which is great for neural networks training and evaluation.
-The GPGPU is
+    python3 -m venv venv    # or virtualenv -p python3 venv
+    pip install -r requirements.txt
+
+If GPU is available look at `setup-cude.sh` to see which environment variables
+you need to setup. **CUDA** and [**cuDNN**](https://developer.nvidia.com/cudnn)
+are required to run NVIDIA GPU card.
+
+## GPU on Antares
+
+Antares is server of Astronomical Institute of ASCR.
+It has GPU
 [GeForce GTX 980](http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980).
+To setup environment for working with it run:
 
-### Installation
+    source setup-cuda.py
 
-Installation was done according to
+CUDA Toolkit 8.0 and cuDNN v5.1 installation was done according to
 [Tensorflow instructions](https://www.tensorflow.org/install/install_linux#nvidia_requirements_to_run_tensorflow_with_gpu_support).
-Therefore, there is CUDA Toolkit 8.0 and cuDNN v5.1 installed.
-
-Before installation I removed previous version.
-Then, I have used
-[Runfile for Ubuntu](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#runfile).
-Finnaly, I copied cuDNN as described
+The server has Debian Jessie install which is not officialy supported so
+[Runfile](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#runfile)
+for Ubuntu was used.
+Installation of cuDNN has been done as described
 [here](https://www.tensorflow.org/versions/r0.10/get_started/os_setup).
 
-### Usage
+## Tips
 
-Only environment variable need to be set.
-Run `source setup-cuda.sh`.
-See the script for more details.
-
-### Tips
-
-Use this command to enable ssh forwarding to use Jupyter notebook
-(to make Jupyter available add `c.NotebookApp.ip = '*'` to configuration
-file) and Tensorboard:
+Enable ssh forwarding for Jupyter notebook and Tensorboard:
 
     ssh -A -L 8888:antares:8888 -L 6006:antares:6006 vocloud-dev.asu.cas.cz
