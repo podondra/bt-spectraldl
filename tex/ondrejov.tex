@@ -1,6 +1,7 @@
 \chap Classifying Ondřejov Archive
 
-This chapter discusses creation of spetral dataset from Ondřejov CCD700 archive.
+This chapter discusses collection and classification
+of spetral dataset from Ondřejov CCD700 archive.
 Overview of a tool used for classification is made
 and then it shows dataset's properties and statistics.
 
@@ -15,12 +16,13 @@ and Motor\urlnote{https://motor.readthedocs.io/en/stable/}
 which is asynchronous driver for MongoDB.
 Vizualizations are created with D3.js\urlnote{https://d3js.org/}.
 Source code is available on
-GitHub\urlnote{https://github.com/podondra/spectralview}.
+GitHub\urlnote{https://github.com/podondra/spectralview}
 and documentation is available on
 Read the Docs\urlnote{http://spectralview.readthedocs.io/}.
 
 Spectra are divided into emission, absorption, double-peak and unknown
-classes according to spectral line at H$\alpha$ (see figure~\ref[classes]).
+classes according to shape of spectral line at H$\alpha$
+(see figure~\ref[classes]).
 
 \midinsert \clabel[classes]{Classes in Ondřejov dataset}
 \picw=15cm \cinspic img/classes.png
@@ -39,12 +41,12 @@ Classified spectra can be viewed and move between classes on demand.
 \sec Ondřejov Dataset
 
 The resulting dataset consists of 13335 spectra.
-Structure of this dataset is shown in~table~\ref[dataset-table].
+Structure of the dataset is shown in~table~\ref[dataset-table].
 Emission and absorption spectra are the most significant part of this dataset.
-There are 6104 spectra with absoption line ins H$\alpha$
-and 5300 with emission line.
-But there are also 1534 spectra with double-peak in H$\alpha$
-plus 397 spectra which cannot be easily classified.
+There are 45.8\% spectra with absoption line ins H$\alpha$
+and 39.7\% with emission line.
+But there are also 11.5\% spectra with double-peak in H$\alpha$
+plus 3.0\% spectra which cannot be easily classified.
 
 \midinsert \clabel[dataset-table]{Number of spectra in classes}
 \ctable{lr}{
@@ -59,7 +61,7 @@ plus 397 spectra which cannot be easily classified.
 
 All spectra in this dataset contain H$\alpha$
 but they have different wavelength starts and ends.
-Infimum form all wavelength starts is 6518.4272\,{\AA}.
+Infimum from all wavelength starts is 6518.4272\,{\AA}.
 and supremum from all wavelength ends is 6732.7432\,{\AA}.
 There is on average one measurement of flux each 0.249\,{\AA}
 with small standard deviation 0.0119\,{\AA}.
