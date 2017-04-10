@@ -6,17 +6,17 @@ most suitable for purposes of this thesis.
 Several aspects have been taken into account:
 
 \begitems
-* great documentation,
-* open source project,
-* long term support,
-* scalable and GPGPU ready,
-* allows fast experiments,
-* Python API.
+* extensive documentation
+* open source project
+* long term support
+* scalable and GPU ready
+* allows fast experiments
+* Python API
 \enditems
 
 The three first points should asure that this work will be maitanable
 in future. This work is faced with vast amount of data so it is desirable
-to choose scalable and GPGPU ready framework.
+to choose scalable and GPU ready framework.
 On contrary, one goal is to find great deep neural network architecture which
 means that fast experimentation is crucial.
 Last two points support the goal of this thesis to find the best deep neural
@@ -34,14 +34,14 @@ bindings.
 It serves for training and deploying convolutional neural networks and
 other deep models.
 By separeting model representation from actual implementattion, Caffe allows
-seamless switching among CPU, GPGPU and other architectures.
+seamless switching among CPU, GPU and other architectures.
 The project is maintained by Berkeley Vision and Lerning Center with help of
 community of contibutors on GitHub\urlnote{https://github.com/BVLC/caffe/}.
 Documentation and examples are available at Caffe's
 website\urlnote{http://caffe.berkeleyvision.org/}. \cite[caffe]
 
 According to experimental results in \cite[benchmark] Caffe has one of the
-best performances on both GPGPU and CPU platforms.
+best performances on both GPU and CPU platforms.
 
 \sec TensorFlow
 
@@ -71,7 +71,7 @@ Theano is an open source software and is licensed under BSD license.
 Its source code is versioned in repository on
 GitHub\urlnote{https://github.com/Theano/Theano/}.
 Main features are in language to represent mathematical expressions, a compiler to creates code to compute these expressions and library to evaluate them.
-This structure allows to optimize code for both CPUs and GPGPUs. \cite[theano]
+This structure allows to optimize code for both CPUs and GPUs. \cite[theano]
 
 As stated in \cite[theano] although Theano is developed and mainly used for
 reasearch in deep learning it is not a deep learning framework in itself.
@@ -83,12 +83,13 @@ user interface for instance Keras, Blocks and Lasagne.
 Keras is high-level neural networks API. It is written in Python and it runs
 on top of either TensorFlow or Theano.
 It focuses on fast prototyping and experimentation.
-Because it is interface to TensorFlow or Theano it can use both CPU and GPGPUs.
+Because it is interface to TensorFlow or Theano it can use both CPU and GPUs.
 Its website\urlnote{https://keras.io/} provides good documentation and code is
 open source under MIT license on
 GitHub\urlnote{https://github.com/fchollet/keras}. \cite[keras]
 
-Recently Keras API will be integrated into TensorFlow 1.2.
+Recently Keras API will be integrated into {\tt tf.contrib.keras} module of
+TensorFlow 1.1.0 and then directly into {\tt tf.keras} in version 1.2.0.
 Therefore, there will be two separete implementations of the Keras
 specification.
 One for written in pure TensofFlow and second compatible with
@@ -96,4 +97,11 @@ both Theano and TensorFlow. \cite[keras2]
 
 \sec Consideration
 
-TODO
+Tensorflow in version 1.1.0 is choosen for implementation in this thesis.
+It is the most suitable framework because it has both low level interface
+and high level Keras interface.
+Moreover, Tensorboard is great tool for graph and dataset interactive
+vizualizations as it containg built-in PCA and t-SNE dimensionality
+algorithms.
+Stated in \cite[karpathy2017] TensorFlow is currectly the most popular
+and future promising deep learning framework in machine learning community.
