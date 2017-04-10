@@ -3,7 +3,7 @@
 This thesis is concerned with classification of star's spectra.
 Aim of this chapter is to describe these data.
 The following sections introduce spectroscopy, its related concepts,
-Ondřejov and LAMOST astronomical archives of spectral data.
+Ondřejov and \glref{LAMOST} astronomical archives of spectral data.
 
 \sec Astronomical Spectroscopy
 
@@ -151,8 +151,8 @@ periodically vary.
 
 \sec Ondřejov Archive
 
-Archive of Ondřejov observatory spectral data is available at ASU CAS Data
-Center\urlnote{http://voarchive.asu.cas.cz/}.
+Archive of Ondřejov observatory spectral data is available at glref{ASU CAS}
+Data Center\urlnote{http://voarchive.asu.cas.cz/}.
 It currently contains about 17000 specta \cite[voarchive].
 Because this archive is {\bf specialized on Be stars observations}
 it contains approximately 13000 spectra with H$\alpha$ spectral line.
@@ -171,14 +171,14 @@ $\lambda$.
 
 \midinsert \clabel[ondrejov-vs-lamost]{Spectra comparison}
 \picw=15cm \cinspic img/ondrejov-vs-lamost.png
-\caption/f Spectra of BT CMi star from Onřejov and LAMOST archive.
+\caption/f Spectra of BT CMi star from Onřejov and \glref{LAMOST} archive.
 \endinsert
 
 \sec LAMOST Archive
 
-The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (LAMOST) is
-telescope located in China with spectral resolving power 500, 1000 or 1500.
-LAMOST archive contains more than 7 milions of spectra.
+The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (\glref{LAMOST})
+is telescope located in China with spectral resolving power 500, 1000 or 1500.
+\glref{LAMOST} archive contains more than 7 milions of spectra.
 The latest observations are available in data release 5
 Q1\urlnote{http://dr5.lamost.org/}. \cite[lamost]
 
@@ -192,7 +192,7 @@ Q1\urlnote{http://dr5.lamost.org/}. \cite[lamost]
     forth year   & 1713059             & 1543415     \crl \tskip4pt
     \hfil total  & 7681185             & 6898318     \cr
 }
-\caption/t Statistics of LAMOST data releases according to \cite[lamostdr4].
+\caption/t Statistics of \glref{LAMOST} data releases according to \cite[lamostdr4].
 \endinsert
 
 \sec FITS File Format
@@ -203,23 +203,24 @@ data files. It is design to store data sets consisting of
 multidimensiional arrays and two dimensional tables. \cite[fits-support-office]
 
 A FITS file is comprised of segmets called Header/Data
-Units (HDUs). The first HDU is called the ``Primary HDU''.
+Units (\glref{HDU}s).
+The first \glref{HDU} is called the ``Primary \glref{HDU}''.
 The primary data array can contain a 1-999 dimensional
 array of numbers. A typical primary array could contain
 a 1 dimensional {\bf spectrum}, a 2 dimensional image,
 a 3 dimensional data cube.
 
-Any number of additional HDUs may follow the primary array.
-These HDUs are referred as ``extensions''. There are three
+Any number of additional \glref{HDU}s may follow the primary array.
+These \glref{HDU}s are referred as ``extensions''. There are three
 types of standart extensions currently defined:
 
 \begitems
 * Image Extension
-* ASCII Table Extension
+* \glref{ASCII} Table Extension
 * Binary Table Extension
 \enditems
 
-Every HDU consists of an ASCII formatted ``Header Unit'' and
+Every \glref{HDU} consists of an \glref{ASCII} formatted ``Header Unit'' and
 ``Data Unit''.
 
 Each header unit contains a sequence of fixed-length 80
@@ -229,7 +230,7 @@ character long keyword record which have form:
 KEYNAME = value / comment string
 \endtt
 
-Non-printing ASCII character such as tabs,
+Non-printing \glref{ASCII} character such as tabs,
 carriage-returns, line-feeds are not allowed anywhere in
 the header unit.
 
@@ -245,13 +246,13 @@ in primary array or an image extension may have one of
 * 64-bit double precision floating point real numbers
 \enditems
 
-The othe 2 standard extensions, ASCII tables and binary
+The othe 2 standard extensions, \glref{ASCII} tables and binary
 tables, contain tabular information organized into rows
 and columns. Binary tables are more compact and are faster
-to read and write then ASCII tables.
+to read and write then \glref{ASCII} tables.
 
 All the entries within a column of a tables have the same
-datatype. The allowed data formats for an ASCII table
+datatype. The allowed data formats for an \glref{ASCII} table
 column are integer, signe and double precision floating
 point value, character string. Binary table also support
 logical, bit and complex data formats.
