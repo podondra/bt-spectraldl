@@ -17,7 +17,7 @@ Inspired by \cite[transfer2010].
 Formal definition of transfer learning is provided in \cite[transfer2010].
 {\bf Domain} $\cal D$ consists of a feature space $\cal X$
 and a probability distribution $P(X)$
-where $X = \{x_1, ..., x_n\} \in \cal X$ is a learnin sample.
+where $X = \{x_1, ..., x_n\} \in \cal X$ is a learning sample.
 Given a specific ${\cal D} = \{{\cal X}, P(X)\}$
 and a learning {\bf task} ${\cal T} = \{{\cal Y}, f\}$ where
 $\cal Y$ is a label space and $f$ is a predictive function.
@@ -26,9 +26,9 @@ $\{x_i \in X, y_i \in {\cal Y}\}$.
 From probabilistic perspective $f$ is $P(y \mid x)$.
 
 Therefore, having a source domain ${\cal D}_S$ and a task ${\cal T}_S$,
-a source domain ${\cal D}_T$ and a task ${\cal T}_T$,
-{\bf transfer learning} amis to improve the performace of function $f_T$ in
-${\cal D}_T$ using knowledge in ${\cal D}_S$ and ${\cal T}_S$,
+a target domain ${\cal D}_T$ and a task ${\cal T}_T$,
+{\bf transfer learning} amis to improve the performace of function $f_T$
+from ${\cal T}_T$ using knowledge from ${\cal D}_S$ and ${\cal T}_S$,
 when ${\cal D}_S \ne {\cal D}_T$ or ${\cal T}_S \ne {\cal T}_T$.
 
 In \cite[ruder2017] transfer learning is divided into four scenarios
@@ -37,9 +37,9 @@ according to how source and target conditions vary:
 \begitems \style n
 * ${\cal X}_S \ne {\cal X}_T$, feature spaces of domains are different,
 e.g. in one domain picture is represented in pixels
-and in the other domain is described with text.
-* $P(X_S) \ne P(X_T)$, probability distribution are different, e.g. two spectral
-archive observe different kinds of stars.
+and in the other domain is described by text.
+* $P(X_S) \ne P(X_T)$, probability distribution of source and target domains
+are different, e.g. two spectral archive observe different kinds of stars.
 * ${\cal Y}_S \ne {\cal Y}_T$, labels of tasks are not the same,
 e.g. spectra should be assign different labels in target task.
 This usually occurs with the fourth scenario.
@@ -49,8 +49,13 @@ different.
 
 \sec Domain Adaptation
 
-TODO
+In transfer learning the case when probability distribution of source
+and target domains are different, $P(X_S) \ne P(X_T)$, is generally known as
+{\bf domain adaptation}. \cite[ruder2017]
 
-\sec Gaussian Blur
-
-TODO
+Thus domain adaptation considers the setting in which the training and
+testing data are sampled from different distibutions.
+The learning problem consists of finding a function realizing a good
+tranfer of knowledge from ${\cal D}_S$ to ${\cal D}_T$.
+That means the model trained on data drawn from distribution $P(X_S)$
+generalizes well on data drawn from $P(X_T)$. \cite[domain-adaptation]
