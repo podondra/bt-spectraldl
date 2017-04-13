@@ -22,6 +22,22 @@ If GPU is available look at `setup-cude.sh` to see which environment variables
 you need to setup. **CUDA** and [**cuDNN**](https://developer.nvidia.com/cudnn)
 are required to run NVIDIA GPU card.
 
+## Docker
+
+To be as reproducible as posible a `Dockerfile` is provided.
+Build an image with (like to use 'spectraldl' as image name):
+
+    nvidia-docker build -t <image-name> .
+
+Run the container:
+
+    nvidia-docker run -d -p 8888:8888 -v <path-to-notebooks-directory>:/notebooks <image-name>
+
+Find container name and the url of Jupyter Notebook:
+
+    docker ps
+    docker logs <container-name>
+
 ## GPU on Antares
 
 Antares is server of Astronomical Institute of ASCR.
