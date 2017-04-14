@@ -1,14 +1,19 @@
+reading
+
+# tex
 bt-podsztavek.lbr
 bt-podsztavek.log
 bt-podsztavek.pdf
 bt-podsztavek.ref
 ctustyle-doc.pdf
+
+# notebooks
 .ipynb_checkpoints
-reading
-labeled/
 MNIST_data/
 venv/
 notMNIST*
 *.hdf5
 text8.zip
 ssap/
+spec-*.fits
+__pycache__/

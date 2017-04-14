@@ -22,6 +22,27 @@ If GPU is available look at `setup-cude.sh` to see which environment variables
 you need to setup. **CUDA** and [**cuDNN**](https://developer.nvidia.com/cudnn)
 are required to run NVIDIA GPU card.
 
+## Docker
+
+*Any file created in docker container is going to be owned by root!*
+
+To be as reproducible as posible a `Dockerfile` is provided.
+Build an image with (like to use 'spectraldl' as image name):
+
+    nvidia-docker build -t <image-name> .
+
+Run the container:
+
+    nvidia-docker run -d \  # deamonize the container
+        -p 8888:8888 \  # port for jupyter notebook
+        -v <path-to-notebooks-directory>:/notebooks \   # volume with notebooks
+        -name <container-name> \ # name the container
+        <image-name>
+
+Find the url with authentication token of Jupyter Notebook:
+
+    docker logs <container-name>
+
 ## GPU on Antares
 
 Antares is server of Astronomical Institute of ASCR.
@@ -29,7 +50,9 @@ It has GPU
 [GeForce GTX 980](http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980).
 To setup environment for working with it run:
 
-    source setup-cuda.py
+    # setup environment for working with CUDA
+    export LD_LIBRARY_PATH=export CUDA_HOME=/usr/local/cuda
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
 
 CUDA Toolkit 8.0 and cuDNN v5.1 installation was done according to
 [Tensorflow instructions](https://www.tensorflow.org/install/install_linux#nvidia_requirements_to_run_tensorflow_with_gpu_support).
