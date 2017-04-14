@@ -1,55 +1,99 @@
 \chap Deep Learning Frameworks
 
-This chapter makes overview of some open source deep learning frameworks.
+There are tens of deep learning frameworks.
+This chapter makes overview of such frameworks in order to choose the
+most suitable for purposes of this thesis.
+Several aspects have been taken into account:
 
-Because astronomy need to analyze indeed vast avalanche of data the framework
-should be scalable across multiple CPUs or GPGPUs. Secondly, its source should
-be open source with good community support and documentation. Next, general
-concepts behind the framework's API are studied in order to recognize poteniial
-problems as soon as possible.
+\begitems
+* great documentation,
+* open source project,
+* long term support,
+* scalable and GPGPU ready,
+* allows fast experiments,
+* Python API.
+\enditems
 
-\sec Theano
+The three first points should asure that this work will be maitanable
+in future. This work is faced with vast amount of data so it is desirable
+to choose scalable and GPGPU ready framework.
+On contrary, one goal is to find great deep neural network architecture which
+means that fast experimentation is crucial.
+Last two points support the goal of this thesis to find the best deep neural
+network architecture and because the author comfortable with Python.
 
-Theano is Python library for working with mathematical expression.
-Even though Theano is not developed as deep learning framework it can be
-consider as it is because primarily usage is to implement
-mathematical models in a symbolic way and then used them in machine or
-deep learning. \cite[theano]
-
-Theano is an open source software and is licensed under BSD license. Its source
-code is versioned in repository on
-GitHub\urlnote{https://github.com/Theano/Theano/}.
-
-Main features of Theano library are in its language to represent mathematical
-expressions, a compiler the creates code to compute these expressions and
-library which can evaluate them.
-This structure allows to optimize code for both CPUs and GPGPUs
-which are using CUDA. \cite[theano]
-
-Mathematical expressions have structure of directed, acyclic graph. There are
-two kind of nodes. {\bf Variable} nodes which represent the data and
-{\bf apply} nodes which stand for mathematical operators. \cite[theano]
-
-\sec TensorFlow
-
-Probably the most popular machine learning library nowadays is TensorFlow.
-This library is developed by Google.
-It is licensed under Apache 2.0 open source license and
-TensorFlow code is available on
-Github\urlnote{https://github.com/tensorflow/tensorflow}. \cite[tensorflow]
-
-Computation in TensorFlow is described by a directed graph that is set of
-nodes. Each node represents an operation and has zero or more inputs and zero or
-more outputs. Values that flow along a graph edges are called {\bf tensors}.
-Tensors are arbitrary multidimensional data.
-These graphs can be constructed through frontends.
-Currently implemented frontends support C++ and Python. \cite[tensorflow]
+NVIDIA's website\urlnote{https://developer.nvidia.com/deep-learning-frameworks}
+lists popular deep learning frameworks. These include Caffe, TensorFlow,
+Theano, Torch and Keras. Torch is excluded because it does not has Python
+bindings \cite[torch].
 
 \sec Caffe
 
-TODO
+Caffe is BSD-licensed C++ deep learning framework with Python and MATLAB
+bindings.
+It serves for training and deploying convolutional neural networks and
+other deep models.
+By separeting model representation from actual implementattion, Caffe allows
+seamless switching among CPU, GPGPU and other architectures.
+The project is maintained by Berkeley Vision and Lerning Center with help of
+community of contibutors on GitHub\urlnote{https://github.com/BVLC/caffe/}.
+Documentation and examples are available at Caffe's
+website\urlnote{http://caffe.berkeleyvision.org/}. \cite[caffe]
+
+According to experimental results in \cite[benchmark] Caffe has one of the
+best performances on both GPGPU and CPU platforms.
+
+\sec TensorFlow
+
+TensorFlow is interface developed by Google for expressing machine learning
+algorithms and an implementation for executing such algorithms.
+It is licensed under Apache 2.0 open source license and its code is available on
+Github\urlnote{https://github.com/tensorflow/tensorflow}.
+A computation in TensorFlow is described by a directed graph which can be
+executed with little or no change on CPUs or GPUs.
+Currently implemented frontends are C++ and Python.
+This project has extensive documentation with examples and
+tutorial\urlnote{https://www.tensorflow.org/}. \cite[tensorflow]
+
+In order to help develepment and debugging TensorFlow provides visualization
+tool called TensorBoard.
+This tool can vizualize computation graphs and summary statistics such as
+values of loss function, weights and so on.
+
+\sec Theano
+
+Theano is a Python framework for working with mathematical expression.
+Even though Theano is not developed as deep learning framework it can be
+consider as it is because primarily usage is to implement
+mathematical models in a symbolic way and then used them in machine or
+deep learning.
+Theano is an open source software and is licensed under BSD license.
+Its source code is versioned in repository on
+GitHub\urlnote{https://github.com/Theano/Theano/}.
+Main features are in language to represent mathematical expressions, a compiler to creates code to compute these expressions and library to evaluate them.
+This structure allows to optimize code for both CPUs and GPGPUs. \cite[theano]
+
+As stated in \cite[theano] although Theano is developed and mainly used for
+reasearch in deep learning it is not a deep learning framework in itself.
+Several software packages have been developed to provide higher-level
+user interface for instance Keras, Blocks and Lasagne.
 
 \sec Keras
 
-TODO
+Keras is high-level neural networks API. It is written in Python and it runs
+on top of either TensorFlow or Theano.
+It focuses on fast prototyping and experimentation.
+Because it is interface to TensorFlow or Theano it can use both CPU and GPGPUs.
+Its website\urlnote{https://keras.io/} provides good documentation and code is
+open source under MIT license on
+GitHub\urlnote{https://github.com/fchollet/keras}. \cite[keras]
 
+Recently Keras API will be integrated into TensorFlow 1.2.
+Therefore, there will be two separete implementations of the Keras
+specification.
+One for written in pure TensofFlow and second compatible with
+both Theano and TensorFlow. \cite[keras2]
+
+\sec Consideration
+
+TODO
