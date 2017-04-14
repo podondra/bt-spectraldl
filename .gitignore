@@ -15,3 +15,5 @@ notMNIST*
 *.hdf5
 text8.zip
 ssap/
+spec-*.fits
+__pycache__/
