@@ -24,6 +24,8 @@ are required to run NVIDIA GPU card.
 
 ## Docker
 
+*Any file created in docker container is going to be owned by root!*
+
 To be as reproducible as posible a `Dockerfile` is provided.
 Build an image with (like to use 'spectraldl' as image name):
 
@@ -31,11 +33,14 @@ Build an image with (like to use 'spectraldl' as image name):
 
 Run the container:
 
-    nvidia-docker run -d -p 8888:8888 -v <path-to-notebooks-directory>:/notebooks <image-name>
+    nvidia-docker run -d \  # deamonize the container
+        -p 8888:8888 \  # port for jupyter notebook
+        -v <path-to-notebooks-directory>:/notebooks \   # volume with notebooks
+        -name <container-name> \ # name the container
+        <image-name>
 
-Find container name and the url of Jupyter Notebook:
+Find the url with authentication token of Jupyter Notebook:
 
-    docker ps
     docker logs <container-name>
 
 ## GPU on Antares
