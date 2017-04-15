@@ -27,3 +27,6 @@ def get_waves(hdulist):
 
 def get_fluxes(hdulist):
     return hdulist[0].data[2]
+
+def get_spectrum(hdulist):
+    return get_waves(hdulist), get_fluxes(hdulist)
