@@ -3,7 +3,7 @@
 This thesis is concerned with classification of star's spectra.
 Aim of this chapter is to describe these data.
 The following sections introduce spectroscopy, its related concepts,
-Ondřejov and LAMOST astronomical archives of spectral data.
+Ondřejov and \glref{LAMOST} astronomical archives of spectral data.
 
 \sec Astronomical Spectroscopy
 
@@ -31,7 +31,8 @@ or wavelength:
 its unit is Hertz.
 * Wavelength ($\lambda$) is the distance between successive
 crests or troughs in the wave and it is meausred is meters
-or astronomy usually uses Angstrom (1\,\AA~=~10$^{-10}$\,m).
+or astronomy usually uses {\AA}ngström (1\,{\AA}~=~10$^{-10}$\,m).
+
 \enditems
 
 Frequency and wavelength are related by wave equation:
@@ -48,11 +49,31 @@ Stars are often modelled as blackbodies in astronomy.
 Their spectrum approximates the black body spectrum. \cite[cosmos]
 
 
-\medskip \clabel[black-body]{Black body radiation}
+\midinsert \clabel[black-body]{Black body radiation}
 \picw=15cm \cinspic img/black-body.png
 \caption/f Black body radiation curves of 3000, 4000 and 5000 Kelvins hot
 stars.
-\medskip
+\endinsert
+
+\sec Spectrum Continuum
+
+Each spectrum is characterized by the continuum and the spectral lines.
+The continuum is generally smoothly varying spectrum of light emitted by
+a star while spectral lines are peaks reaching out from a continuum.
+\cite[continuum]
+
+In order to avoid variations between different observations a contiuum is
+usually normalized to serve as refence point to spectral lines.
+A smooth curve is fit to the continuum and then the spectrum is divided by
+it.
+This sets the continuum everywhere to one and allows to measure spectral
+lines in consistent way.
+
+\midinsert \clabel[continuum-normalization]{Continuum Normalization}
+\picw=15cm \cinspic img/continuum-normalization.png
+\caption/f Comparison between raw spectrum and corresponding spectrum with
+normalized continuum.
+\endinsert
 
 \sec Spectral Lines
 
@@ -94,46 +115,70 @@ atom's energy levels. On graph these absorption
 features are show below the level of a star's black body
 continuum spectrum.
 
-\secc H-alpha
+\secc Balmer Lines
 
-H-alpha is deep-red visible spectral line. Its wavelength is 6562.8\,\AA.
+The Balmer lines or Balmer series is the name of spectral lines of hydrogen
+atom that result from electron transitions between second energy level
+and higher levels.
+There are four transitions that are in visible wavelength.
+These are named H$\alpha$, H$\beta$, H$\gamma$ and H$\delta$.
+Because hydrogen is most abundant element Balmer lines are a commonly
+observed feature in spectroscopy. \cite[cosmos]
+
+H$\alpha$ is deep-red visible spectral line. Its wavelength is 6562.8\,{\AA}.
 This spectral line is created whe electron moves between the second and third
 energy level of hydrogen atom.
 
-\medskip \clabel[spectral-lines]{Spectral lines}
+\midinsert \clabel[spectral-lines]{Spectral lines}
 \picw=15cm \cinspic img/spectral-lines.png
 \caption/f Specta of gamma Cas and alpha Lyr with emission and absorption
-line in H-alpha respectively.
-\medskip
+line in H$\alpha$ respectively.
+\endinsert
+
+\sec Be Stars
+
+Be stars are a non-supergiant B stars\fnote{Stars from spectral type B are
+hydrogen burning stars which have 2 to 16 times the mass fo the Sun
+and surface temperatures between 10000 and 30000 K. \cite[habets1981]}
+whose spectrum has or had at some time, one or more Balmer lines in emission.
+Althougth this definition is not precise it is sufficient for purpose of this
+work. \cite[porter2003]
+
+It is believed that Be star consists of really fast rotating star
+and star disk which may cause the emissions in Balmer lines.
+Absorptions and emissions in electromagnetic spectrum of Be star can
+periodically vary.
 
 \sec Ondřejov Archive
 
-Archive of Ondřejov observatory spectral data is available at ASU CAS Data
-Center\urlnote{http://voarchive.asu.cas.cz/}.
+Archive of Ondřejov observatory spectral data is available at glref{ASU CAS}
+Data Center\urlnote{http://voarchive.asu.cas.cz/}.
 It currently contains about 17000 specta \cite[voarchive].
+Because this archive is {\bf specialized on Be stars observations}
+it contains approximately 13000 spectra with H$\alpha$ spectral line.
 The data were obtained with Ondřejov Perek 2\,m telescope and coud\`e camera
 with focus 700\,mm.
-The spectrograph's spectral resolving power is about 13000 in H-alpha
+The spectrograph's spectral resolving power is about 13000 in H$\alpha$
 \cite[stelweb].
 
 {\bf Spectral resolving power} of a spectrograph is defined as:
 
 $$ R = {\lambda \over \Delta \lambda} \eqmark $$
 
-where $\Delta \lambda$ is {\bf spectrum resolution} and stands for the smallest
+where $\Delta \lambda$ is {\bf spectrum resolution} which stands for the smallest
 difference in wavelengths that can be distinguished at a wavelength of
 $\lambda$.
 
-\medskip \clabel[ondrejov-vs-lamost]{Spectra comparison}
+\midinsert \clabel[ondrejov-vs-lamost]{Spectra comparison}
 \picw=15cm \cinspic img/ondrejov-vs-lamost.png
-\caption/f Spectra of BT CMi star from Onřejov and LAMOST archive.
-\medskip
+\caption/f Spectra of BT CMi star from Onřejov and \glref{LAMOST} archive.
+\endinsert
 
 \sec LAMOST Archive
 
-The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (LAMOST) is
-telescope located in China with spectral resolving power 500, 1000 or 1500.
-LAMOST archive contains more than 7 milions of spectra.
+The Large Sky Area Multi-Object Fiber Spectroscopic Telescope (\glref{LAMOST})
+is telescope located in China with spectral resolving power 500, 1000 or 1500.
+\glref{LAMOST} archive contains more than 7 milions of spectra.
 The latest observations are available in data release 5
 Q1\urlnote{http://dr5.lamost.org/}. \cite[lamost]
 
@@ -147,7 +192,7 @@ Q1\urlnote{http://dr5.lamost.org/}. \cite[lamost]
     forth year   & 1713059             & 1543415     \crl \tskip4pt
     \hfil total  & 7681185             & 6898318     \cr
 }
-\caption/t Statistics of LAMOST data releases according to \cite[lamostdr4].
+\caption/t Statistics of \glref{LAMOST} data releases according to \cite[lamostdr4].
 \endinsert
 
 \sec FITS File Format
@@ -158,23 +203,24 @@ data files. It is design to store data sets consisting of
 multidimensiional arrays and two dimensional tables. \cite[fits-support-office]
 
 A FITS file is comprised of segmets called Header/Data
-Units (HDUs). The first HDU is called the ``Primary HDU''.
+Units (\glref{HDU}s).
+The first \glref{HDU} is called the ``Primary \glref{HDU}''.
 The primary data array can contain a 1-999 dimensional
 array of numbers. A typical primary array could contain
 a 1 dimensional {\bf spectrum}, a 2 dimensional image,
 a 3 dimensional data cube.
 
-Any number of additional HDUs may follow the primary array.
-These HDUs are referred as ``extensions''. There are three
+Any number of additional \glref{HDU}s may follow the primary array.
+These \glref{HDU}s are referred as ``extensions''. There are three
 types of standart extensions currently defined:
 
 \begitems
 * Image Extension
-* ASCII Table Extension
+* \glref{ASCII} Table Extension
 * Binary Table Extension
 \enditems
 
-Every HDU consists of an ASCII formatted ``Header Unit'' and
+Every \glref{HDU} consists of an \glref{ASCII} formatted ``Header Unit'' and
 ``Data Unit''.
 
 Each header unit contains a sequence of fixed-length 80
@@ -184,7 +230,7 @@ character long keyword record which have form:
 KEYNAME = value / comment string
 \endtt
 
-Non-printing ASCII character such as tabs,
+Non-printing \glref{ASCII} character such as tabs,
 carriage-returns, line-feeds are not allowed anywhere in
 the header unit.
 
@@ -200,13 +246,13 @@ in primary array or an image extension may have one of
 * 64-bit double precision floating point real numbers
 \enditems
 
-The othe 2 standard extensions, ASCII tables and binary
+The othe 2 standard extensions, \glref{ASCII} tables and binary
 tables, contain tabular information organized into rows
 and columns. Binary tables are more compact and are faster
-to read and write then ASCII tables.
+to read and write then \glref{ASCII} tables.
 
 All the entries within a column of a tables have the same
-datatype. The allowed data formats for an ASCII table
+datatype. The allowed data formats for an \glref{ASCII} table
 column are integer, signe and double precision floating
 point value, character string. Binary table also support
 logical, bit and complex data formats.

@@ -2,6 +2,5 @@ language: python
 python:
     - '3.5'
     - '3.6'
-    - nightly
 install: pip install -r notebooks/requirements.txt
 script: cd notebooks && make test

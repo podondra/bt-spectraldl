@@ -1,19 +1,67 @@
 \chap Classifying Ondřejov Archive
 
-TODO
+This chapter discusses collection and classification
+of spetral dataset from Ondřejov \glref{CCD}700 archive.
+Overview of a tool used for classification is made
+and then it shows dataset's properties and statistics.
 
-\sec Neural Network Architecture
+\sec Spectral View
 
-TODO
+Spectral View is web browser tool for classification of Ondřejov \glref{CCD}700
+spectral archive.
+It was implemented to support creation of dataset for this work.
+It is written in Python using
+Tornado Web Framework\urlnote{http://www.tornadoweb.org/en/stable/}
+and Motor\urlnote{https://motor.readthedocs.io/en/stable/}
+which is asynchronous driver for MongoDB.
+Vizualizations are created with D3.js\urlnote{https://d3js.org/}.
+Source code is available on
+GitHub\urlnote{https://github.com/podondra/spectralview}
+and documentation is available on
+Read the Docs\urlnote{http://spectralview.readthedocs.io/}.
 
-\sec Training the Network
+Spectra are divided into emission, absorption, double-peak and unknown
+classes according to shape of spectral line at H$\alpha$
+(see figure~\ref[classes]).
 
-TODO
+\midinsert \clabel[classes]{Classes in Ondřejov dataset}
+\picw=15cm \cinspic img/classes.png
+\caption/f Examples from Ondřejov dataset of spectra from emission,
+absorption and double-peak classes.
+\endinsert
 
-\sec Results and Visualizations
+Data import is done through
+a \glref{SSAP} Service\urlnote{http://www.ivoa.net/documents/SSA/}.
+These spectra are then split into corresponding classes by a user
+who is presented with vizualization of full spectrum,
+zoomed H$\alpha$ spectal line and
+denoised respectively Gaussian convolved H$\alpha$.
+Classified spectra can be viewed and move between classes on demand.
 
-TODO
+\sec Ondřejov Dataset
 
-\sec Performance and Scalability
+The resulting dataset consists of 13335 spectra.
+Structure of the dataset is shown in~table~\ref[dataset-table].
+Emission and absorption spectra are the most significant part of this dataset.
+There are 45.77\% spectra with absoption line ins H$\alpha$
+and 39.75\% with emission line.
+But there are also 11.50\% spectra with double-peak in H$\alpha$
+plus 2.98\% spectra which cannot be easily classified.
 
-TODO
+\midinsert \clabel[dataset-table]{Number of spectra in classes}
+\ctable{lr}{
+    \hfil class & count \hfil \crl \tskip4pt
+    emission    & 5301 \cr
+    absorption  & 6103 \cr
+    unknown     & 398  \cr
+    double-peak & 1533 \cr
+}
+\caption/t Number of spectra in Ondřejov dataset's classes.
+\endinsert
+
+All spectra in this dataset contain H$\alpha$
+but they have different wavelength starts and ends.
+Infimum from all wavelength starts is 6518.4272\,{\AA}.
+and supremum from all wavelength ends is 6732.7432\,{\AA}.
+There is on average one measurement of flux each 0.249\,{\AA}
+with small standard deviation 0.0119\,{\AA}.
