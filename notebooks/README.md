@@ -35,6 +35,7 @@ Run the container:
 
     nvidia-docker run -d \  # deamonize the container
         -p 8888:8888 \  # port for jupyter notebook
+        -p 6006:6006 \  # port for tensorboard
         -v <path-to-notebooks-directory>:/notebooks \   # volume with notebooks
         -name <container-name> \ # name the container
         <image-name>
