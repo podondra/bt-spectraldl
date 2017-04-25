@@ -1,5 +1,77 @@
 \chap Preprocessing
 
+This chapter describes all the action taken on the data from Ondřejov
+dataset before processing then through a neural network.
+
+\sec Knowledge Transfer
+
+Ondřejov and LAMOST spectrographs have different parameters
+(as described in sections \ref[ondrejov-archive] and
+\ref[lamost-archive]).
+Thus, spectra from the two archive different.
+Concretly, spectra from Ondřejov archive has much more details than
+spectra from LAMOST spectrograph
+and spectra in Ondřejov archive are stored in air wavelengths
+but LAMOST store spectra in vacuum wavelengths.
+
+This thesis is concerned with classifying LAMOST data using
+data from Ondřejov.
+It aims to extract as much knowledge as possible from Ondřejov data
+and apply it to classification of LAMOST archive.
+Tranfer learning and domain adaptation
+(described in chapter \ref[transfer-learning])
+are study area of machine learning which aim to offer methods
+for dealing with these problems.
+
+The following sections introduce methods
+that were applied to Ondřejov data.
+These methods make the two domains more similar and so
+they deal with differences between the archives mentioned above.
+
+\secc Wavelength Conversion
+
+Ondřejov and LAMOST archives store wavelengths in air and vacuum
+wavelength respectively.
+When spectra of same object from the two archives are plotted on each
+other they are a bit shifted (see top plot in figure \ref[air2vacuum]).
+Therefore, Ondřejov spectra are converted to vacuum wavelengths
+according to formulas provided in \cite[air2vacuum]:
+
+$$ \lambda_{v} = n \lambda_{a} \eqmark $$
+
+$$
+n = 1 + 8.34254 \cdot 10^{-5} +
+    {2.406147 \cdot 10^{-2} \over (130 - s^2)} +
+    {1.5998 \cdot 10^{-4} \over (38.9 - s^2)}
+\eqmark
+$$
+
+$$ s = {10^4 \over \lambda_{a}} \eqmark $$
+
+where $\lambda_{v}$ is vacuum wavelength and $\lambda_{a}$ is
+corresponding air wavelength.
+
+The resulting Ondřejov spectrum after air to vacuum conversion
+is plotted in bottom plot in figure \ref[air2vacuum].
+
+\midinsert \clabel[air2vacuum]{Air to vacuum conversion}
+\picw=15cm \cinspic img/air2vacuum.png
+\caption/f Spectrum of object HIP47636 from Ondřejov archive before
+and after covnersion of air to vacuum wavelengths in comparison with
+spectrum of the same object from LAMOST archive.
+\endinsert
+
+\secc Gaussian Blur
+
+TODO
+
+\midinsert \clabel[gaussian-blur-plot]{Gaussian blur}
+\picw=15cm \cinspic img/gaussian-blur.png
+\caption/f TODO
+\endinsert
+
+\sec Sample Rate Conversion
+
 TODO
 
 \sec Dimensionality Reduction
@@ -14,3 +86,10 @@ TODO
 
 TODO
 
+\sec Dataset Split
+
+TODO
+
+\sec SMOTE Balancing
+
+TODO
