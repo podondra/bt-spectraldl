@@ -9,7 +9,7 @@ def retrieve_url(url):
 
 def cut_spectrum(waves, fluxes, start, end):
     '''Cut spectrum between start and end range.'''
-    index = np.logical_and(start < waves, waves < end)
+    index = (start < waves) & (waves < end)
     return waves[index], fluxes[index]
 
 def air2vacuum(air_waves):
