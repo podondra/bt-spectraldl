@@ -4,6 +4,12 @@ import numpy as np
 
 EPS = 10e-6
 
+def test_air2vacuum():
+    waves = spectraldl.preprocessing.air2vacuum(
+            np.array([10], dtype=np.float)
+            )
+    assert abs(waves[0] - 10.00083342) < 0.00000001
+
 def test_smote_over_sample():
     X, y = np.random.rand(100, 1), np.random.randint(2, size=100)
     X_, y_ = spectraldl.preprocessing.smote_over_sample(X, y, n_classes=2)
