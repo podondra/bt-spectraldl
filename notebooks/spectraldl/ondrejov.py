@@ -13,3 +13,6 @@ def get_fluxes(hdulist):
 
 def get_spectrum(hdulist):
     return get_waves(hdulist), get_fluxes(hdulist)
+
+def get_object_name(hdulist):
+    return hdulist[1].header['OBJECT']
