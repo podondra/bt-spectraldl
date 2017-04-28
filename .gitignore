@@ -10,11 +10,7 @@ ctustyle-doc.pdf
 
 # notebooks
 .ipynb_checkpoints
-MNIST_data/
 venv/
-notMNIST*
 *.hdf5
-text8.zip
 ssap/
-spec-*.fits
 __pycache__/
