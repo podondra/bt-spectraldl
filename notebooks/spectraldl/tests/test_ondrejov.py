@@ -14,3 +14,8 @@ def test_get_fluxes():
         fluxes = spectraldl.ondrejov.get_fluxes(hdulist)
     assert isinstance(fluxes, np.ndarray)
     assert len(fluxes) == 1953
+
+def test_get_object_name():
+    with astropy.io.fits.open('samples/bt-cmi-ondrejov.fits') as hdulist:
+        name = spectraldl.ondrejov.get_object_name(hdulist)
+    assert name == 'BT CMi'
