@@ -4,7 +4,7 @@ import numpy as np
 
 
 def test_compute_waves():
-    with astropy.io.fits.open('samples/bt-cmi-lamost.fits') as hdulist:
+    with astropy.io.fits.open('data/bt-cmi-lamost.fits') as hdulist:
         waves = spectraldl.lamost.compute_waves(hdulist)
     assert isinstance(waves, np.ndarray)
     assert round(waves[0]) == 3700.0
@@ -12,7 +12,7 @@ def test_compute_waves():
     assert len(waves) == 3899
 
 def test_get_fluxes():
-    with astropy.io.fits.open('samples/bt-cmi-lamost.fits') as hdulist:
+    with astropy.io.fits.open('data/bt-cmi-lamost.fits') as hdulist:
         fluxes = spectraldl.lamost.get_fluxes(hdulist)
     assert isinstance(fluxes, np.ndarray)
     assert len(fluxes) == 3899
