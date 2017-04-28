@@ -4,6 +4,9 @@ import sklearn.preprocessing
 import astropy.convolution
 
 
+START = 6519
+END = 6732
+
 def air2vacuum(air_waves):
     '''Convert air wavelengths to vacuum wavelengths'''
     # http://www.astro.uu.se/valdwiki/Air-to-vacuum%20conversion
@@ -19,6 +22,9 @@ def convolve_spectrum(fluxes, stddev=7):
     '''Convolve spectrum with Gaussian 1D kernel.'''
     kernel = astropy.convolution.Gaussian1DKernel(stddev=stddev)
     return astropy.convolution.convolve(fluxes, kernel, boundary='extend')
+
+def resample_spectrum(waves, fluxes, space=np.linspace(START, END, 140)):
+    return np.interp(space, waves, fluxes)
 
 def smote_over_sample(X, y, *, n_classes):
     '''Oversample the dataset
