@@ -29,7 +29,7 @@ are required to run NVIDIA GPU card.
 To be as reproducible as posible a `Dockerfile` is provided.
 Build an image with (like to use 'spectraldl' as image name):
 
-    nvidia-docker build -t <image-name> .
+    nvidia-docker build -t <image-name> .    # or $ make docker
 
 Run the container:
 
