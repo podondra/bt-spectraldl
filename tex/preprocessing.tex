@@ -63,14 +63,37 @@ spectrum of the same object from LAMOST archive.
 
 \secc Gaussian Blur
 
-TODO
+According to \cite[szeliski2010] Gaussian filter smooths away high-frequency
+detail of images.
+Spectrum can be seen as one dimensional image.
+Correctly parametrized Gaussina blur applied to Ondřejov spectrum
+would reduce the amount of detail
+and thus make it more similar to spectrum from LAMOST archive.
+
+The equation of a one dimensional Gaussain function:
+
+$$ G(x) = {1 \over \sqrt{2 \pi \sigma^2}} e^{-{x^2 \over 2 \sigma^2}} \eqmark $$
+
+where $\sigma$ is standard deviation in pixels.
+
+This work uses convolution implementation from Python package {\tt astropy}
+\cite[astropy] in version 1.3.1.
+Value 7 was choosen for standard deviation after vizualizating results of
+convolutions with different parameters.
+
+\begtt
+from astropy.convolution import Gaussian1DKernel, convolve
+
+gauss_kernel = Gaussian1DKernel(stddev=7)
+smoothed_fluxes = convolve(fluxes, gauss_kernel)
+\endtt
 
 \midinsert \clabel[gaussian-blur-plot]{Gaussian blur}
 \picw=15cm \cinspic img/gaussian-blur.png
 \caption/f TODO
 \endinsert
 
-\sec Sample Rate Conversion
+\sec Regridding
 
 TODO
 
@@ -82,13 +105,31 @@ TODO
 
 TODO
 
+\midinsert \clabel[pca-plot]{PCA}
+\picw=15cm \cinspic img/pca.png
+\caption/f TODO
+\endinsert
+
 \secc t-SNE
 
 TODO
 
+\midinsert \clabel[tsne-plot]{TODO}
+\picw=15cm \cinspic img/tsne.png
+\caption/f TODO
+\endinsert
+
 \sec Dataset Split
 
-TODO
+\midinsert \clabel[dataset-split-table]{Dataset split table}
+\ctable{lrrr}{
+    \hfil set  & emission & absorption & double-peak \hfil \crl \tskip4pt
+    train      &     3817 &       4393 & 1104 \cr
+    validation &      954 &       1099 &  276 \cr
+    test       &      530 &        611 &  153 \cr
+}
+\caption/t TODO
+\endinsert
 
 \sec SMOTE Balancing
 
