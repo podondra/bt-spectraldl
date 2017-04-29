@@ -26,7 +26,7 @@ def convolve_spectrum(fluxes, stddev=7):
 def resample_spectrum(waves, fluxes, space=np.linspace(START, END, 140)):
     return np.interp(space, waves, fluxes)
 
-def smote_over_sample(X, y, *, n_classes):
+def smote_over_sample(X, y, *, n_classes=3):
     '''Oversample the dataset
     so that all classes has the same number of samples.'''
     X_ = np.copy(X)
