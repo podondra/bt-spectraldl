@@ -76,10 +76,10 @@ $$ G(x) = {1 \over \sqrt{2 \pi \sigma^2}} e^{-{x^2 \over 2 \sigma^2}} \eqmark $$
 
 where $\sigma$ is standard deviation in pixels.
 
-This work uses convolution implementation from Python package {\tt astropy}
+This work uses convolution implementation from Python package astropy
 \cite[astropy] in version 1.3.1.
-Value 7 was choosen for standard deviation after vizualizating results of
-convolutions with different parameters.
+Standard deviation of value 7 was choosen after vizualizating results of
+convolutions.
 
 \begtt
 from astropy.convolution import Gaussian1DKernel, convolve
@@ -95,7 +95,37 @@ smoothed_fluxes = convolve(fluxes, gauss_kernel)
 
 \sec Regridding
 
-TODO
+To train, validate and test deep neural network
+two dimensional dataset matrixes needs to be created.
+In a matrix each row is a spectrum sample
+and each column represents flux in certain wavelength.
+That means that all spectra need to be regrided to same wavelengths.
+
+The wavelengths range is given by Ondřejov dataset from 6519 to 6732
+(minimum is rounded up and maximum is rounded down to nearest integer value).
+Ondřejov spectra in this range has 829, 830, 831, or 922, 923 measured fluxes
+according to this thesis's experiments.
+This variance is caused by change of spectrograph in Ondřejov observatory
+(see section \ref[ondrejov-archive])
+and the small deviation by the cut of spectrum into the range.
+LAMOST spectra has 140 measurements in this range
+inferred from 22 cross-matched spectra.
+
+Because Ondřejov spectra are moved to LAMOST resolution,
+after air to vacuum conversion and convolution,
+spectra are regrided uniformly to 140 points in range 6519 to 6732.
+To do regridding linear interpolation is used.
+Here is NumPy 1.12.1 \cite[numpy] code carrying out this operation:
+
+\begtt
+import numpy as np
+
+new_wavelengths = np.linspace(6519, 6732, num=140)
+new_fluxes = np.interp(new_wavelengths, old_wavelengths, old_fluxes)
+\endtt
+
+where {\tt old\_wavelengths} variable holds old wavelengths
+and {\tt old\_fluxes} variable holds corresponding fluxes of a spectrum.
 
 \sec Dimensionality Reduction
 
