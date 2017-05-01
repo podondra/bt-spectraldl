@@ -14,13 +14,13 @@ experience $E$ with respect to some class of tasks $T$ and performance measure
 $P$, if its performance at tasks in $T$, as measured by $P$, improves with
 experience $E$.}''.
 
-Therefore, instead of hardcoding the desired model directly into program,
-data are feeded into machine learning algorithm which develops its own model.
+Therefore, instead of hard coding the desired model directly into program,
+data are fed into machine learning algorithm which develops its own model.
 This is called {\bf data-driven approach} since it depends on providing the
 algorithm with vast amount of data. \cite[cs231n]
 
 For example, considering the image classification program. It would be
-challenging to hardcode into program how general dog looks. Machine learning
+challenging to hard code into program how general dog looks. Machine learning
 algorithm in combination with data-driven approach would take large collection
 of dog's images, feed them into program and let it develop its own
 notion of what a dog looks like.
@@ -31,7 +31,7 @@ In supervised learning, there is a data set and its corresponding output values.
 Supervised algorithms are used for solving {\bf classification} or
 {\bf regression} tasks.
 In classification inputs are assigned from a set of discrete values.
-On contrary, regression predicts ouputs from continuos range.
+On contrary, regression predicts outputs from continuous range.
 Unsupervised learning allows to solve problems where is no or little idea about
 the result. \cite[goodfellow16]
 
@@ -40,7 +40,7 @@ the result. \cite[goodfellow16]
 Conventional machine learning techniques were limited in ability to process
 raw natural data.
 Machine learning algorithm required careful design of feature extractor that
-tranformed the raw data into suitable feature vectors from which the learning
+transformed the raw data into suitable feature vectors from which the learning
 subsystem could classify patterns in the input.
 
 Deep learning methods are representation learning methods with multiple levels
@@ -59,14 +59,14 @@ To go from one layer to the next a set of units
 compute a weighted sum of their inputs from previous layer and apply
 non-linear function to the result.
 Units that are not in the input or output layer are called hidden units.
-These hidden layers of a multilayer neural network can distort the input
+These hidden layers of a multi layer neural network can distort the input
 space to make the classes linearly separable.
 
 \midinsert \clabel[neural-network]{Feedforward neural network}
 \picw=7.5cm \cinspic img/neural-network.png
 \caption/f Feedforward neural network with 4 {\bf fully connected} layers.
 The input layer has 3 units followed 2 hidden layers with 4 and 3 units.
-Ouput layer contains 2 units.
+Output layer contains 2 units.
 \endinsert
 
 \sec Convolutional Networks

@@ -5,20 +5,20 @@ dataset before processing then through a neural network.
 
 \sec Knowledge Transfer
 
-Ondřejov and LAMOST spectrographs have different parameters
+Ondřejov and \glref{LAMOST} spectrographs have different parameters
 (as described in sections \ref[ondrejov-archive] and
 \ref[lamost-archive]).
 Thus, spectra from the two archive different.
-Concretly, spectra from Ondřejov archive has much more details than
-spectra from LAMOST spectrograph
+Concretely, spectra from Ondřejov archive has much more details than
+spectra from \glref{LAMOST}spectrograph
 and spectra in Ondřejov archive are stored in air wavelengths
-but LAMOST store spectra in vacuum wavelengths.
+but \glref{LAMOST} store spectra in vacuum wavelengths.
 
-This thesis is concerned with classifying LAMOST data using
+This thesis is concerned with classifying \glref{LAMOST} data using
 data from Ondřejov.
 It aims to extract as much knowledge as possible from Ondřejov data
-and apply it to classification of LAMOST archive.
-Tranfer learning and domain adaptation
+and apply it to classification of \glref{LAMOST} archive.
+Transfer learning and domain adaptation
 (described in chapter \ref[transfer-learning])
 are study area of machine learning which aim to offer methods
 for dealing with these problems.
@@ -30,7 +30,7 @@ they deal with differences between the archives mentioned above.
 
 \secc Wavelength Conversion
 
-Ondřejov and LAMOST archives store wavelengths in air and vacuum
+Ondřejov and \glref{LAMOST} archives store wavelengths in air and vacuum
 wavelength respectively.
 When spectra of same object from the two archives are plotted on each
 other they are a bit shifted (see top plot in figure \ref[air2vacuum]).
@@ -57,8 +57,8 @@ is plotted in bottom plot in figure \ref[air2vacuum].
 \midinsert \clabel[air2vacuum]{Air to vacuum conversion}
 \picw=15cm \cinspic img/air2vacuum.png
 \caption/f Spectrum of object HIP47636 from Ondřejov archive before
-and after covnersion of air to vacuum wavelengths in comparison with
-spectrum of the same object from LAMOST archive.
+and after conversion of air to vacuum wavelengths in comparison with
+spectrum of the same object from \glref{LAMOST} archive.
 \endinsert
 
 \secc Gaussian Blur
@@ -66,11 +66,11 @@ spectrum of the same object from LAMOST archive.
 According to \cite[szeliski2010] Gaussian filter smooths away high-frequency
 detail of images.
 Spectrum can be seen as one dimensional image.
-Correctly parametrized Gaussina blur applied to Ondřejov spectrum
+Correctly parameterized Gaussian blur applied to Ondřejov spectrum
 would reduce the amount of detail
-and thus make it more similar to spectrum from LAMOST archive.
+and thus make it more similar to spectrum from \glref{LAMOST} archive.
 
-The equation of a one dimensional Gaussain function:
+The equation of a one dimensional Gaussian function:
 
 $$ G(x) = {1 \over \sqrt{2 \pi \sigma^2}} e^{-{x^2 \over 2 \sigma^2}} \eqmark $$
 
@@ -78,7 +78,7 @@ where $\sigma$ is standard deviation in pixels.
 
 This work uses convolution implementation from Python package astropy
 \cite[astropy] in version 1.3.1.
-Standard deviation of value 7 was choosen after vizualizating results of
+Standard deviation of value 7 was chosen after visualizing results of
 convolutions.
 
 \begtt
@@ -96,7 +96,7 @@ smoothed_fluxes = convolve(fluxes, gauss_kernel)
 \sec Regridding
 
 To train, validate and test deep neural network
-two dimensional dataset matrixes needs to be created.
+two dimensional dataset matrices needs to be created.
 In a matrix each row is a spectrum sample
 and each column represents flux in certain wavelength.
 That means that all spectra need to be regrided to same wavelengths.
@@ -111,7 +111,7 @@ and the small deviation by the cut of spectrum into the range.
 LAMOST spectra has 140 measurements in this range
 inferred from 22 cross-matched spectra.
 
-Because Ondřejov spectra are moved to LAMOST resolution,
+Because Ondřejov spectra are moved to \glref{LAMOST} resolution,
 after air to vacuum conversion and convolution,
 spectra are regrided uniformly to 140 points in range 6519 to 6732.
 To do regridding linear interpolation is used.
@@ -133,7 +133,7 @@ TODO
 
 \secc PCA
 
-TODO
+Principal Component Analysis.
 
 \midinsert \clabel[pca-plot]{PCA}
 \picw=15cm \cinspic img/pca.png
@@ -142,7 +142,9 @@ TODO
 
 \secc t-SNE
 
-TODO
+Other popular method of dimensionality reduction is t-Distributed Stochastic
+Neighbor Embedding. \glref{t-SNE} is TODO.
+\cite[tsne]
 
 \midinsert \clabel[tsne-plot]{TODO}
 \picw=15cm \cinspic img/tsne.png
@@ -151,6 +153,19 @@ TODO
 
 \sec Dataset Split
 
+This section shows how the Ondřejov dataset is split into
+training, validation and test set.
+These sets are required for training, tuning and evaluating any neural network.
+All split are done as stratified sampling so that the distribution of
+samples' number in a class is kept across sets.
+
+Test set on which the neural network is evaluated contains 10\% of all data.
+Validation set which serves for hyperparameter and architecture optimization
+is 20\% of remaining data.
+Training set is composed from the rest of data
+and its purpose is for training the network's weights contains 80\% of all data.
+Exact numbers of spectra in each set is in table \ref[dataset-split-table].
+
 \midinsert \clabel[dataset-split-table]{Dataset split table}
 \ctable{lrrr}{
     \hfil set  & emission & absorption & double-peak \hfil \crl \tskip4pt
@@ -158,9 +173,11 @@ TODO
     validation &      954 &       1099 &  276 \cr
     test       &      530 &        611 &  153 \cr
 }
-\caption/t TODO
+\caption/t Exact number of samples in train, validation and test set
+divided according to emission, absorption and double-peak classes.
 \endinsert
 
 \sec SMOTE Balancing
 
-TODO
+\glref{SMOTE} is shortcut for Synthetic Minority Over-Sampling Technique.
+\cite[smote]

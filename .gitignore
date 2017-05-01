@@ -7,6 +7,9 @@ bt-podsztavek.log
 bt-podsztavek.pdf
 bt-podsztavek.ref
 ctustyle-doc.pdf
+*.bak
+.aspell.en.prepl
+personal-word-list.txt
 
 # notebooks
 .ipynb_checkpoints
