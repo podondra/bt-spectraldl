@@ -10,6 +10,37 @@ TODO
 
 TODO
 
+\secc Dataset Split
+
+This section shows how the Ondřejov dataset is split into
+training, validation and test set.
+These sets are required for training, tuning and evaluating any neural network.
+All split are done as stratified sampling so that the distribution of
+samples' number in a class is kept across sets.
+
+Test set on which the neural network is evaluated contains 10\% of all data.
+Validation set which serves for hyperparameter and architecture optimization
+is 20\% of remaining data.
+Training set is composed from the rest of data
+and its purpose is for training the network's weights contains 80\% of all data.
+Exact numbers of spectra in each set is in table~\ref[dataset-split-table].
+
+\midinsert \clabel[dataset-split-table]{Dataset split table}
+\ctable{lrrr}{
+    \hfil set  & emission & absorption & double-peak \hfil \crl \tskip4pt
+    train      &     3817 &       4393 & 1104 \cr
+    validation &      954 &       1099 &  276 \cr
+    test       &      530 &        611 &  153 \cr
+}
+\caption/t Exact numbers of samples in train, validation and test set
+divided according to emission, absorption and double-peak classes.
+\endinsert
+
+\sec SMOTE Balancing
+
+\glref{SMOTE} is shortcut for Synthetic Minority Over-sampling Technique.
+\cite[smote]
+
 \sec Results and Visualizations
 
 TODO
