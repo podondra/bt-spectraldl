@@ -1,7 +1,7 @@
 \chap Preprocessing
 
-This chapter describes all the action taken on the data from Ondřejov
-dataset before processing them through a neural network.
+This chapter describes all preprocessing methods applied on the data
+from Ondřejov dataset before processing them through a neural network.
 The last section is about dimensionality reduction of the data
 and its visualizations.
 
@@ -137,72 +137,33 @@ new_fluxes = np.interp(new_wavelengths, old_wavelengths, old_fluxes)
 where {\tt old\_wavelengths} variable holds old wavelengths
 and {\tt old\_fluxes} variable holds corresponding fluxes of a spectrum.
 
-\sec Dimensionality Reduction
+\sec Spectra Scaling
 
-After the preprocessing methods mentioned in above sections each spectrum
-is a point in 140-dimensional space.
-To better understant the data \glref{PCA} and \glref{t-SNE} dimensionality
-reduction algorithms are applied to reduce each point to 2-dimensional space
-which can be visualized as scatter plot.
+Spectra in Ondřejov dataset were classified according to their shape.
+But the spectra fluxes has different intensities.
+Some emission spectra tend to have high fluxes.
+Therefore, all spectra are scaled.
 
-\secc PCA
+Two major forms of scaling are bound fluxes into range
+and standardization of spectrum to have zero mean and unit variance.
+In this work scaling to zero mean and unit variance is used.
+The two methods work similar but standardization looks better after
+dimensionality reduction (see \ref[pca-plot]).
 
-Principal Component Analysis is statistical technique to tranform a number
-of possibly correlated variables into a smaller number of variables
-called principal components. \cite[pca]
-
-Left plot in figure~\ref[pca-plot] displays first and second principal
-component of original dataset.
-After further analysis the plot express more the intensities in spectra's
-fluxes than the shape.
-The points far from the dense area in middle left have high intense fluxes.
-But in this work the difference between intesities in fluxes is not interesting.
-
-\midinsert \clabel[pca-plot]{PCA}
-\picw=15cm \cinspic img/pca.png
-\caption/f On the left size is scatter plot with first two principal
-components of the original dataset. The plot more that difference in shape
-show difference in fluxes values.
-Right plot displays result of PCA applied to scaled variant of the dataset.
-After such preprocessing mehtod absorption spectra are oriented in left part
-of the plot, emission spectra are on the other side and double-peak spectra
-are spread across the whole plot.
+\midinsert \clabel[fluxes-hist]{Histogram of fluxes}
+\picw=15cm \cinspic img/fluxes-hist.png
+\caption/f Histograms of maxima and minima spectra fluxes before and after
+standardization to zero mean and unit variance.
 \endinsert
 
-The other plot in figure~\ref[pca-plot] shows dataset with supressed intensities
-so that the only feature should be the shape of each spectra
-(spectra are classified according to their shapes see chapter~\ref[ondrejov].
-Scaling of spectra intesities is done with Scikit-learn 0.18.1 \cite[sklearn]: 
+Scaling of spectra fluxes is done with Scikit-learn 0.18.1 \cite[sklearn]:
 
 \begtt
 import sklearn.preprocessing
 
-X_scaled = sklearn.preprocessing.scale(X_orig, axis=1)
+X_scaled = sklearn.preprocessing.scale(X_original, axis=1)
 \endtt
 
-where {\tt X\_orig} is input matrix of size $n \times 140$
+where {\tt X\_original} is input matrix of size $n \times 140$
 ($n$ is number of spectra samples) containing original dataset.
 Each row of the matrix are the 140 fluxes of a spectrum.
-This procedure will scale each spectrum to have zero mean and unit varince
-and so the intensities are supressed.
-
-The scatter plot then expresses the structure of the dataset clearly.
-Absroption spectra are on the left side
-while emission spectra are mostly on the other side.
-Double-peak spectra are spread across the whole plot.
-This may implies that the emission and absorption spectra can be separable
-by linear classifier.
-But the double-peak spectra are mixed up with the other classes so
-hopefully a deep neural network can find such representation that all
-classes are separable.
-
-\secc t-SNE
-
-Other popular method of dimensionality reduction is t-Distributed Stochastic
-Neighbor Embedding. \glref{t-SNE} is TODO.
-\cite[tsne]
-
-\midinsert \clabel[tsne-plot]{TODO}
-\picw=15cm \cinspic img/tsne.png
-\caption/f TODO
-\endinsert
