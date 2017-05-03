@@ -38,11 +38,9 @@ def smote_over_sample(X, y, *, n_classes=3):
 
     return X_, y_
 
-def scale_samples(X_train, X_validation):
+def scale_samples(X):
     '''Scale each sample to have zero mean and unit sample.'''
-    X_tr = sklearn.preprocessing.scale(X_train, axis=1)
-    X_val = sklearn.preprocessing.scale(X_validation, axis=1)
-    return X_tr, X_val
+    return sklearn.preprocessing.scale(X, axis=1)
 
 def scale_features(X_train, X_validation,
         scaler=sklearn.preprocessing.StandardScaler()):
