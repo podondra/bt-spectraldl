@@ -1,14 +1,15 @@
 \chap Dimensionality Reduction
 
-After the preprocessing methods mentioned in above sections each spectrum
-is a point in 140-dimensional space.
-To better understant the data \glref{PCA} and \glref{t-SNE} dimensionality
+After the preprocessing methods mentioned in chapter~\ref[preprocessing]
+each spectrum is a point in {\bf 140-dimensional space}.
+To better understand the data \glref{PCA} and \glref{t-SNE} dimensionality
 reduction algorithms are applied to reduce each point to 2-dimensional space
 which can be visualized as scatter plot.
 
 \sec PCA
 
-Principal Component Analysis is statistical technique to tranform a number
+{\bf Principal Component Analysis}
+is statistical technique to tranform a number
 of possibly correlated variables into a smaller number of variables
 called principal components. \cite[pca]
 
@@ -23,17 +24,15 @@ of the plot, emission spectra are on the other side and double-peak spectra
 are spread across the whole plot.
 \endinsert
 
-Left plot in figure~\ref[pca-plot] displays first and second principal
-component of original dataset.
-After further analysis the plot express more the intensities in spectra's
+Left plot in figure~\ref[pca-plot] displays the first and the second principal
+component of dataset which is not standardized.
+After further analysis the plot express more the intensities in spectra
 fluxes than the shape.
-The points far from the dense area in middle left have high intense fluxes.
-But in this work the difference between intesities in fluxes is not interesting.
+The points far from the dense area in middle left have high fluxes.
+But in this work the interesting is shape not the difference between in fluxes.
 
-The other plot in figure~\ref[pca-plot] shows dataset with supressed intensities
-so that the only feature should be the shape of each spectra
-(spectra are classified according to their shapes see chapter~\ref[ondrejov].
-
+The plot on right side in figure~\ref[pca-plot] shows dataset
+with supressed fluxes.
 The scatter plot then expresses the structure of the dataset clearly.
 Absroption spectra are on the left side
 while emission spectra are mostly on the other side.
@@ -41,20 +40,40 @@ Double-peak spectra are spread across the whole plot.
 This may implies that the emission and absorption spectra can be separable
 by linear classifier.
 But the double-peak spectra are mixed up with the other classes so
-hopefully a deep neural network can find such representation that all
+hopefully a deep neural network can find a representation in which all
 classes are separable.
 
 \sec t-SNE
 
-T-Distributed Stochastic Neighbor Embedding visualizes high-dimensional data
+{\bf T-Distributed Stochastic Neighbor Embedding}
+visualizes high-dimensional data
 by giving each point a location in a two or three dimensional map.
 It is variant of Stochastic Neighbor Embedding.
-Unlike PCA, which is linear technique that focus on keeping the low-dimensional
-representations of dissimilar points far apart,
+Unlike \glref{PCA}
+(which is linear technique that focus on keeping the low-dimensional
+representations of dissimilar points far apart)
 t-SNE is capable of capturing both global and local structure.
 \cite[tsne]
 
+Visualization of Ondřejov dataset with \glref{t-SNE}
+is in figure~\ref[tsne-plot].
+Same as experiments in \cite[tsne],
+dataset is firstly reduced to 30 dimensions with \glref{PCA}
+and then reduce to two dimensions using
+Scikit-learn impelentation of \glref{t-SNE}.
+Perplexity, which is t-SNE parameter, is set to value 40.
+
 \midinsert \clabel[tsne-plot]{t-SNE dataset visualization}
 \picw=15cm \cinspic img/tsne.png
-\caption/f TODO
+\caption/f Visualization of Ondřejov dataset with \glref{t-SNE}.
+The input data are standardized (see section~\ref[scaling])
+and reduced to 30 dimensions
+with \glref{PCA}.
 \endinsert
+
+Figure~\ref[tsne-plot] of t-SNE visualization is very similar to
+PCA scatter plot~\ref[pca-plot].
+Absorption spectra are on the left side and emission spectra are
+on right side.
+Double-peak spectra are more oriented in the middle
+but they do not form their own cluster.
