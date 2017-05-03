@@ -1,18 +1,16 @@
 \chap Preprocessing
 
-This chapter describes all preprocessing methods applied on the data
-from Ondřejov dataset before processing them through a neural network.
-The last section is about dimensionality reduction of the data
-and its visualizations.
+This chapter describes all preprocessing methods applied on
+Ondřejov dataset before processing them through a neural network.
 
 \sec Knowledge Transfer
 
 Ondřejov and \glref{LAMOST} spectrographs have different parameters
 (as described in sections~\ref[ondrejov-archive] and
 \ref[lamost-archive]).
-Thus, spectra from the two archive different.
+Thus, spectra from the two archive are different.
 Concretely, spectra from Ondřejov archive has much more details than
-spectra from \glref{LAMOST}spectrograph
+spectra from \glref{LAMOST} spectrograph
 and spectra in Ondřejov archive are stored in air wavelengths
 but \glref{LAMOST} store spectra in vacuum wavelengths.
 
@@ -22,7 +20,7 @@ It aims to extract as much knowledge as possible from Ondřejov data
 and apply it to classification of \glref{LAMOST} archive.
 Transfer learning and domain adaptation
 (described in chapter~\ref[transfer-learning])
-are study area of machine learning which aim to offer methods
+are study area of machine learning that aim to offer methods
 for dealing with these problems.
 
 The following sections introduce methods
@@ -42,13 +40,13 @@ according to formulas provided in \cite[air2vacuum]:
 $$ \lambda_{v} = n \lambda_{a} \eqmark $$
 
 $$
-n = 1 + 8.34254 \cdot 10^{-5} +
+{\rm where}\quad n = 1 + 8.34254 \cdot 10^{-5} +
     {2.406147 \cdot 10^{-2} \over (130 - s^2)} +
     {1.5998 \cdot 10^{-4} \over (38.9 - s^2)}
 \eqmark
 $$
 
-$$ s = {10^4 \over \lambda_{a}} \eqmark $$
+$$ {\rm and}\quad s = {10^4 \over \lambda_{a}} \eqmark $$
 
 where $\lambda_{v}$ is vacuum wavelength and $\lambda_{a}$ is
 corresponding air wavelength.
@@ -83,7 +81,7 @@ resulting in Gaussian blur.
 This work uses convolution implementation from Python package astropy
 \cite[astropy] in version 1.3.1.
 Standard deviation of value 7 was chosen after visualizing results of
-convolutions.
+convolutions (see figure~\ref[gaussian-blur-plot]).
 Following code implements functionality described above:
 
 \begtt
@@ -99,7 +97,7 @@ Convolved spectrum's fluxes are stored to {\tt smoothed\_fluxes}.
 \midinsert \clabel[gaussian-blur-plot]{Gaussian blur}
 \picw=15cm \cinspic img/gaussian-blur.png
 \caption/f Comparison of original BT CMi and V395 Aur spectra from LAMOST
-and Ondřejov and Ondřejov's spectra convolved by Gaussian kernel
+and Ondřejov and spectra from Ondřejov convolved by Gaussian kernel
 with standard deviation of value 7.
 \endinsert
 
@@ -109,11 +107,11 @@ To train, validate and test deep neural network
 two dimensional dataset matrices needs to be created.
 In a matrix each row is a spectrum sample
 and each column represents flux in certain wavelength.
-That means that all spectra need to be regrided to same wavelengths.
+That means that all spectra need to be regrided to same grid of wavelengths.
 
 The wavelengths range is given by Ondřejov dataset from 6519 to 6732
 (minimum is rounded up and maximum is rounded down to nearest integer value).
-Ondřejov spectra in this range has 829, 830, 831, or 922, 923 measured fluxes
+Ondřejov spectra in this range have 829, 830, 831, or 922, 923 measured fluxes
 according to this thesis's experiments.
 This variance is caused by change of spectrograph in Ondřejov observatory
 (see section~\ref[ondrejov-archive])
@@ -141,14 +139,17 @@ and {\tt old\_fluxes} variable holds corresponding fluxes of a spectrum.
 
 Spectra in Ondřejov dataset were classified according to their shape.
 But the spectra fluxes has different intensities.
-Some emission spectra tend to have high fluxes.
-Therefore, all spectra are scaled.
+Especially, emission spectra tend to have high fluxes.
+It causes that spectra do not map to same space after dimensionality reduction
+(see scatter plots~\ref[pca-plot]).
+Therefore, all fluxes of each spectrum are scaled.
 
-Two major forms of scaling are bound fluxes into range
+Two popular forms of scaling are bound fluxes into range (min-max scaling)
 and standardization of spectrum to have zero mean and unit variance.
-In this work scaling to zero mean and unit variance is used.
-The two methods work similar but standardization looks better after
-dimensionality reduction (see \ref[pca-plot]).
+As show in historgrams~\ref[fluxes-hist]
+originaly the fluxes are in range $(378.23, -0.11)$,
+min-max scaling would bound them to chosen range
+and after standartization they are in range $(8.25, -8.15)$.
 
 \midinsert \clabel[fluxes-hist]{Histogram of fluxes}
 \picw=15cm \cinspic img/fluxes-hist.png
@@ -156,6 +157,8 @@ dimensionality reduction (see \ref[pca-plot]).
 standardization to zero mean and unit variance.
 \endinsert
 
+The two methods seems to work similar.
+In this work scaling to zero mean and unit variance is used.
 Scaling of spectra fluxes is done with Scikit-learn 0.18.1 \cite[sklearn]:
 
 \begtt
