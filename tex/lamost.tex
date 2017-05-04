@@ -1,12 +1,41 @@
 \chap LAMOST Classification
 
-TODO
+This chapter gathers all knowledge from previous chapters and classify
+LAMOST Data Release 1
+which contains spectra from pilot and first year surveys
+(see table~\ref[lamost]).
+Firstly, architecture and training of a deep neural network is described
+followed by evaluation and visualizations of results.
 
 \sec Neural Network Architecture
 
+A feedforward neural network and a convolutional neural network were design.
+After evaluation on test set the convolutional network
+was chosen for final classification.
+This design choices follow guide provided by \cite[cs231n].
+Next sections describe the architectures.
+
+\secc Feedforward Network
+
 TODO
 
-\sec Training the Network
+\secc Convolutional Network
+
+TODO
+
+\secc Dropout
+
+{\bf Dropout} is technique for addressing problem of {\bf overfitting}.
+The key idea is to randomly drop units from the neural network
+during training.
+During training dropout created different smaller networks by blocking
+units of a big one.
+This prevent units from co-adaption
+and at test time the neural network with all units but smaller weights
+is average of all the smaller networks from training.
+\cite[dropout]
+
+\sec Training the Networks
 
 TODO
 
@@ -18,37 +47,54 @@ These sets are required for training, tuning and evaluating any neural network.
 All split are done as stratified sampling so that the distribution of
 samples' number in a class is kept across sets.
 
-Test set on which the neural network is evaluated contains 10\% of all data.
+Test set on which neural networks are evaluated contains 10\% of all data.
 Validation set which serves for hyperparameter and architecture optimization
 is 20\% of remaining data.
 Training set is composed from the rest of data
-and its purpose is for training the network's weights contains 80\% of all data.
+and its purpose is for training networks' weights contains 80\% of all data.
 Exact numbers of spectra in each set is in table~\ref[dataset-split-table].
 
 \midinsert \clabel[dataset-split-table]{Dataset split table}
 \ctable{lrrr}{
     \hfil set  & emission & absorption & double-peak \hfil \crl \tskip4pt
-    train      &     3817 &       4393 & 1104 \cr
-    validation &      954 &       1099 &  276 \cr
-    test       &      530 &        611 &  153 \cr
+    train      &   3\,817 &     4\,393 & 1\,104 \cr
+    validation &      954 &     1\,099 &    276 \cr
+    test       &      530 &        611 &    153 \cr
 }
 \caption/t Exact numbers of samples in train, validation and test set
 divided according to emission, absorption and double-peak classes.
 \endinsert
 
-\sec SMOTE Balancing
+\secc SMOTE Balancing
 
-\glref{SMOTE} is shortcut for Synthetic Minority Over-sampling Technique.
+\glref{SMOTE} is shortcut for
+{\bf Synthetic Minority Over-sampling Technique}.
+It is over-sampling approach in which the minority class is
+over-sampled by creating {\bf synthetic} samples.
+A new sample is created along line from a sample to its all or any $k$
+nearest neighbors from same class.
+Difference between feature vectors of sample under consideration
+and nearest neighbor is taken.
+It is multiply by random number between 0 and 1.
+Finally it is added to the sample.
 \cite[smote]
+
+Scikit-learn contribution Python package {\bf imbalanced-learn} \cite[imblearn]
+in version 0.2.1:
+
+\begtt
+import imblearn.over_sampling
+
+N_CLASSES = 3
+smote = imblearn.over_sampling.SMOTE()
+for _ in range(N_CLASSES - 1):
+    X, y = smote.fit_sample(X, y)
+\endtt
 
 \sec Results and Visualizations
 
 TODO
 
 \sec Performance and Scalability
-
-TODO
-
-\sec Crossmatching
 
 TODO
