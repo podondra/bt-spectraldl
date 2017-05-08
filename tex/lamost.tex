@@ -69,29 +69,27 @@ with 512 units each
 and dropout with probability 0.5 \cite[dropout] applied in training.
 All hidden layers use \glref{ReLU} activation function.
 
-\midinsert \clabel[convnet]{Convnet architecture}
+\midinsert \clabel[convnet]{CNN architecture}
 \picw=5cm \cinspic img/convnet.png
-\caption/f TODO
+\caption/f Architecture of the convolutional neural network.
+Convolutional layers are mark as conv3
+where the number 3 means teh size of filter in pixels.
+The mark is followed by dash and a number which specifies count of filters.
+Max-pooling layers with pool size 2, stride 2 and no padding.
+Fully-connected layer with 512 units are fc-512
+and softmax is the output layer.
 \endinsert
 
 \sec Training Details
 
-TODO
-\cite[adam]
-
-\midinsert \clabel[confusion-matrices]{Confusion matrices}
-\picw=15cm \cinspic img/confusion-matrices.png
-\caption/f TODO
-\endinsert
-
-\midinsert \clabel[convnet-training]{Training accuracy and loss}
-\picw=15cm \cinspic img/convnet-training.png
-\caption/f TODO
-\endinsert
+The process of babysitting the neural network is described in this section.
+Dataset split and balancing is introduced.
+Then the parameters of training the network are described.
+Lastly the networks' performance is evalueted.
 
 \secc Dataset Split
 
-This section shows how the Ondřejov dataset is split into
+This subsection shows how the Ondřejov dataset is split into
 training, validation and test set.
 These sets are required for training, tuning and evaluating any neural network.
 All split are done as stratified sampling so that the distribution of
@@ -129,8 +127,29 @@ It is multiply by random number between 0 and 1.
 Finally it is added to the sample.
 \cite[smote]
 
-Scikit-learn contribution Python package {\bf imbalanced-learn} \cite[imblearn]
-in version 0.2.1:
+In this thesis \glref{SMOTE} balancing is used to balance training set
+because the absorption class which can be considered as normal class
+has the biggest number of samples while the emission and double-peak
+classes has significantly less samples.
+Emission and double-peak spectra which are the abnormal behaviors
+then tend to be discriminated by the neural network.
+
+Confusion matrix~\ref[imbalanced-cm] is proof of this.
+The matrix show 92\% accuracy on double-peak spectra
+of the feedforward neural network on imbalanced dataset.
+In contrast to 94\% accuracy when training on \glref{SMOTE} balanced dataset
+(see confusion matrix on left in figure~\ref[confusion-matrices]).
+
+\midinsert \clabel[imbalanced-cm]{Imbalanced confusion matrix}
+\picw=10cm \cinspic img/imbalanced-cm.png
+\caption/f Confusion matrix evalueted on validation set
+of feedforward network trained on imbalanced dataset.
+Note the low double-peak spectra accuracy.
+\endinsert
+
+In this work implementation of \glref{SMOTE}
+from Scikit-learn contribution Python package
+{\bf imbalanced-learn} \cite[imblearn] in version 0.2.1 is used:
 
 \begtt
 import imblearn.over_sampling
@@ -141,11 +160,79 @@ for _ in range(N_CLASSES - 1):
     X, y = smote.fit_sample(X, y)
 \endtt
 
-where {\tt X} and {\tt y}.
+where {\tt X} is input and also output matrix with training data
+and {\tt y} is vector of corresponding labels.
 
-\midinsert \clabel[imbalanced-cm.png]{Imbalanced confusion matrix}
-\picw=10cm \cinspic img/imbalanced-cm.png
-\caption/f TODO
+\secc Training Setting
+
+Training the neural networks is an optimization problem.
+The function to optimize is {\bf categorical cross-entropy} loss function
+(see online book~\cite[nielsen2015]).
+
+To optimize to the loss function {\bf Adam} optimizer is used.
+It is an algorithm for first-order gradient-based optimization
+of stochastic objective functions.
+Parameter are set to values recommended by its paper
+(lerning rate $\alpha = 0.001$,
+decay rates $\beta_1 = 0.9$ and $\beta_2 = 0.999$,
+fuzz factor $\epsilon = 10^{-8}$).
+These are also the defaults in Keras implementation
+which is available in TensorFlow.
+\cite[adam]
+
+Figure~\ref[convnet-training] show the \glref{CNN}'s progress
+of accuracy and loss over 250 epochs
+(the training set was presented to the network for learning 250 times).
+The increase of accuracy is fast and training and validation accuracies
+are close to each other so there is little overfitting.
+
+\midinsert \clabel[convnet-training]{Training accuracy and loss}
+\picw=15cm \cinspic img/convnet-training.png
+\caption/f Convolutional network training statistics during 250 epochs
+with batch size 256. The top plot shows training and validation accuracy
+and the bottom plot shows decrease of loss.
+\endinsert
+
+In Tensorlow this implements code:
+
+\begtt
+import tensorflow.contrib.keras as keras
+
+model = keras.models.Sequential([
+    # defition of neural network
+])
+model.compile(
+    loss='categorical_crossentropy',
+    optimizer='adam',
+    metrics=['accuracy']
+)
+model.fit(
+    X_train, y_train_one_hot, epochs=250, batch_size=256
+    validation_data=(X_validation, y_validation_one_hot)
+)
+\endtt
+
+where {\tt X\_train} and {\tt X\_validation} are matrices with spectral data,
+{\tt y\_train\_one\_hot} and {\tt y\_validation\_one\_hot}
+are classes one hot matrices.
+
+\secc Evaluation
+
+Networks are evaluated on the test set.
+From confusion matrices in figure~\ref[confusion-matrices] is clear that
+convolutional network perform slightly better.
+\glref{CNN} predicted correctly 99\% of emission spectra while the feedforward
+network only 98\%.
+Both predicted 99\% of absorpitons correctly.
+In double-peak spectra prediction convolutional network has accuracy 95\%
+and feedforward network 94\%.
+Thus convolutional neural network is chosen for classification
+of spectra from \glref{LAMOST}.
+
+\midinsert \clabel[confusion-matrices]{Confusion matrices}
+\picw=15cm \cinspic img/confusion-matrices.png
+\caption/f Confusion matrices of both networks' predictions on test set.
+\glref{CNN} (right matrix) performs sligthly better then feedforward network.
 \endinsert
 
 \sec Results and Visualizations
@@ -154,4 +241,15 @@ TODO
 
 \sec Performance and Scalability
 
-TODO
+Recent advance in deep neural network architecture would not be possible
+without performance improvement of general purpose \glref{GPU}s. \cite[alexnet]
+This thesis makes similar observation.
+The convolutional network was experimentaly
+trained on \glref{GPU} GeForce GTX 980 and Intel Xeon \glref{CPU}.
+In this section the results are discussed.
+
+The GeForce GTX
+980\urlnote{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980}
+has 2048 \glref{CUDA} cores and 4\,GB of memory.
+The Intel Xeon \glref{CPU} E5-2403 1.80\,GHz\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
+has 4 cores and 24\,GB of available \glref{RAM}.
