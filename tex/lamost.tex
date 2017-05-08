@@ -12,17 +12,14 @@ followed by evaluation and visualizations of results.
 A feedforward neural network and a convolutional neural network were design.
 After evaluation on test set the convolutional network
 was chosen for final classification.
-This design choices follow guide provided by \cite[cs231n].
+
+Design choices follow guide provided by \cite[cs231n].
+The main idea is to build rather deeper neural network
+which has a lot of representation power
+and use dropout (see section~\ref[dropout]) to avoid overfitting.
 Next sections describe the architectures.
 
-\secc Feedforward Network
-
-TODO
-
-\secc Convolutional Network
-
-TODO
-
+\label[dropout]
 \secc Dropout
 
 {\bf Dropout} is technique for addressing problem of {\bf overfitting}.
@@ -35,9 +32,62 @@ and at test time the neural network with all units but smaller weights
 is average of all the smaller networks from training.
 \cite[dropout]
 
-\sec Training the Networks
+\secc Feedforward Network
+
+The feedforward network has input layer with 140 units.
+Then there are 5 hidden layers with 512 units
+and the last output layer has 3 units
+with softmax activation function~\cite[nielsen2015]
+because there 3 target classes.
+
+Every hidden layer's activation function is \glref{ReLU}
+(see section \ref[convnets]).
+During training dropout (see subsection \ref[dropout]) is applied
+with a unit dropout probability set to 0.5 as recommeded by \cite[dropout].
+
+\secc Convolutional Network
+
+Architecture of convolutional network for spectra classification in this work
+is inspired primarily by
+VGGNet \cite[vggnet], AlexNet \cite[alexnet] and ZFNet \cite[zfnet].
+These network are design to process three dimensional images
+counting \glref{RGB} color channels.
+Spectrum can be understand as one dimensional image.
+Therefore the architecture need to be suited to this difference.
+
+Sketch of architecture diagram is in figure~\ref[convnet].
+The input layer has 140 units
+and output layer has 3 units with softmax activation~\cite[nielsen2015].
+In the middle there are convolutional layers
+all with filter size 3 pixels and no padding.
+First 2 layers have 64 of the filters.
+Second 2 layers have 128 of them and the last 2 layers have 256 filters.
+After each pair of convolutional layers is a max-pooling layes
+of size 2 pixel with stride 2.
+The last max-pooling layer is followed are 2 fully-connected layer
+with 512 units each
+and dropout with probability 0.5 \cite[dropout] applied in training.
+All hidden layers use \glref{ReLU} activation function.
+
+\midinsert \clabel[convnet]{Convnet architecture}
+\picw=5cm \cinspic img/convnet.png
+\caption/f TODO
+\endinsert
+
+\sec Training Details
 
 TODO
+\cite[adam]
+
+\midinsert \clabel[confusion-matrices]{Confusion matrices}
+\picw=15cm \cinspic img/confusion-matrices.png
+\caption/f TODO
+\endinsert
+
+\midinsert \clabel[convnet-training]{Training accuracy and loss}
+\picw=15cm \cinspic img/convnet-training.png
+\caption/f TODO
+\endinsert
 
 \secc Dataset Split
 
@@ -90,6 +140,13 @@ smote = imblearn.over_sampling.SMOTE()
 for _ in range(N_CLASSES - 1):
     X, y = smote.fit_sample(X, y)
 \endtt
+
+where {\tt X} and {\tt y}.
+
+\midinsert \clabel[imbalanced-cm.png]{Imbalanced confusion matrix}
+\picw=10cm \cinspic img/imbalanced-cm.png
+\caption/f TODO
+\endinsert
 
 \sec Results and Visualizations
 
