@@ -242,22 +242,35 @@ without performance improvement of general purpose \glref{GPU}s. \cite[alexnet]
 This thesis makes similar observation.
 The convolutional network was experimentally
 trained on \glref{GPU} GeForce GTX 980 and two Intel Xeon \glref{CPU}s.
-In this section the results are discussed.
-
 The GeForce GTX
 980\urlnote{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980}
 has 2048 \glref{CUDA} cores and 4\,GB of memory.
-The two Intel Xeon \glref{CPU} E5-2403 1.80\,GHz\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
+The two Intel Xeon \glref{CPU}
+E5-2403\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
 has 8 cores in total and 24\,GB of available \glref{RAM}.
+Results are presented in table~\ref[performance-table].
 
-\midinsert \clabel[TODO]{TODO}
+\midinsert \clabel[performance-table]{GPU vs CPU performance}
 \ctable{lrrr}{
-    \hfil architecture   & user & sys  & wall \hfil \crl \tskip4pt
-    2 Intel Xeon E5-2403 & TODO & TODO & TODO \cr
-    GeForce GTX 980      & TODO & TODO & TODO \cr
+    \hfil architecture & user time & sys time & wall time \hfil \crl \tskip4pt
+    2 Intel Xeon E5-2403 & 346\,min 35\,s & 41\,min 12\,s & 99\,min 36\,s \cr
+    GeForce GTX 980      &   4\,min  1\,s &         22\,s &  3\,min 39\,s \cr
 }
-\caption/t TODO
+\caption/t Comparison of training convolutional neural network
+on \glref{GPU} and \glref{CPU}.
+The training is done on whole Ondřejov dataset,
+number of epochs is 100 and batch size is 256.
+In terms of wall time (elapsed real time) there \glref{GPU}
+is roughly 27 times faster.
 \endinsert
+
+Table~\ref[performance-table] confirms the need of \glref{GPU}
+computational power for deep neural networks training.
+Training on \glref{GPU} is 27 times faster then on \glref{CPU}.
+For large networks there might be memory problems on \glref{GPU}
+but the net design in this thesis does not require a lot of memory.
+Moreover TensorFlow support distributed computation so the whole system
+may scale to more \glref{GPU} card on demand. \cite[tensorflow]
 
 \sec Results and Visualizations
 
