@@ -4,8 +4,8 @@
 This chapter describes all preprocessing methods applied on
 Ondřejov dataset before processing it through a neural network.
 First section introduce methods to make spectra from Ondřejov
-simalar to spectra from \glref{LAMOST}.
-Second section section transorm spectra into form of two dimensional
+similar to spectra from \glref{LAMOST}.
+Second section section transform spectra into form of two dimensional
 matrix.
 Third section explains why is fluxes scaling important.
 
@@ -153,10 +153,10 @@ Therefore, all fluxes of each spectrum are scaled.
 
 Two popular forms of scaling are bound fluxes into range (min-max scaling)
 and standardization of spectrum to have zero mean and unit variance.
-As show in historgrams~\ref[fluxes-hist]
-originaly the fluxes are in range $(378.23, -0.11)$,
+As show in histograms~\ref[fluxes-hist]
+originally the fluxes are in range $(378.23, -0.11)$,
 min-max scaling would bound them to chosen range
-and after standartization they are in range $(8.25, -8.15)$.
+and after standardization they are in range $(8.25, -8.15)$.
 
 \midinsert \clabel[fluxes-hist]{Histogram of fluxes}
 \picw=15cm \cinspic img/fluxes-hist.png

@@ -43,7 +43,7 @@ because there 3 target classes.
 Every hidden layer's activation function is \glref{ReLU}
 (see section \ref[convnets]).
 During training dropout (see subsection \ref[dropout]) is applied
-with a unit dropout probability set to 0.5 as recommeded by \cite[dropout].
+with a unit dropout probability set to 0.5 as recommended by \cite[dropout].
 
 \secc Convolutional Network
 
@@ -62,7 +62,7 @@ In the middle there are convolutional layers
 all with filter size 3 pixels and no padding.
 First 2 layers have 64 of the filters.
 Second 2 layers have 128 of them and the last 2 layers have 256 filters.
-After each pair of convolutional layers is a max-pooling layes
+After each pair of convolutional layers is a max-pooling layers
 of size 2 pixel with stride 2.
 The last max-pooling layer is followed are 2 fully-connected layer
 with 512 units each
@@ -73,7 +73,7 @@ All hidden layers use \glref{ReLU} activation function.
 \picw=5cm \cinspic img/convnet.png
 \caption/f Architecture of the convolutional neural network.
 Convolutional layers are mark as conv3
-where the number 3 means teh size of filter in pixels.
+where the number 3 means the size of filter in pixels.
 The mark is followed by dash and a number which specifies count of filters.
 Max-pooling layers with pool size 2, stride 2 and no padding.
 Fully-connected layer with 512 units are fc-512
@@ -85,7 +85,7 @@ and softmax is the output layer.
 The process of babysitting the neural network is described in this section.
 Dataset split and balancing is introduced.
 Then the parameters of training the network are described.
-Lastly the networks' performance is evalueted.
+Lastly the networks' performance is evaluated.
 
 \secc Dataset Split
 
@@ -142,7 +142,7 @@ In contrast to 94\% accuracy when training on \glref{SMOTE} balanced dataset
 
 \midinsert \clabel[imbalanced-cm]{Imbalanced confusion matrix}
 \picw=10cm \cinspic img/imbalanced-cm.png
-\caption/f Confusion matrix evalueted on validation set
+\caption/f Confusion matrix evaluated on validation set
 of feedforward network trained on imbalanced dataset.
 Note the low double-peak spectra accuracy.
 \endinsert
@@ -173,7 +173,7 @@ To optimize to the loss function {\bf Adam} optimizer is used.
 It is an algorithm for first-order gradient-based optimization
 of stochastic objective functions.
 Parameter are set to values recommended by its paper
-(lerning rate $\alpha = 0.001$,
+(learning rate $\alpha = 0.001$,
 decay rates $\beta_1 = 0.9$ and $\beta_2 = 0.999$,
 fuzz factor $\epsilon = 10^{-8}$).
 These are also the defaults in Keras implementation
@@ -193,13 +193,13 @@ with batch size 256. The top plot shows training and validation accuracy
 and the bottom plot shows decrease of loss.
 \endinsert
 
-In Tensorlow this implements code:
+In TensorFlow this implements code:
 
 \begtt
 import tensorflow.contrib.keras as keras
 
 model = keras.models.Sequential([
-    # defition of neural network
+    # definition of neural network
 ])
 model.compile(
     loss='categorical_crossentropy',
@@ -223,7 +223,7 @@ From confusion matrices in figure~\ref[confusion-matrices] is clear that
 convolutional network perform slightly better.
 \glref{CNN} predicted correctly 99\% of emission spectra while the feedforward
 network only 98\%.
-Both predicted 99\% of absorpitons correctly.
+Both predicted 99\% of absorptions correctly.
 In double-peak spectra prediction convolutional network has accuracy 95\%
 and feedforward network 94\%.
 Thus convolutional neural network is chosen for classification
@@ -232,24 +232,33 @@ of spectra from \glref{LAMOST}.
 \midinsert \clabel[confusion-matrices]{Confusion matrices}
 \picw=15cm \cinspic img/confusion-matrices.png
 \caption/f Confusion matrices of both networks' predictions on test set.
-\glref{CNN} (right matrix) performs sligthly better then feedforward network.
+\glref{CNN} (right matrix) performs slightly better then feedforward network.
 \endinsert
-
-\sec Results and Visualizations
-
-TODO
 
 \sec Performance and Scalability
 
-Recent advance in deep neural network architecture would not be possible
+Recent advance in deep neural network research would not be possible
 without performance improvement of general purpose \glref{GPU}s. \cite[alexnet]
 This thesis makes similar observation.
-The convolutional network was experimentaly
-trained on \glref{GPU} GeForce GTX 980 and Intel Xeon \glref{CPU}.
+The convolutional network was experimentally
+trained on \glref{GPU} GeForce GTX 980 and two Intel Xeon \glref{CPU}s.
 In this section the results are discussed.
 
 The GeForce GTX
 980\urlnote{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980}
 has 2048 \glref{CUDA} cores and 4\,GB of memory.
-The Intel Xeon \glref{CPU} E5-2403 1.80\,GHz\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
-has 4 cores and 24\,GB of available \glref{RAM}.
+The two Intel Xeon \glref{CPU} E5-2403 1.80\,GHz\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
+has 8 cores in total and 24\,GB of available \glref{RAM}.
+
+\midinsert \clabel[TODO]{TODO}
+\ctable{lrrr}{
+    \hfil architecture   & user & sys  & wall \hfil \crl \tskip4pt
+    2 Intel Xeon E5-2403 & TODO & TODO & TODO \cr
+    GeForce GTX 980      & TODO & TODO & TODO \cr
+}
+\caption/t TODO
+\endinsert
+
+\sec Results and Visualizations
+
+TODO
