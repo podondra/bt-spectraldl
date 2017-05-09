@@ -2,11 +2,11 @@ reading/
 .cache/
 
 # tex
-bt-podsztavek.lbr
-bt-podsztavek.log
-bt-podsztavek.pdf
-bt-podsztavek.ref
-ctustyle-doc.pdf
+*.aux
+*.pdf
+*.log
+*.lbr
+*.ref
 *.bak
 .aspell.en.prepl
 personal-word-list.txt
