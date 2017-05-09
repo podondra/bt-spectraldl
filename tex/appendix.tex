@@ -4,16 +4,12 @@
 \cinspic img/specification.jpg
 %\nextoddpage
 
-\app Glossary
-
-\par
-\makeglos
-
 \app Contents of CD
 
 \dirtree{%
 .1 /.
-    .2 notebooks/\DTcomment{TODO}.
+    .2 README.md\DTcomment{Markdown file with CD content information}.
+    .2 notebooks/\DTcomment{directory of Jupyter notebooks and source code}.
         .3 00-spectroscopy.ipynb\DTcomment{TODO}.
         .3 01-data-download.ipynb\DTcomment{TODO}.
         .3 02-get-data-from-fits.ipynb\DTcomment{TODO}.
@@ -24,21 +20,18 @@
         .3 07-dataset.ipynb\DTcomment{TODO}.
         .3 08-dimensionality.ipynb\DTcomment{TODO}.
         .3 09-nn.ipynb\DTcomment{TODO}.
-        .3 data/\DTcomment{TODO}.
-        .3 Dockerfile\DTcomment{TODO}.
-        .3 Makefile\DTcomment{TODO}.
-        .3 README.md\DTcomment{TODO}.
-        .3 requirements.txt\DTcomment{TODO}.
-        .3 spectraldl/\DTcomment{TODO}.
-    .2 tex/\DTcomment{TODO}.
-        .3 *.tex\DTcomment{TODO}.
-        .3 references.bib\DTcomment{TODO}.
-        .3 ctulogo.pdf\DTcomment{TODO}.
-        .3 ctulogo-w.pdf\DTcomment{TODO}.
-        .3 fit-cover.cls\DTcomment{TODO}.
-        .3 img/\DTcomment{TODO}.
-            .4 specification.jpg\DTcomment{TODO}.
-            .4 *.png\DTcomment{TODO}.
-            .4 *.svg\DTcomment{TODO}.
-    .2 bt-podsztavek.pdf\DTcomment{TODO}.
+        .3 data/\DTcomment{data files directory}.
+        .3 Dockerfile\DTcomment{assemble commands of image used for notebooks}.
+        .3 requirements.txt\DTcomment{list of dependecy packages}.
+        .3 spectraldl/\DTcomment{source code of developed Python module}.
+    .2 tex/\DTcomment{directory of \TeX{} source code files of the thesis}.
+        .3 img/\DTcomment{thesis figures directory}.
+        .3 references.bib\DTcomment{Bib\TeX{} source code file of references}.
+        .3 *.tex\DTcomment{\TeX{} source code files of the thesis}.
+    .2 bt-podsztavek.pdf\DTcomment{Bachelor's thesis in \glref{PDF} format}.
 }
+
+\app Glossary
+
+\par
+\makeglos
