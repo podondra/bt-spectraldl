@@ -277,46 +277,70 @@ may scale to more \glref{GPU} card on demand. \cite[tensorflow]
 
 For the final classification the convolutional network
 (diagram~\ref[convnet]) is trained on whole Ondřejov dataset.
-The training was stopped after {\bf 229} epochs
+The training was stopped after {\bf 229 epochs}
 with {\bf 99.96\%} accuracy on training set and lasted only
 {\bf 8 minutes 21 seconds}.
 
-Prediction of {\bf 2\,202\,000} spectra from LAMOST data release 1 has taken
-{\bf 1 minute 36 seconds}.
+Prediction of {\bf 2\,202\,000 spectra} from \glref{LAMOST} data release 1
+has taken {\bf 1 minute 36 seconds}.
 The spectra are interpolated to same grid as spectra Ondřejov dataset
-and standardized.
+(see section~\ref[regridding]) and standardized (see section~\ref[scaling]).
 The number of spectra classified into the classes is
 in~table~\ref[prediction-table].
 
 \midinsert \clabel[prediction-table]{LAMOST predictions}
-\ctable{lrr}{
-    \hfil class & number of spectra & candidates \hfil \crl \tskip4pt
-    emission    &    158\,115       & 31751 \cr
-    absorption  & 1\,898\,095       & \cr
-    double-peak &    145\,790       & 47575 \cr
+\ctable{lr}{
+    \hfil class & number of spectra \hfil \crl \tskip4pt
+    emission    &    158\,115             \cr
+    absorption  & 1\,898\,095             \cr
+    double-peak &    145\,790             \cr
 }
-\caption/t Counts of LAMOST spectra split according to predicted classes.
-The last candidates column count only spectra predicted as emission
-or double-peak and fluxes intensities in range from $-5$ to $5$
-across all wavelengths.
+\caption/t Counts of \glref{LAMOST} spectra split
+according to predicted classes.
 \endinsert
 
-When visualizing the emission and double-peak spectra from LAMOST a lot of
-them are very noisy.
-The noisy spectra has huge fluxes in some wavelength thus
-suppressing features for example in H$\alpha$ range
-(see figure~\ref[lamost-noise]).
-Because there are no such spectra in Ondřejov dataset the network
-classifies them incorrectly.
-Therefore a range for fluxes was empirically chosen from $-5$ to $5$
-and only spectra from this range and emission or double-peak class
-can be considered as candidates
-(for counts see candidates column in table~\ref[prediction-table]).
+The table~\ref[prediction-table] shows them the convolutional network
+reduced the number of possibly interesting object (emission or double-peak)
+from 2\,202\,000 to 303\,905.
+That is about 14\% from whole LAMOST data release 1.
+While visualizing spectra according to predicted classes
+good representants can be found.
+Figures~\ref[lamost-emission] and \ref[lamost-double-peak] show examples
+of corectlly classified spectra from the interesting emission and
+double-peak classes.
+But there are also noisy spectra of different kinds mix up with
+good class candidates.
+Especially in double-peak class where the noise near to absorption line
+in often incorectlly consider as double-peak.
 
-\midinsert \clabel[lamost-noise]{Noisy LAMOST spectra}
-\picw=15cm \cinspic img/lamost-noise.png
-\caption/f Plots of two spectra from LAMOST with high fluxes values.
-The huge fluxes clear the characteristic shape in H$\alpha$ region.
+\midinsert \clabel[lamost-emission]{Emissions from LAMOST}
+\picw=15cm \cinspic img/lamost-emission.png
+\caption/f Three correctly predicted emission spectra from \glref{LAMOST}
+data release 1.
 \endinsert
 
-Candidates visualizations TODO.
+\midinsert \clabel[lamost-double-peak]{Double-peaks from LAMOST}
+\picw=15cm \cinspic img/lamost-double-peak.png
+\caption/f Three correctly predicted double-peak spectra
+from \glref{LAMOST} data release 1.
+\endinsert
+
+This imperfection of the deep convolutional classifier is probably caused
+by insufficient training set.
+The Ondřejov dataset and Ondřejov archive in general
+is composed of not noisy well captures spectra.
+Therefore the neural network is not trained to recognize noisy or damaged
+spectra and put them apart.
+It has to predicted them as one of the three classes.
+
+Principal component analysis of LAMOST data space in~figure~\ref[pca-lamost]
+also proofs the Ondřejov dataset limitation.
+Although the point from Ondřejov dataset used during training cover most
+of the LAMOST data there are some areas where the dataset has no point at all.
+These are probably the points were the classifier misjudge spectra
+because it has no prior knowledge about them.
+
+To over come this problem either
+a method which can filter the noisy spectra out should be used
+or the dataset would be extended with new classes
+where would the classifier put noisy spectra.
