@@ -21,7 +21,8 @@ to choose scalable and \glref{GPU} ready framework.
 On contrary, one goal is to find great deep neural network architecture which
 means that fast experimentation is crucial.
 Last two points support the goal of this thesis to find the best deep neural
-network architecture and because the author comfortable with Python.
+network architecture
+and because the author of this work is comfortable with Python.
 
 NVIDIA's website\urlnote{https://developer.nvidia.com/deep-learning-frameworks}
 lists popular deep learning frameworks. These include Caffe, TensorFlow,
@@ -46,7 +47,7 @@ best performances on both \glref{GPU} and \glref{CPU} platforms.
 
 \sec TensorFlow
 
-TensorFlow is interface developed by Google for expressing machine learning
+TensorFlow is library developed by Google for expressing machine learning
 algorithms and an implementation for executing such algorithms.
 It is licensed under Apache 2.0 open source license and its code is available on
 GitHub\urlnote{https://github.com/tensorflow/tensorflow}.
@@ -54,7 +55,7 @@ A computation in TensorFlow is described by a directed graph which can be
 executed with little or no change on \glref{CPU}s or \glref{GPU}s.
 Currently implemented front-ends are C++ and Python.
 This project has extensive documentation with examples and
-tutorial\urlnote{https://www.tensorflow.org/}. \cite[tensorflow]
+tutorials\urlnote{https://www.tensorflow.org/}. \cite[tensorflow]
 
 In order to help development and debugging TensorFlow provides visualization
 tool called TensorBoard.
@@ -87,13 +88,13 @@ It is written in Python and it runs on top of either TensorFlow or Theano.
 It focuses on fast prototyping and experimentation.
 Because it is interface to TensorFlow or Theano it can use both \glref{CPU}
 and \glref{GPU}s.
-Its website\urlnote{https://keras.io/} provides good documentation and code is
-open source under MIT license on
+Its website\urlnote{https://keras.io/} provides good documentation
+and its code is open source under MIT license on
 GitHub\urlnote{https://github.com/fchollet/keras}. \cite[keras]
 
-Recently Keras \glref{API} will be integrated into {\tt tf.contrib.keras}
+Recently Keras \glref{API} is integrated into {\tt tf.contrib.keras}
 module of TensorFlow 1.1.0
-and then directly into {\tt tf.keras} in version 1.2.0.
+and then will be moved into {\tt tf.keras} in version 1.2.0.
 Therefore, there will be two separate implementations of the Keras
 specification one written in pure TensorFlow and second compatible with
 both Theano and TensorFlow. \cite[keras2]

@@ -44,7 +44,8 @@ Machine learning algorithm required careful design of feature extractor that
 transformed the raw data into suitable feature vectors from which the learning
 subsystem could classify patterns in the input.
 
-Deep learning methods are representation learning methods with multiple levels
+Deep learning methods are {\bf representation learning methods}
+with multiple levels
 of representation obtained by composing simple but non-linear modules.
 With the composition of enough such transformation higher layers of
 representation amplify aspects of the input that can be important for
@@ -56,6 +57,7 @@ learned from data. \cite[deep-learning]
 
 Many applications of deep learning use feedforward neural network
 architectures.
+Schema of feedforward neural network in in figure~\ref[neural-network].
 To go from one layer to the next a set of units
 compute a weighted sum of their inputs from previous layer and apply
 non-linear function to the result.
@@ -76,10 +78,10 @@ Output layer contains 2 units.
 Convolutional neural networks (\glref{CNN}s, ConvNets)
 are one particular type of deep feedforward
 network that is much easier to train and generalize much better than
-fully connected networks.
+fully connected networks. \cite[deep-learning]
 
 These networks are designed to process data in form of multiple arrays,
-for instance 1 dimensional signals or 2 dimensional images.
+for instance {\bf 1 dimensional signals} or 2 dimensional images.
 They take advantage of four properties:
 
 \begitems
@@ -91,9 +93,11 @@ They take advantage of four properties:
 
 Typical convolutional neural network is structured as series of stages.
 First stages are composed of convolutional layers and pooling layers.
-Units in convolutional layer maps to next layer through several filters.
+Units in convolutional layer maps to next layer through several {\bf filters}
+that are convoluted with inputs from previous layer.
 These results are passed through a non-linearity.
-Nowadays, the most widely used is {\bf rectified linear unit} (\glref{ReLU}):
+Nowadays, the most widely used non-linearity is {\bf rectified linear unit}
+(\glref{ReLU}):
 
 $$ f(z) = \max(z, 0) \eqmark $$
 

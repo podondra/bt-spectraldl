@@ -2,7 +2,7 @@
 \chap Spectral Data
 
 This thesis is concerned with classification of star's spectra.
-Aim of this chapter is to describe these data.
+Aim of this chapter is to describe this kind of data.
 The following sections introduce spectroscopy, its related concepts,
 Ondřejov and \glref{LAMOST} astronomical archives of spectral data.
 
@@ -32,7 +32,7 @@ or wavelength:
 its unit is Hertz.
 * Wavelength ($\lambda$) is the distance between successive
 crests or troughs in the wave and it is measured is meters
-or astronomy usually uses {\AA}ngström (1\,{\AA}~=~10$^{-10}$\,m).
+or astronomy usually uses {\AA}ngströms (1\,{\AA}~=~10$^{-10}$\,m).
 
 \enditems
 
@@ -45,7 +45,7 @@ $$ c = \lambda f \eqmark $$
 A black body is a hypothetical object which is a perfect
 absorber and emitter of radiation over all wavelengths.
 The spectral flux distribution of black body's thermal
-energy depends on its temperature.
+energy depends on its temperature (see figure~\ref[black-body]).
 Stars are often modeled as black bodies in astronomy.
 Their spectrum approximates the black body spectrum. \cite[cosmos]
 
@@ -64,10 +64,10 @@ a star while spectral lines are peaks reaching out from a continuum.
 \cite[continuum]
 
 In order to avoid variations between different observations a continuum is
-usually normalized to serve as reference point to spectral lines.
-A smooth curve is fit to the continuum and then the spectrum is divided by
-it.
-This sets the continuum everywhere to one and allows to measure spectral
+usually normalized to serve as reference point to spectral lines
+(see figure~\ref[continuum-normalization]).
+A smooth curve is fit to the continuum and then the spectrum is divided by it.
+This sets the continuum everywhere to value 1 and allows to measure spectral
 lines in consistent way.
 
 \midinsert \clabel[continuum-normalization]{Continuum normalization}
@@ -104,7 +104,8 @@ through Planck-Einstein relation:
 $$ E = h f, \quad E = {h c \over \lambda} \eqmark $$
 
 where $h$~=~6.62607004~$\cdot$~10$^{-34}$\,J\,$\cdot$\,s is
-Planck constant. On a graph of wavelengths fluxes emission
+Planck constant and $c$ is the speed of light.
+On a graph of wavelengths fluxes emission
 lines appear as peaks above the continuum level.
 
 {\bf Absorption lines} are opposite of emissions. They will
@@ -124,7 +125,7 @@ and higher levels.
 There are four transitions that are in visible wavelength.
 These are named H$\alpha$, H$\beta$, H$\gamma$ and H$\delta$.
 Because hydrogen is most abundant element Balmer lines are a commonly
-observed feature in spectroscopy. \cite[cosmos]
+observed features in spectroscopy. \cite[cosmos]
 
 H$\alpha$ is deep-red visible spectral line.
 Its wavelength in air is 6562.8\,{\AA} and in vacuum is 6564.6\,{\AA}.
@@ -139,15 +140,15 @@ line in H$\alpha$ respectively.
 
 \sec Be Stars
 
-Be stars are non-supergiant B stars\fnote{Stars from spectral type B are
+Be stars are {\bf non-supergiant B stars}\fnote{Stars from spectral type B are
 hydrogen burning stars which have 2 to 16 times the mass of the Sun
 and surface temperatures between 10000 and 30000 K. \cite[habets1981]}
 with spectrum that has or had
-one or more Balmer lines in emission at some time.
+one or more {\bf Balmer lines in emission at some time}.
 Although this definition is not precise it is sufficient for purpose of this
 work. \cite[porter2003]
 
-It is believed that Be star consists of fast rotating star
+It is believed that a Be star consists of fast rotating star
 and star disk which may cause the emissions in Balmer lines.
 Absorptions and emissions in electromagnetic spectrum of Be star can
 periodically vary.
@@ -157,9 +158,9 @@ periodically vary.
 
 Archive of Ondřejov observatory spectral data is available at \glref{ASU CAS}
 Data Center\urlnote{http://voarchive.asu.cas.cz/}.
-It currently contains about 17000 spectra \cite[voarchive].
+It currently contains about 17\,000 spectra \cite[voarchive].
 Because this archive is {\bf specialized on Be stars observations}
-it contains approximately 13000 spectra with H$\alpha$ spectral line.
+it contains approximately 13\,000 spectra with H$\alpha$ spectral line.
 The data were obtained with Ondřejov Perek 2\,m telescope, coud\`e camera
 with focus 700\,mm and two different detectors changed over time.
 The spectrograph's spectral resolving power is about 13000 in H$\alpha$
@@ -207,16 +208,16 @@ astronomy for transporting, analyzing, archiving scientific
 data files. It is design to store datasets consisting of
 multidimensional arrays and two dimensional tables. \cite[fits-support-office]
 
-A FITS file is comprised of segments called Header/Data
+A \glref{FITS} file is comprised of segments called Header/Data
 Units (\glref{HDU}s).
-The first \glref{HDU} is called the ``Primary \glref{HDU}''.
+The first \glref{HDU} is called the primary \glref{HDU}.
 The primary data array can contain a 1--999 dimensional
 array of numbers. A typical primary array could contain
-a 1 dimensional {\bf spectrum}, a 2 dimensional image,
+a {\bf 1 dimensional spectrum}, a 2 dimensional image,
 a 3 dimensional data cube.
 
 Any number of additional \glref{HDU}s may follow the primary array.
-These \glref{HDU}s are referred as ``extensions''. There are three
+These \glref{HDU}s are referred as extensions. There are three
 types of standard extensions currently defined:
 
 \begitems
@@ -225,8 +226,8 @@ types of standard extensions currently defined:
 * Binary Table Extension
 \enditems
 
-Every \glref{HDU} consists of an \glref{ASCII} formatted ``Header Unit'' and
-``Data Unit''.
+Every \glref{HDU} consists of an \glref{ASCII} formatted header unit and
+data unit.
 
 Each header unit contains a sequence of fixed-length 80
 character long keyword record which has form:
