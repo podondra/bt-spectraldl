@@ -1,8 +1,8 @@
 \label[lamost]
 \chap LAMOST Classification
 
-This chapter gathers all knowledge from previous chapters and classify
-LAMOST Data Release 1
+In this chapter all knowledge from previous chapters is gathered
+and used to classify LAMOST Data Release 1
 which contains spectra from pilot and first year surveys
 (see table~\ref[lamost]).
 Firstly, architecture and training of a deep neural network is described
@@ -28,7 +28,7 @@ The key idea is to randomly drop units from the neural network
 during training.
 During training dropout created different smaller networks by blocking
 units of a big one.
-This prevent units from co-adaption
+This prevents units from co-adaption
 and at test time the neural network with all units but smaller weights
 is average of all the smaller networks from training.
 \cite[dropout]
@@ -51,10 +51,10 @@ with a unit dropout probability set to 0.5 as recommended by \cite[dropout].
 Architecture of convolutional network for spectra classification in this work
 is inspired primarily by
 VGGNet \cite[vggnet], AlexNet \cite[alexnet] and ZFNet \cite[zfnet].
-These network are design to process three dimensional images
+These networks are design to process three dimensional images
 counting \glref{RGB} color channels.
-Spectrum can be understand as one dimensional image.
-Therefore the architecture need to be suited to this difference.
+Spectrum can be understood as one dimensional image.
+Therefore the architecture needs to be suited to this difference.
 
 Sketch of architecture diagram is in figure~\ref[convnet].
 The input layer has 140 units
@@ -136,7 +136,7 @@ Emission and double-peak spectra which are the abnormal behaviors
 then tend to be discriminated by the neural network.
 
 Confusion matrix~\ref[imbalanced-cm] is proof of this.
-The matrix show 92\% accuracy on double-peak spectra
+The matrix shows 92\% accuracy on double-peak spectra
 of the feedforward neural network on imbalanced dataset.
 In contrast to 94\% accuracy when training on \glref{SMOTE} balanced dataset
 (see confusion matrix on left in figure~\ref[confusion-matrices]).
@@ -173,7 +173,7 @@ The function to optimize is {\bf categorical cross-entropy} loss function
 To optimize to the loss function {\bf Adam} optimizer is used.
 It is an algorithm for first-order gradient-based optimization
 of stochastic objective functions.
-Parameter are set to values recommended by its paper
+Parameters are set to values recommended by its paper
 (learning rate $\alpha = 0.001$,
 decay rates $\beta_1 = 0.9$ and $\beta_2 = 0.999$,
 fuzz factor $\epsilon = 10^{-8}$).
@@ -233,7 +233,7 @@ of spectra from \glref{LAMOST}.
 \midinsert \clabel[confusion-matrices]{Confusion matrices}
 \picw=15cm \cinspic img/confusion-matrices.png
 \caption/f Confusion matrices of both networks' predictions on test set.
-\glref{CNN} (right matrix) performs slightly better then feedforward network.
+\glref{CNN} (right matrix) performs slightly better than feedforward network.
 \endinsert
 
 \sec Performance and Scalability
@@ -246,7 +246,7 @@ trained on \glref{GPU} GeForce GTX 980 and two Intel Xeon \glref{CPU}s.
 The GeForce GTX
 980\urlnote{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980}
 has 2048 \glref{CUDA} cores and 4\,GB of memory.
-The two Intel Xeon \glref{CPU}
+The two Intel Xeon \glref{CPUs}
 E5-2403\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
 has 8 cores in total and 24\,GB of available \glref{RAM}.
 Results are presented in table~\ref[performance-table].
@@ -267,7 +267,7 @@ is roughly 27 times faster.
 
 Table~\ref[performance-table] confirms the need of \glref{GPU}
 computational power for deep neural networks training.
-Training on \glref{GPU} is 27 times faster then on \glref{CPU}.
+Training on \glref{GPU} is 27 times faster than on \glref{CPU}.
 For large networks there might be memory problems on \glref{GPU}
 but the net design in this thesis does not require a lot of memory.
 Moreover TensorFlow support distributed computation so the whole system
@@ -302,16 +302,16 @@ according to predicted classes.
 The table~\ref[prediction-table] shows them the convolutional network
 reduced the number of possibly interesting object (emission or double-peak)
 from 2\,202\,000 to 303\,905.
-That is about 14\% from whole LAMOST data release 1.
+That is about 14\% from whole \glref{LAMOST} data release 1.
 While visualizing spectra according to predicted classes
-good representants can be found.
+good representatives can be found.
 Figures~\ref[lamost-emission] and \ref[lamost-double-peak] show examples
-of corectlly classified spectra from the interesting emission and
+of correctly classified spectra from the interesting emission and
 double-peak classes.
 But there are also noisy spectra of different kinds mix up with
 good class candidates.
 Especially in double-peak class where the noise near to absorption line
-in often incorectlly consider as double-peak.
+in often incorrectly consider as double-peak.
 
 \midinsert \clabel[lamost-emission]{Emissions from LAMOST}
 \picw=15cm \cinspic img/lamost-emission.png
@@ -331,16 +331,17 @@ The Ondřejov dataset and Ondřejov archive in general
 is composed of not noisy well captures spectra.
 Therefore the neural network is not trained to recognize noisy or damaged
 spectra and put them apart.
-It has to predicted them as one of the three classes.
+It has to predict them as one of the three classes.
 
-Principal component analysis of LAMOST data space in~figure~\ref[pca-lamost]
-also proofs the Ondřejov dataset limitation.
+Principal component analysis of \glref{LAMOST} data space
+in~figure~\ref[pca-lamost] also proofs the Ondřejov dataset limitation.
 Although the point from Ondřejov dataset used during training cover most
-of the LAMOST data there are some areas where the dataset has no point at all.
+of the \glref{LAMOST} data there are some areas
+where the dataset has no point at all.
 These are probably the points were the classifier misjudge spectra
 because it has no prior knowledge about them.
 
-To over come this problem either
+To overcome this problem either
 a method which can filter the noisy spectra out should be used
 or the dataset would be extended with new classes
 where would the classifier put noisy spectra.

@@ -24,7 +24,7 @@ spectrum is collective term for known range of
 electromagnetic radiation. The electric and magnetic field
 oscillates and produces electromagnetic waves. \cite[cosmos]
 
-The electromagnetic wave is describe in terms of frequency
+The electromagnetic wave is described in terms of frequency
 or wavelength:
 
 \begitems    
@@ -139,10 +139,11 @@ line in H$\alpha$ respectively.
 
 \sec Be Stars
 
-Be stars are a non-supergiant B stars\fnote{Stars from spectral type B are
+Be stars are non-supergiant B stars\fnote{Stars from spectral type B are
 hydrogen burning stars which have 2 to 16 times the mass of the Sun
 and surface temperatures between 10000 and 30000 K. \cite[habets1981]}
-whose spectrum has or had at some time, one or more Balmer lines in emission.
+with spectrum that has or had
+one or more Balmer lines in emission at some time.
 Although this definition is not precise it is sufficient for purpose of this
 work. \cite[porter2003]
 
@@ -154,7 +155,7 @@ periodically vary.
 \label[ondrejov-archive]
 \sec Ondřejov Archive
 
-Archive of Ondřejov observatory spectral data is available at glref{ASU CAS}
+Archive of Ondřejov observatory spectral data is available at \glref{ASU CAS}
 Data Center\urlnote{http://voarchive.asu.cas.cz/}.
 It currently contains about 17000 spectra \cite[voarchive].
 Because this archive is {\bf specialized on Be stars observations}
@@ -209,7 +210,7 @@ multidimensional arrays and two dimensional tables. \cite[fits-support-office]
 A FITS file is comprised of segments called Header/Data
 Units (\glref{HDU}s).
 The first \glref{HDU} is called the ``Primary \glref{HDU}''.
-The primary data array can contain a 1-999 dimensional
+The primary data array can contain a 1--999 dimensional
 array of numbers. A typical primary array could contain
 a 1 dimensional {\bf spectrum}, a 2 dimensional image,
 a 3 dimensional data cube.
@@ -228,7 +229,7 @@ Every \glref{HDU} consists of an \glref{ASCII} formatted ``Header Unit'' and
 ``Data Unit''.
 
 Each header unit contains a sequence of fixed-length 80
-character long keyword record which have form:
+character long keyword record which has form:
 
 \begtt
 KEYNAME = value / comment string
@@ -255,7 +256,7 @@ tables, contain tabular information organized into rows
 and columns. Binary tables are more compact and are faster
 to read and write then \glref{ASCII} tables.
 
-All the entries within a column of a tables have the same
+All the entries within a column of a table have the same
 datatype. The allowed data formats for an \glref{ASCII} table
 column are integer, single and double precision floating
 point value, character string. Binary table also support
