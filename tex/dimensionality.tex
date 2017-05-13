@@ -32,8 +32,9 @@ and the second principal
 component of Ondřejov dataset which is not standardized.
 After further analysis the plot express more the intensities in spectra
 fluxes than the shape.
-The points far from the dense area in middle left have high fluxes.
-But in this work the interesting is shape not the difference between in fluxes.
+The points far from the dense area in middle-left have high fluxes.
+But in this work the interesting feature is shape
+not the difference between in fluxes.
 
 The plot on right side in figure~\ref[pca-ondrejov] shows Ondřejov dataset
 with suppressed fluxes.
@@ -55,13 +56,11 @@ But there are probably also emission and double-peak spectra.
 This is expected behavior because Ondřejov archive is focused on observing
 emission and double-peak spectra (see section~\ref[ondrejov]) while
 \glref{LAMOST} observation is not specialized.
-The \glref{LAMOST} spectra far away from any Ondřejov data points may be result
-of imperfection of domain adaptation or lack of proper data in Ondřejov archive.
 
 \midinsert \clabel[pca-lamost]{PCA of LAMOST sample}
 \picw=15cm \cinspic img/pca-lamost.png
 \caption/f The first two principal components of 50\,000 random spectra
-from \glref{LAMOST} Data Release 1 and whole Ondřejov dataset.
+from \glref{LAMOST} data release 1 and whole Ondřejov dataset.
 Majority of \glref{LAMOST} spectra seems to be absorptions but there are some
 point near to double-peak and emission spectra from Ondřejov.
 \endinsert
@@ -104,8 +103,8 @@ with \glref{PCA}.
 Result of \glref{t-SNE} application on \glref{LAMOST} data
 with same parameterization is in
 visualization~\ref[tsne-lamost].
-There are 5000 random data points from \glref{LAMOST}
-and 1000 random points from Ondřejov.
+There are 5\,000 random data points from \glref{LAMOST}
+and 1\,000 random points from Ondřejov.
 Data are firstly standardized and reduced to 30 dimensions with \glref{PCA}.
 
 The scatter plot shows a big cluster with absorption spectra on left
@@ -115,6 +114,6 @@ from \glref{LAMOST} too far away from Ondřejov spectra.
 
 \midinsert \clabel[tsne-lamost]{t-SNE of LAMOST sample}
 \picw=15cm \cinspic img/tsne-lamost.png
-\caption/f Visualization of 5000 spectra from \glref{LAMOST} Data Release 1
-and 1000 spectra from Ondřejov reduce to two dimensions with \glref{t-SNE}.
+\caption/f Visualization of 5\,000 spectra from \glref{LAMOST} data release 1
+and 1\,000 spectra from Ondřejov reduce to two dimensions with \glref{t-SNE}.
 \endinsert

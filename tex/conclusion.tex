@@ -3,13 +3,14 @@
 Goal of this work was to classify emission-line spectra in \glref{LAMOST}
 using deep neural network trained on spectra from Ondřejov.
 
-Three classes of absorption, emission and double-peak spectra were chosen.
-Training Ondřejov dataset was created containing 13335 spectra.
+For classification three classes of absorption,
+emission and double-peak spectra were chosen.
+Training dataset from Ondřejov spectra was created containing 13\,335 spectra.
 Then it was found that to transfer Ondřejov spectra to
 \glref{LAMOST} domain wavelength conversion
 and Gaussian blur with standard deviation of value 7
 should be applied to all spectra from Ondřejov.
-Preprocessing techniques as regridding and spectra scaling are used
+Preprocessing techniques as regridding and spectra scaling were used
 to make the data suitable for neural networks learning.
 
 \glref{PCA} and \glref{t-SNE} dimensionality reduction algorithms have shown
@@ -17,8 +18,8 @@ that absorption and emission spectra should be easily separable
 but double-peak spectra require more sophisticated method as deep learning.
 
 Deep convolutional network was evaluated as best choice of architecture for
-spectra classification. It architecture and training is described.
-Finally results of classification with the network are presented.
+spectra classification. It architecture and training was described.
+Finally results of classification with the network were presented.
 The \glref{LAMOST} data release 1 containing 2\,202\,000 spectra was reduced to
 303\,905 candidates (emissions and double-peaks).
 Although these candidates contains a lot of interesting emission-line
@@ -27,5 +28,5 @@ there are plenty of noisy misclassified spectra especially in double-peak
 predictions.
 
 In future it would be possible to reduce the number of noisy misclassified
-spectra either by extension of dataset
-or by other method which could identify noisy spectra.
+spectra either by extension of the Ondřejov dataset
+or by method which could identify noisy spectra.

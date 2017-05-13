@@ -13,11 +13,12 @@ Third section explains why is scaling of fluxes important.
 Ondřejov and \glref{LAMOST} spectrographs have different parameters
 (as described in sections~\ref[ondrejov-archive] and
 \ref[lamost-archive]).
-Thus, spectra from the two archives are different.
+Thus, spectra from the two archives are different
+(see figure~\ref[ondrejov-vs-lamost]).
 Concretely, spectra from Ondřejov archive has much more details than
 spectra from \glref{LAMOST} spectrograph
 and spectra in Ondřejov archive are stored in air wavelengths
-but \glref{LAMOST} store spectra in vacuum wavelengths.
+but \glref{LAMOST} stores spectra in vacuum wavelengths.
 
 This thesis is concerned with classifying \glref{LAMOST} data using
 data from Ondřejov.
@@ -25,13 +26,13 @@ It aims to extract as much knowledge as possible from Ondřejov data
 and apply it to classification of \glref{LAMOST} archive.
 Transfer learning and domain adaptation
 (described in chapter~\ref[transfer-learning])
-are study area of machine learning that aim to offer methods
+are study areas of machine learning that aim to offer methods
 for dealing with these problems.
 
 The following sections introduce methods
 that were applied to Ondřejov data.
 These methods make the two domains more similar and so
-they deal with differences between the archives mentioned above.
+they deal with differences between the archives.
 
 \secc Wavelength Conversion
 
@@ -57,7 +58,7 @@ where $\lambda_{v}$ is vacuum wavelength and $\lambda_{a}$ is
 corresponding air wavelength.
 
 The resulting Ondřejov spectrum after air to vacuum conversion
-is plotted in bottom plot in figure~\ref[air2vacuum].
+is plotted in bottom plot of figure~\ref[air2vacuum].
 
 \midinsert \clabel[air2vacuum]{Air to vacuum conversion}
 \picw=15cm \cinspic img/air2vacuum.png
@@ -115,7 +116,7 @@ In a matrix each row is a spectrum sample
 and each column represents flux in certain wavelength.
 That means that grid of all spectra need to be changed to same wavelengths.
 
-The wavelengths range is given by Ondřejov dataset from 6519 to 6732
+The wavelengths range is given by Ondřejov dataset from 6\,519 to 6\,732
 (minimum is rounded up and maximum is rounded down to nearest integer value).
 Ondřejov spectra in this range have 829, 830, 831, or 922, 923 measured fluxes
 according to this thesis's experiments.
@@ -127,8 +128,8 @@ inferred from 22 cross-matched spectra.
 
 Because Ondřejov spectra are moved to \glref{LAMOST} resolution,
 after air to vacuum conversion and convolution,
-spectra are regrided uniformly to 140 points in range 6519 to 6732.
-To do regridding linear interpolation is used.
+spectra are regrided to 140 uniform points in range 6519 to 6732.
+To do regridding linear interpolation is used to infer new fluxes.
 Here is {\bf NumPy} 1.12.1 \cite[numpy] code carrying out this operation:
 
 \begtt
@@ -154,9 +155,9 @@ Therefore, all fluxes of each spectrum are scaled.
 Two popular forms of scaling are bound fluxes into range (min-max scaling)
 and standardization of spectrum to have zero mean and unit variance.
 As show in histograms~\ref[fluxes-hist]
-originally the fluxes are in range $(378.23, -0.11)$,
+originally the fluxes are in range $(-0.11, 378.23)$,
 min-max scaling would bound them to chosen range
-and after standardization they are in range $(8.25, -8.15)$.
+and after standardization they are in range $(-8.15, 8.25)$.
 
 \midinsert \clabel[fluxes-hist]{Histogram of fluxes}
 \picw=15cm \cinspic img/fluxes-hist.png
