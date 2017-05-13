@@ -72,12 +72,12 @@ All hidden layers use \glref{ReLU} activation function.
 \midinsert \clabel[convnet]{CNN architecture}
 \picw=5cm \cinspic img/convnet.png
 \caption/f Architecture of the convolutional neural network.
-Convolutional layers are mark as conv3
+Convolutional layers are mark as {\tt conv3}
 where the number 3 means the size of filter in pixels.
 The mark is followed by dash and a number which specifies count of filters.
-Max-pooling layers with pool size 2, stride 2 and no padding.
-Fully-connected layer with 512 units are fc-512
-and softmax is the output layer.
+{\tt maxpool2} are max-pooling layers with pool size 2, stride 2 and no padding.
+Fully-connected layer with 512 units are {\tt fc-512}
+and {\tt softmax} is the output layer.
 \endinsert
 
 \sec Training Details
@@ -104,11 +104,11 @@ and its purpose is for training networks' weights.
 Exact numbers of spectra in each set is in table~\ref[dataset-split-table].
 
 \midinsert \clabel[dataset-split-table]{Dataset split table}
-\ctable{lrrr}{
-    \hfil set  & emission & absorption & double-peak \hfil \crl \tskip4pt
-    train      &   3\,817 &     4\,393 & 1\,104 \cr
-    validation &      954 &     1\,099 &    276 \cr
-    test       &      530 &        611 &    153 \cr
+\ctable{lrrrr}{
+    \hfil set & emission & absorption & double-peak & total \hfil \crl \tskip4pt
+    train      &  3\,817 &     4\,393 &      1\,104 & 9\,314 \cr
+    validation &     954 &     1\,099 &         276 & 2\,329 \cr
+    test       &     530 &        611 &         153 & 1\,294 \cr
 }
 \caption/t Exact numbers of samples in train, validation and test set
 divided according to emission, absorption and double-peak classes.
