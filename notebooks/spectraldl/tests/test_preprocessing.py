@@ -17,8 +17,8 @@ def test_smote_over_sample():
     assert counts[0] == counts[1]
 
 def test_scale_samples():
-    X, Y = np.random.rand(100, 50), np.random.rand(100, 50)
-    X_, Y_ = spectraldl.preprocessing.scale_samples(X, Y)
+    X = np.random.rand(100, 50)
+    X_ = spectraldl.preprocessing.scale_samples(X)
     assert np.all(np.abs(X_.mean(axis=1)) < EPS)
     assert np.all((np.abs(X_.std(axis=1)) - 1) < EPS)
 

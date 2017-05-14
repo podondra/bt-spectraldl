@@ -16,6 +16,8 @@ personal-word-list.txt
 # notebooks
 .ipynb_checkpoints
 venv/
-*.hdf5
-ssap/
+data.hdf5
 __pycache__/
+/notebooks/data/ondrejov/
+*candidates.csv
+ondrejov-fits.tar.xz

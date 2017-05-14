@@ -37,6 +37,7 @@ Run the container:
         -p 8888:8888 \  # port for jupyter notebook
         -p 6006:6006 \  # port for tensorboard
         -v <path-to-notebooks-directory>:/notebooks \   # volume with notebooks
+        -v <path-to-lamost-fits:/lamost:ro \    # lamost files volume
         -name <container-name> \ # name the container
         <image-name>
 
