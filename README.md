@@ -2,6 +2,7 @@ Spectral Deep Learning
 ======================
 
 [![Build Status](https://travis-ci.org/podondra/bt-spectraldl.svg?branch=master)](https://travis-ci.org/podondra/bt-spectraldl)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.580100.svg)](https://doi.org/10.5281/zenodo.580100)
 
 Bachelor thesis. Czech Technical University (CTU).
 
