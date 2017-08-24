@@ -37,8 +37,9 @@ Run the container:
         -p 8888:8888 \  # port for jupyter notebook
         -p 6006:6006 \  # port for tensorboard
         -v <path-to-notebooks-directory>:/notebooks \   # volume with notebooks
-        -v <path-to-lamost-fits:/lamost:ro \    # lamost files volume
-        -name <container-name> \ # name the container
+        -v <path-to-lamost-fits>:/lamost:ro \    # lamost files volume e.g.
+        \                                        # /data/public/LAMOST-DR1/fits
+        --name <container-name> \ # name the container
         <image-name>
 
 Find the url with authentication token of Jupyter Notebook:
