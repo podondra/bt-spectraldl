@@ -1,5 +1,7 @@
 \input ctustyle % the template is included here
+\def\thednum{(\the\chapnum.\the\dnum)}
 \input opmac-bib % uncomment this for direct reading of .bib database files 
+\input dirtree
 
 \worktype [B/EN] % type: B = bachelor, M = master, D = Ph.D., O = other
 
@@ -12,32 +14,55 @@
 \studyinfo   {Branch of Study: Computer Science} % study programme etc. 
 \titleCZ     {Hluboké učení ve velkých archívech astronomických spekter}
 \abstractEN  {
-    Large astronomical archives, as for example LAMOST spectral archive,
-    contain plenty of hidden information. Deep learning is one of the most
-    popular method used nowadays to gain knowledge from this kind of data.
+    Large astronomical archives, as for example \glref{LAMOST} spectral archive,
+    contain plenty of hidden information.
+    Deep learning is currently very popular method used
+    to gain knowledge from this kind of data.
     This work shows the process of finding emission-line spectra in
-    LAMOST archive using deep neural network trained on data from Ondřejov 2m
-    telescope. Overview of several techniques is presented. These include
-    preprocessing of spectra, adaptation of Ondřejov data to LAMOST resolution,
-    dimensionality reduction, data visualization, architecture and training of
-    a deep neural network. Finally, discovered objects with interesting
-    physical nature deserving further detailed analysis are discussed.
+    \glref{LAMOST} archive using deep convolutional neural network trained
+    on data from Ondřejov 2m telescope.
+    Overview of several techniques as spectra preprocessing,
+    domain adaptation of Ondřejov data to \glref{LAMOST} resolution,
+    dimensionality reduction, architecture
+    and training of two deep neural networks are presented.
+    Finally, discovered objects with interesting physical nature deserving
+    further detailed analysis are discussed.
 }
-\abstractCZ  {TODO}
+\abstractCZ  {
+    Velké astronomické archívy, jako například spektrální archív \glref{LAMOST},
+    obsahují řadu skrytých informací.
+    Hluboké učení je jednou z nejpopulárnějších dnes používaných metod
+    pro získávání znalostí z tohoto druhu dat.
+    Tato práce popisuje proces hledání spekter s emisními čarami v archívu
+    \glref{LAMOST} za použití hluboké konvoluční neuronové sítě naučené
+    na datech z ondřejovského 2m teleskopu.
+    Práce popisuje několik metod jako je předzpracování spekter,
+    doménová adaptace ondřejovských dat na rozlišení archívu \glref{LAMOST},
+    redukce dimenzionality, návrh a učení dvou neuronových sítí.
+    V závěru práce je diskuze objevených objektů se zajímavou fyzikální
+    podstatou, které vyžadují další detailní analýzu.
+}
 \keywordsEN  {
     deep learning, neural networks, dimensionality reduction, domain adaptation,
-    astroinformatics, astronomy
+    astroinformatics, astronomy, LAMOST, TensorFlow
 }
 \keywordsCZ  {
-    hluboké učení, neuronové sítě, redukce dimensionality, doménová adaptace,
-    astroinformatika, astronomie
+    hluboké učení, neuronové sítě, redukce dimenzionality, doménová adaptace,
+    astroinformatika, astronomie, LAMOST, TensorFlow
 }
 
-\thanks      {TODO}
+\thanks      {
+    This work would have been impossible without the support of Petr Škoda,
+    his domain expertise and enthusiasm. I would like to thank to my family
+    for their extraordinary support during my bachelor's degree.
+    This research was supported by the grant COST LD-15113 of the Ministry of
+    Education Youth and Sports of the Czech Republic.
+}
 \declaration {
     I hereby declare that the presented thesis is my own work and that I have
     cited all sources of information in accordance with the Guideline for
     adhering to ethical principles when elaborating an academic final thesis.
+
     I acknowledge that my thesis is subject to the rights and obligations
     stipulated by the Act No. 121/2000 Coll., the Copyright Act, as amended.
     In accordance with Article 46(6) of the Act, I hereby grant a nonexclusive
@@ -53,14 +78,17 @@
     created (wholly or in part) based on the Work, by modifying the Work, by
     combining the Work with another work, by including the Work in a collection
     of works or by adapting the Work (including translation), and at the same
-    time make available the sourcecode of such work at least in a way and scope
+    time make available the source code of such work at least in a way and scope
     that are comparable to the way and scope in which the source code of the
     Work is made available.
+
+    In Prague on 16th May 2017
+    \signature
 }
 
 %%%%% <--   % The place for your own macros is here.
 
-\draft            % uncomment this if the version of document is working only
+%\draft            % uncomment this if the version of document is working only
 %\linespacing=1.7  % uncomment this if you need more spaces between lines
                    % warning: this works only when \draft is activated
 %\savetoner        % turns off the lightBlue backround of tables and
@@ -75,10 +103,11 @@
 \input introduction
 \input spectral-data
 \input machine-learning
+\input transfer-learning
 \input frameworks
 \input ondrejov
-\input transfer-learning
 \input preprocessing
+\input dimensionality
 \input lamost
 \input conclusion
 

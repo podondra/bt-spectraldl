@@ -1,14 +1,16 @@
+\label [transfer-learning]
 \chap Transfer Learning
 
 A common assumption in machine learning is that the training and data faced in
 deployment must be in same feature space and have the same probability
-distribution.
+distribution (see diagram~\ref[transfer-learning-diagram]).
 For example, this thesis is interested in classification of \glref{LAMOST}
-archive but has training set from Ondřejov spectrograph.
+archive but its training set from Ondřejov spectrograph.
 In such cases as much knowledge as possible need to be transfer to
-maximally improve performance of final classifier. \cite[transfer2010]
+maximally improve performance of final classifier
+on target data. \cite[transfer2010]
 
-\midinsert \clabel[transfer-learning]{Transfer Learning}
+\midinsert \clabel[transfer-learning-diagram]{Transfer learning}
 \picw=7.5cm \cinspic img/transfer-learning.png
 \caption/f Diagram of transfer learning process.
 Inspired by \cite[transfer2010].
@@ -21,13 +23,13 @@ where $X = \{x_1, ..., x_n\} \in \cal X$ is a learning sample.
 Given a specific ${\cal D} = \{{\cal X}, P(X)\}$
 and a learning {\bf task} ${\cal T} = \{{\cal Y}, f\}$ where
 $\cal Y$ is a label space and $f$ is a predictive function.
-This function is learning from training set which consist of pairs
-$\{x_i \in X, y_i \in {\cal Y}\}$.
+This predictive function $f$ is learned
+from training set which consist of pairs $\{x_i \in X, y_i \in {\cal Y}\}$.
 From probabilistic perspective $f$ is $P(y \mid x)$.
 
 Therefore, having a source domain ${\cal D}_S$ and a task ${\cal T}_S$,
 a target domain ${\cal D}_T$ and a task ${\cal T}_T$,
-{\bf transfer learning} amis to improve the performace of function $f_T$
+{\bf transfer learning} aims to improve the performance of function $f_T$
 from ${\cal T}_T$ using knowledge from ${\cal D}_S$ and ${\cal T}_S$,
 when ${\cal D}_S \ne {\cal D}_T$ or ${\cal T}_S \ne {\cal T}_T$.
 
@@ -54,8 +56,8 @@ and target domains are different, $P(X_S) \ne P(X_T)$, is generally known as
 {\bf domain adaptation}. \cite[ruder2017]
 
 Thus domain adaptation considers the setting in which the training and
-testing data are sampled from different distibutions.
+target data are sampled from different distributions.
 The learning problem consists of finding a function realizing a good
-tranfer of knowledge from ${\cal D}_S$ to ${\cal D}_T$.
+transfer of knowledge from ${\cal D}_S$ to ${\cal D}_T$.
 That means the model trained on data drawn from distribution $P(X_S)$
 generalizes well on data drawn from $P(X_T)$. \cite[domain-adaptation]

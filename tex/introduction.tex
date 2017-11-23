@@ -1,3 +1,33 @@
 \chap Introduction
 
-Wrote at the end of work.
+Astronomy and science in general are transformed by exponential growth
+of data which provides huge opportunities for discovery.
+Modern large telescopes like large mosaics of \glref{CCD} chips are producing 
+terabytes of raw data per night.
+For example the world largest spectrograph of \glref{LAMOST} telescope
+is acquiring 4\,000 spectra per single exposure.
+Astronomy is facing an avalanche of data that can be process
+only with sophisticated and innovative approaches.
+
+Recent advance in deep neural networks have brought breakthroughs in
+processing images, video, speech and audio.
+Deep learning is able to discover intricate structure in large datasets.
+Thus deep networks should also help to make new discoveries in astronomy.
+
+The goal of this work is to identify emission-line spectra
+in the \glref{LAMOST} spectral survey archive using deep neural network
+which is trained on spectra from Ondřejov archive.
+
+This work starts with introduction to spectral data
+in~chapter~\ref[spectral-data].
+Chapters~\ref[machine-learning] and \ref[transfer-learning] introduce
+basics of machine, deep and transfer learning.
+In~chapter~\ref[frameworks] is survey of currently available Python frameworks
+for deep learning.
+Chapter~\ref[ondrejov] describes the creation and properties of Ondřejov
+dataset which is used for network training.
+Chapter~\ref[preprocessing] is about preprocessing methods applied to the data.
+Visualizations of Ondřejov and \glref{LAMOST} data space are shown
+in~chapter~\ref[dimensionality].
+The last chapter~\ref[lamost] presents architecture of the deep neural network,
+its training and classification results of spectra from \glref{LAMOST}.

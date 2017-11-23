@@ -1,3 +1,4 @@
+\label[frameworks]
 \chap Deep Learning Frameworks
 
 There are tens of deep learning frameworks.
@@ -14,17 +15,18 @@ Several aspects have been taken into account:
 * Python \glref{API}
 \enditems
 
-The three first points should asure that this work will be maitanable
+The three first points should assure that this work will be maintainable
 in future. This work is faced with vast amount of data so it is desirable
 to choose scalable and \glref{GPU} ready framework.
 On contrary, one goal is to find great deep neural network architecture which
 means that fast experimentation is crucial.
 Last two points support the goal of this thesis to find the best deep neural
-network architecture and because the author comfortable with Python.
+network architecture
+and because the author of this work is comfortable with Python.
 
 NVIDIA's website\urlnote{https://developer.nvidia.com/deep-learning-frameworks}
 lists popular deep learning frameworks. These include Caffe, TensorFlow,
-Theano, Torch and Keras. Torch is excluded because it does not has Python
+Theano, Torch and Keras. Torch is excluded because it has not Python
 bindings \cite[torch].
 
 \sec Caffe
@@ -33,11 +35,11 @@ Caffe is BSD-licensed C++ deep learning framework with Python and MATLAB
 bindings.
 It serves for training and deploying convolutional neural networks and
 other deep models.
-By separeting model representation from actual implementattion, Caffe allows
+By separating model representation from actual implementation, Caffe allows
 seamless switching among \glref{CPU}, \glref{GPU} and other architectures.
-The project is maintained by Berkeley Vision and Lerning Center with help of
-community of contibutors on GitHub\urlnote{https://github.com/BVLC/caffe/}.
-Documentation and examples are available at Caffe's
+The project is maintained by Berkeley Vision and Learning Center with help of
+community of contributors on GitHub\urlnote{https://github.com/BVLC/caffe/}.
+Documentation and examples are available at Caffe
 website\urlnote{http://caffe.berkeleyvision.org/}. \cite[caffe]
 
 According to experimental results in \cite[benchmark] Caffe has one of the
@@ -45,19 +47,19 @@ best performances on both \glref{GPU} and \glref{CPU} platforms.
 
 \sec TensorFlow
 
-TensorFlow is interface developed by Google for expressing machine learning
+TensorFlow is library developed by Google for expressing machine learning
 algorithms and an implementation for executing such algorithms.
 It is licensed under Apache 2.0 open source license and its code is available on
-Github\urlnote{https://github.com/tensorflow/tensorflow}.
+GitHub\urlnote{https://github.com/tensorflow/tensorflow}.
 A computation in TensorFlow is described by a directed graph which can be
 executed with little or no change on \glref{CPU}s or \glref{GPU}s.
-Currently implemented frontends are C++ and Python.
+Currently implemented front-ends are C++ and Python.
 This project has extensive documentation with examples and
-tutorial\urlnote{https://www.tensorflow.org/}. \cite[tensorflow]
+tutorials\urlnote{https://www.tensorflow.org/}. \cite[tensorflow]
 
-In order to help develepment and debugging TensorFlow provides visualization
+In order to help development and debugging TensorFlow provides visualization
 tool called TensorBoard.
-This tool can vizualize computation graphs and summary statistics such as
+This tool can visualize computation graphs and summary statistics such as
 values of loss function, weights and so on.
 
 \sec Theano
@@ -67,15 +69,15 @@ Even though Theano is not developed as deep learning framework it can be
 consider as it is because primarily usage is to implement
 mathematical models in a symbolic way and then used them in machine or
 deep learning.
-Theano is an open source software and is licensed under BSD license.
+Theano is open source software and is licensed under BSD license.
 Its source code is versioned in repository on
 GitHub\urlnote{https://github.com/Theano/Theano/}.
-Main features are in language to represent mathematical expressions, a compiler to creates code to compute these expressions and library to evaluate them.
+Main features are in language to represent mathematical expressions, a compiler to create code to compute these expressions and library to evaluate them.
 This structure allows to optimize code for both \glref{CPU}s and \glref{GPU}s.
 \cite[theano]
 
 As stated in \cite[theano] although Theano is developed and mainly used for
-reasearch in deep learning it is not a deep learning framework in itself.
+research in deep learning it is not a deep learning framework in itself.
 Several software packages have been developed to provide higher-level
 user interface for instance Keras, Blocks and Lasagne.
 
@@ -86,26 +88,24 @@ It is written in Python and it runs on top of either TensorFlow or Theano.
 It focuses on fast prototyping and experimentation.
 Because it is interface to TensorFlow or Theano it can use both \glref{CPU}
 and \glref{GPU}s.
-Its website\urlnote{https://keras.io/} provides good documentation and code is
-open source under MIT license on
+Its website\urlnote{https://keras.io/} provides good documentation
+and its code is open source under MIT license on
 GitHub\urlnote{https://github.com/fchollet/keras}. \cite[keras]
 
-Recently Keras \glref{API} will be integrated into {\tt tf.contrib.keras}
+Recently Keras \glref{API} is integrated into {\tt tf.contrib.keras}
 module of TensorFlow 1.1.0
-and then directly into {\tt tf.keras} in version 1.2.0.
-Therefore, there will be two separete implementations of the Keras
-specification.
-One for written in pure TensofFlow and second compatible with
+and then will be moved into {\tt tf.keras} in version 1.2.0.
+Therefore, there will be two separate implementations of the Keras
+specification one written in pure TensorFlow and second compatible with
 both Theano and TensorFlow. \cite[keras2]
 
 \sec Consideration
 
-Tensorflow in version 1.1.0 is choosen for implementation in this thesis.
+TensorFlow in version 1.1.0 is chosen for implementation in this thesis.
 It is the most suitable framework because it has both low level interface
 and high level Keras interface.
-Moreover, Tensorboard is great tool for graph and dataset interactive
-vizualizations as it containg built-in \glref{PCA}
-and \glref{t-SNE} dimensionality
-algorithms.
-Stated in \cite[karpathy2017] TensorFlow is currectly the most popular
+Moreover, TensorBoard is great tool for graph and dataset interactive
+visualizations as it contains built-in \glref{PCA}
+and \glref{t-SNE} dimensionality reduction algorithms.
+Stated in \cite[karpathy2017] TensorFlow is currently the most popular
 and future promising deep learning framework in machine learning community.

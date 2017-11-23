@@ -1,23 +1,347 @@
+\label[lamost]
 \chap LAMOST Classification
 
-TODO
+In this chapter all knowledge from previous chapters is gathered
+and used to classify LAMOST data release 1
+which contains spectra from pilot and first year surveys
+(see table~\ref[lamost]).
+Firstly, architecture and training of a deep neural network is described
+followed by evaluation and visualizations of results.
 
 \sec Neural Network Architecture
 
-TODO
+A feedforward neural network and a convolutional neural network were design.
+After evaluation on test set the convolutional network
+was chosen for final classification.
 
-\sec Training the Network
+Design choices follow guide provided by \cite[cs231n].
+The main idea is to build rather deeper neural network
+which has a lot of representation power
+and use dropout (see section~\ref[dropout]) to avoid overfitting.
+Next sections describe dropout and architectures.
 
-TODO
+\label[dropout]
+\secc Dropout
 
-\sec Results and Visualizations
+{\bf Dropout} is technique for addressing problem of {\bf overfitting}.
+The key idea is to randomly drop units from the neural network
+during training.
+Dropout created different smaller networks by blocking units of a big network.
+This prevents units from co-adaption
+and at test time the neural network with all units but smaller weights
+is average of all the smaller networks from training.
+\cite[dropout]
 
-TODO
+\secc Feedforward Network
+
+The feedforward network has input layer with 140 units.
+Then there are 5 hidden layers with 512 units
+and the last output layer has 3 units
+with softmax activation function~\cite[nielsen2015]
+because there are 3 target classes.
+
+Every hidden layer's activation function is \glref{ReLU}
+(see section \ref[convnets]).
+During training dropout (see subsection \ref[dropout]) is applied
+with a unit dropout probability set to 0.5 as recommended by \cite[dropout].
+
+\secc Convolutional Network
+
+Architecture of convolutional network for spectra classification in this work
+is inspired primarily by
+VGGNet \cite[vggnet], AlexNet \cite[alexnet] and ZFNet \cite[zfnet].
+These networks are design to process three dimensional images
+counting \glref{RGB} color channels.
+Spectrum can be understood as one dimensional image.
+Therefore the architecture needs to be suited to this difference.
+
+Sketch of architecture diagram is in figure~\ref[convnet].
+The input layer has 140 units
+and output layer has 3 units with softmax activation~\cite[nielsen2015].
+In the middle there are convolutional layers
+all with filter size 3 pixels and no padding.
+First 2 layers have 64 of the filters.
+Second 2 layers have 128 of them and the last 2 layers have 256 filters.
+After each pair of convolutional layers is a max-pooling layers
+of size 2 pixel with stride 2.
+The last max-pooling layer is followed are 2 fully-connected layer
+with 512 units each
+and dropout with probability 0.5 \cite[dropout] applied in training.
+All hidden layers use \glref{ReLU} activation function.
+
+\midinsert \clabel[convnet]{CNN architecture}
+\picw=5cm \cinspic img/convnet.png
+\caption/f Architecture of the convolutional neural network.
+Convolutional layers are mark as {\tt conv3}
+where the number 3 means the size of filter in pixels.
+The mark is followed by dash and a number which specifies count of filters.
+{\tt maxpool2} are max-pooling layers with pool size 2, stride 2 and no padding.
+Fully-connected layer with 512 units are {\tt fc-512}
+and {\tt softmax} is the output layer.
+\endinsert
+
+\sec Training Details
+
+The process of babysitting the neural network training is described
+in this section.
+Dataset split and balancing is introduced.
+Then the hyperparameters of training the network are described.
+Lastly the networks' performance is evaluated.
+
+\secc Dataset Split
+
+This subsection shows how the Ondřejov dataset is split into
+training, validation and test set.
+These sets are required for training, tuning and evaluating any neural network.
+All split are done as stratified sampling so that the distribution of
+samples' number in a class is kept across sets.
+
+Test set on which neural networks are evaluated contains 10\% of all data.
+Validation set which serves for hyperparameter and architecture optimization
+is 20\% of remaining data.
+Training set is composed from the rest of data
+and its purpose is for training networks' weights.
+Exact numbers of spectra in each set is in table~\ref[dataset-split-table].
+
+\midinsert \clabel[dataset-split-table]{Dataset split table}
+\ctable{lrrrr}{
+    \hfil set & emission & absorption & double-peak & total \hfil \crl \tskip4pt
+    train      &  3\,817 &     4\,393 &      1\,104 & 9\,314 \cr
+    validation &     954 &     1\,099 &         276 & 2\,329 \cr
+    test       &     530 &        611 &         153 & 1\,294 \cr
+}
+\caption/t Exact numbers of samples in train, validation and test set
+divided according to emission, absorption and double-peak classes.
+\endinsert
+
+\secc SMOTE Balancing
+
+\glref{SMOTE} is shortcut for
+{\bf Synthetic Minority Over-sampling Technique}.
+It is over-sampling approach in which the minority class is
+over-sampled by creating {\bf synthetic} samples.
+A new sample is created along line from a sample to its all or any $k$
+nearest neighbors from same class.
+Difference between feature vectors of sample under consideration
+and nearest neighbor is taken.
+It is multiply by random number between 0 and 1.
+Finally it is added to the sample.
+\cite[smote]
+
+In this thesis \glref{SMOTE} balancing is used to balance training set
+because the absorption class which can be considered as normal class
+has the biggest number of samples while the emission and double-peak
+classes has significantly less samples.
+Emission and double-peak spectra which are the abnormal behaviors
+then tend to be discriminated by the neural network.
+
+Confusion matrix~\ref[imbalanced-cm] is proof of this.
+The matrix shows 92\% accuracy on double-peak spectra
+of the feedforward neural network on imbalanced dataset.
+In contrast to 94\% accuracy when training on \glref{SMOTE} balanced dataset
+(see confusion matrix on the left in figure~\ref[confusion-matrices]).
+
+\midinsert \clabel[imbalanced-cm]{Imbalanced confusion matrix}
+\picw=10cm \cinspic img/imbalanced-cm.png
+\caption/f Confusion matrix evaluated on validation set
+of feedforward network trained on imbalanced dataset.
+Note the low double-peak spectra accuracy.
+\endinsert
+
+In this work implementation of \glref{SMOTE}
+from Scikit-learn contribution Python package
+{\bf imbalanced-learn} \cite[imblearn] in version 0.2.1 is used:
+
+\begtt
+import imblearn.over_sampling
+
+N_CLASSES = 3
+smote = imblearn.over_sampling.SMOTE()
+for _ in range(N_CLASSES - 1):
+    X, y = smote.fit_sample(X, y)
+\endtt
+
+where {\tt X} is input and also output matrix with training data
+and {\tt y} is vector of corresponding labels.
+
+\secc Training Setting
+
+Training a neural networks is an optimization problem.
+The function to optimize is {\bf categorical cross-entropy} loss function
+(see online book~\cite[nielsen2015]).
+
+To optimize to the loss function {\bf Adam} optimizer is used.
+It is an algorithm for first-order gradient-based optimization
+of stochastic objective functions.
+Parameters are set to values recommended by its paper
+(learning rate $\alpha = 0.001$,
+decay rates $\beta_1 = 0.9$ and $\beta_2 = 0.999$,
+fuzz factor $\epsilon = 10^{-8}$).
+These are also the defaults in Keras implementation
+which is available in TensorFlow.
+\cite[adam]
+
+Figure~\ref[convnet-training] shows the \glref{CNN}'s progress
+of accuracy and loss over 250 epochs
+(the training set was presented to the network for learning 250 times).
+The increase of accuracy is fast and training and validation accuracies
+are close to each other so there is little overfitting.
+
+\midinsert \clabel[convnet-training]{Training accuracy and loss}
+\picw=15cm \cinspic img/convnet-training.png
+\caption/f Convolutional network training statistics during 250 epochs
+with batch size 256. The top plot shows training and validation accuracy
+and the bottom plot shows decrease of loss.
+\endinsert
+
+In TensorFlow this implements code:
+
+\begtt
+import tensorflow.contrib.keras as keras
+
+model = keras.models.Sequential([
+    # definition of neural network
+])
+model.compile(
+    loss='categorical_crossentropy',
+    optimizer='adam',
+    metrics=['accuracy']
+)
+model.fit(
+    X_train, y_train_one_hot, epochs=250, batch_size=256
+    validation_data=(X_validation, y_validation_one_hot)
+)
+\endtt
+
+where {\tt X\_train} and {\tt X\_validation} are matrices with spectral data,
+{\tt y\_train\_one\_hot} and {\tt y\_validation\_one\_hot}
+are classes one hot matrices.
+
+\secc Evaluation
+
+Networks are evaluated on the test set.
+From confusion matrices in figure~\ref[confusion-matrices] is clear that
+convolutional network perform slightly better.
+\glref{CNN} predicted correctly 99\% of emission spectra while the feedforward
+network only 98\%.
+Both predicted 99\% of absorptions correctly.
+In double-peak spectra prediction convolutional network has accuracy 95\%
+and feedforward network 94\%.
+Thus convolutional neural network is chosen for classification
+of spectra from \glref{LAMOST}.
+
+\midinsert \clabel[confusion-matrices]{Confusion matrices}
+\picw=15cm \cinspic img/confusion-matrices.png
+\caption/f Confusion matrices of both networks' predictions on test set.
+\glref{CNN} (right matrix) performs slightly better than feedforward network.
+\endinsert
 
 \sec Performance and Scalability
 
-TODO
+Recent advance in deep neural network research would not be possible
+without performance improvement of general purpose \glref{GPU}s. \cite[alexnet]
+This thesis makes similar observation.
+The convolutional network was experimentally
+trained on \glref{GPU} GeForce GTX 980 and two Intel Xeon \glref{CPU}s.
+The GeForce GTX
+980\urlnote{http://www.geforce.com/hardware/desktop-gpus/geforce-gtx-980}
+has 2\,048 \glref{CUDA} cores and 4\,GB of memory.
+The two Intel Xeon \glref{CPUs}
+E5-2403\urlnote{http://ark.intel.com/products/64615/Intel-Xeon-Processor-E5-2403-10M-Cache-1_80-GHz-6_40-GTs-Intel-QPI}
+has 8 cores in total and 24\,GB of available \glref{RAM}.
+Results are presented in table~\ref[performance-table].
 
-\sec Cross-matching
+\midinsert \clabel[performance-table]{GPU vs CPU performance}
+\ctable{lrrr}{
+    \hfil architecture & user time & sys time & wall time \hfil \crl \tskip4pt
+    2 Intel Xeon E5-2403 & 346\,min 35\,s & 41\,min 12\,s & 99\,min 36\,s \cr
+    GeForce GTX 980      &   4\,min  1\,s &         22\,s &  3\,min 39\,s \cr
+}
+\caption/t Comparison of training convolutional neural network
+on \glref{GPU} and \glref{CPU}.
+The training is done on whole Ondřejov dataset,
+number of epochs is 100 and batch size is 256.
+In terms of wall time (elapsed real time) there \glref{GPU}
+is roughly 27 times faster.
+\endinsert
 
-TODO
+Table~\ref[performance-table] confirms the need of \glref{GPU}
+computational power for deep neural networks training.
+Training on \glref{GPU} is 27 times faster than on \glref{CPU}.
+For large networks there might be memory problems on \glref{GPU}
+but the net design in this thesis does not require a lot of memory.
+Moreover TensorFlow support distributed computation so the whole system
+may scale to more \glref{GPU} cards on demand. \cite[tensorflow]
+
+\sec Results and Visualizations
+
+For the final classification the convolutional network
+(diagram~\ref[convnet]) is trained on whole Ondřejov dataset.
+The training was stopped after {\bf 229 epochs}
+with {\bf 99.96\%} accuracy on training set and lasted only
+{\bf 8 minutes 21 seconds}.
+
+Prediction of {\bf 2\,202\,000 spectra} from \glref{LAMOST} data release 1
+has taken {\bf 1 minute 36 seconds}.
+The spectra are interpolated to same grid as spectra Ondřejov dataset
+(see section~\ref[regridding]) and standardized (see section~\ref[scaling]).
+The number of spectra classified into the classes is
+in~table~\ref[prediction-table].
+
+\midinsert \clabel[prediction-table]{LAMOST predictions}
+\ctable{lr}{
+    \hfil class & number of spectra \hfil \crl \tskip4pt
+    emission    &    158\,115             \cr
+    absorption  & 1\,898\,095             \cr
+    double-peak &    145\,790             \cr
+}
+\caption/t Counts of \glref{LAMOST} spectra split
+according to predicted classes.
+\endinsert
+
+The table~\ref[prediction-table] shows that the convolutional network
+reduced the number of possibly interesting object (emission or double-peak)
+from 2\,202\,000 to 303\,905.
+That is about 14\% from whole \glref{LAMOST} data release 1.
+While visualizing spectra according to predicted classes
+good representatives can be found.
+Figures~\ref[lamost-emission] and \ref[lamost-double-peak] show examples
+of correctly classified spectra from the interesting emission and
+double-peak classes.
+But there are also noisy spectra of different kinds mix up with
+good class candidates.
+Especially in double-peak class where the noise near to absorption line
+in often incorrectly consider as double-peak.
+
+\midinsert \clabel[lamost-emission]{Emissions from LAMOST}
+\picw=15cm \cinspic img/lamost-emission.png
+\caption/f Three correctly predicted emission spectra from \glref{LAMOST}
+data release 1.
+\endinsert
+
+\midinsert \clabel[lamost-double-peak]{Double-peaks from LAMOST}
+\picw=15cm \cinspic img/lamost-double-peak.png
+\caption/f Three correctly predicted double-peak spectra
+from \glref{LAMOST} data release 1.
+\endinsert
+
+This imperfection of the deep convolutional classifier is probably caused
+by insufficient training set.
+The Ondřejov dataset and Ondřejov archive in general
+is composed of not noisy well captured spectra.
+Therefore the neural network is not trained to recognize noisy or damaged
+spectra and put them apart.
+It has to predict them as one of the three classes.
+
+Principal component analysis of \glref{LAMOST} data space
+in~figure~\ref[pca-lamost] also proofs the Ondřejov dataset limitation.
+Although the points from Ondřejov dataset used during training cover most
+of the \glref{LAMOST} data there are some areas
+where the dataset has no points at all.
+These are probably the points were the classifier misjudge spectra
+because it has no prior knowledge about them.
+
+To overcome this problem either
+a method which can filter the noisy spectra out should be used
+or the dataset should be extended with new class
+where should the classifier put noisy spectra.

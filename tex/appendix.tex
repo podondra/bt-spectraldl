@@ -1,9 +1,34 @@
-\app Specification
+\app Contents of CD
 
-\picw=\hsize % obrázek na šířku sazby
-\cinspic specification.jpg
-\nextoddpage
+\dirtree{%
+.1 /.
+    .2 README.md\DTcomment{Markdown file with CD content information}.
+    .2 notebooks/\DTcomment{directory of Jupyter notebooks and source code}.
+        .3 data/\DTcomment{data files directory}.
+        .3 spectraldl/\DTcomment{source code of developed Python module}.
+        .3 00-spectroscopy.ipynb\DTcomment{introduction to spectroscopy}.
+        .3 01-data-download.ipynb\DTcomment{download of data from Ondřejov}.
+        .3 02-data-to-hdf5.ipynb\DTcomment{data transformation to \glref{HDF5}}.
+        .3 03-labeled-data.ipynb\DTcomment{analysis of labeled dataset}.
+        .3 04-cross-matched.ipynb\DTcomment{cross-matching of the two archives}.
+        .3 05-domain-adaptation.ipynb\DTcomment{domain adaptation experiments}.
+        .3 06-regridding.ipynb\DTcomment{testing of spectra regridding}.
+        .3 07-dataset.ipynb\DTcomment{train, validation and test set splits}.
+        .3 08-dimensionality.ipynb\DTcomment{archives data visualizations}.
+        .3 09-nns.ipynb\DTcomment{networks design and evaluation}.
+        .3 10-convnet.ipynb\DTcomment{classification of \glref{LAMOST} spectra}.
+        .3 11-candidates.ipynb\DTcomment{candidates visualizations}.
+        .3 Dockerfile\DTcomment{assemble commands of image used for notebooks}.
+        .3 requirements.txt\DTcomment{list of dependency packages}.
+    .2 src/\DTcomment{directory of \TeX{} source code files of the thesis}.
+        .3 img/\DTcomment{thesis figures directory}.
+        .3 *.tex\DTcomment{\TeX{} source code files of the thesis}.
+        .3 references.bib\DTcomment{Bib\TeX{} source code file of references}.
+    .2 text/\DTcomment{the thesis text directory}.
+        .3 bt-podsztavek.pdf\DTcomment{Bachelor's thesis in \glref{PDF} format}.
+}
 
 \app Glossary
+
 \par
 \makeglos

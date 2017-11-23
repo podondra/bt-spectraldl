@@ -1,12 +1,17 @@
-reading/
+/reading/
+/cd/
 .cache/
 
 # tex
-bt-podsztavek.lbr
-bt-podsztavek.log
-bt-podsztavek.pdf
-bt-podsztavek.ref
-ctustyle-doc.pdf
+*.aux
+*.pdf
+*.log
+*.lbr
+*.ref
+*.bak
+!ctulogo*.pdf
+.aspell.en.prepl
+personal-word-list.txt
 
 # notebooks
 .ipynb_checkpoints

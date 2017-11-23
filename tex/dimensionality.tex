@@ -1,0 +1,119 @@
+\label[dimensionality]
+\chap Dimensionality Reduction
+
+After the preprocessing methods mentioned in chapter~\ref[preprocessing]
+each spectrum is a point in {\bf 140-dimensional space}.
+To better understand the data \glref{PCA} and \glref{t-SNE} dimensionality
+reduction algorithms are applied to reduce each point to 2-dimensional space
+which can be visualized as scatter plot.
+Visualization of both Ondřejov and \glref{LAMOST} data are presented.
+
+\sec PCA
+
+{\bf Principal Component Analysis}
+is statistical technique to transform a number
+of possibly correlated variables into a smaller number of variables
+called principal components. \cite[pca]
+
+\midinsert \clabel[pca-ondrejov]{PCA of Ondřejov dataset}
+\picw=15cm \cinspic img/pca-ondrejov.png
+\caption/f On the left size is scatter plot with first two principal
+components of the original Ondřejov dataset.
+The plot more that difference in shape show difference in fluxes values.
+Right plot displays result of \glref{PCA} applied to scaled variant
+of the dataset.
+After such preprocessing method absorption spectra are oriented in left part
+of the plot, emission spectra are on the other side and double-peak spectra
+are spread across the whole plot.
+\endinsert
+
+Left plot in figure~\ref[pca-ondrejov] displays the first
+and the second principal
+component of Ondřejov dataset which is not standardized.
+After further analysis the plot express more the intensities in spectra
+fluxes than the shape.
+The points far from the dense area in middle-left have high fluxes.
+But in this work the interesting feature is shape
+not the difference between in fluxes.
+
+The plot on right side in figure~\ref[pca-ondrejov] shows Ondřejov dataset
+with suppressed fluxes.
+The scatter plot then expresses the structure of the dataset clearly.
+Absorption spectra are on the left side
+while emission spectra are mostly on the other side.
+Double-peak spectra are spread across the whole plot.
+This may implies that the emission and absorption spectra can be separable
+by linear classifier.
+But the double-peak spectra are mixed up with the other classes so
+hopefully a deep neural network can find a representation in which all
+classes are separable.
+
+Figure \ref[pca-lamost] shows \glref{PCA} applied to sample of \glref{LAMOST}
+spectra plotted with all spectra from Ondřejov.
+The plot uncovers that most of spectra in \glref{LAMOST} have absorption lines.
+A lot of points are not similar to any Ondřejov data.
+But there are probably also emission and double-peak spectra.
+This is expected behavior because Ondřejov archive is focused on observing
+emission and double-peak spectra (see section~\ref[ondrejov]) while
+\glref{LAMOST} observation is not specialized.
+
+\midinsert \clabel[pca-lamost]{PCA of LAMOST sample}
+\picw=15cm \cinspic img/pca-lamost.png
+\caption/f The first two principal components of 50\,000 random spectra
+from \glref{LAMOST} data release 1 and whole Ondřejov dataset.
+Majority of \glref{LAMOST} spectra seems to be absorptions but there are some
+points near to double-peak and emission spectra from Ondřejov.
+\endinsert
+
+\sec t-SNE
+
+{\bf T-Distributed Stochastic Neighbor Embedding}
+visualizes high-dimensional data
+by giving each point a location in a two or three dimensional map.
+It is kind of Stochastic Neighbor Embedding.
+Unlike \glref{PCA}
+(which is linear technique that focus on keeping the low-dimensional
+representations of dissimilar points far apart)
+\glref{t-SNE} is capable of capturing both global and local structure.
+\cite[tsne]
+
+Visualization of Ondřejov dataset with \glref{t-SNE}
+is in figure~\ref[tsne-ondrejov].
+Same as experiments in \cite[tsne],
+dataset is firstly reduced to 30 dimensions with \glref{PCA}
+and then reduce to two dimensions using
+Scikit-learn implementation of \glref{t-SNE}.
+Perplexity, which is \glref{t-SNE} parameter, is set to value 40.
+
+Figure~\ref[tsne-ondrejov] of \glref{t-SNE} visualization is very similar to
+\glref{PCA} scatter plot~\ref[pca-ondrejov].
+Absorption spectra are on the left side and emission spectra are
+on right side.
+Double-peak spectra are more oriented in the middle
+but they do not form their own cluster.
+
+\midinsert \clabel[tsne-ondrejov]{t-SNE Ondřejov visualization}
+\picw=15cm \cinspic img/tsne-ondrejov.png
+\caption/f Visualization of Ondřejov dataset with \glref{t-SNE}.
+The input data are standardized (see section~\ref[scaling])
+and reduced to 30 dimensions
+with \glref{PCA}.
+\endinsert
+
+Result of \glref{t-SNE} application on \glref{LAMOST} data
+with same parameterization is in
+visualization~\ref[tsne-lamost].
+There are 5\,000 random data points from \glref{LAMOST}
+and 1\,000 random points from Ondřejov.
+Data are firstly standardized and reduced to 30 dimensions with \glref{PCA}.
+
+The scatter plot shows a big cluster with absorption spectra on left
+and smaller cluster of emission spectra on right.
+Unlike in figure~\ref[pca-lamost] there seems to be no spectra
+from \glref{LAMOST} too far away from Ondřejov spectra.
+
+\midinsert \clabel[tsne-lamost]{t-SNE of LAMOST sample}
+\picw=15cm \cinspic img/tsne-lamost.png
+\caption/f Visualization of 5\,000 spectra from \glref{LAMOST} data release 1
+and 1\,000 spectra from Ondřejov reduced to two dimensions with \glref{t-SNE}.
+\endinsert
