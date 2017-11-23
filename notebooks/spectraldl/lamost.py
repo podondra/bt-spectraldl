@@ -4,7 +4,6 @@ import numpy as np
 def compute_waves(hdulist):
     '''Computes LAMOST wavelengths.'''
     header = hdulist[0].header
-    data = hdulist[0].data
 
     start = header['CRVAL1']
     delta = header['CD1_1']
